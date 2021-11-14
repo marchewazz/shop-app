@@ -1,1 +1,33 @@
-<app-test></app-test>
+<div>
+    <span>
+        <a 
+        [routerLink]="['/']" 
+        routerLinkActive="router-link-active" >
+        Main Page
+        </a>
+    </span>
+    <span>
+        <a 
+        [routerLink]="['/products']" 
+        routerLinkActive="router-link-active" >
+        Products
+        </a>
+    </span>
+    <ng-container *ngIf="!user">
+        <span>
+            <a 
+            [routerLink]="['/login']" 
+            routerLinkActive="router-link-active" >
+            Login
+            </a>
+        </span>
+        <span>
+            <a 
+            [routerLink]="['/register']" 
+            routerLinkActive="router-link-active" >
+            Register
+            </a>
+        </span>
+    </ng-container>
+</div>
+<router-outlet></router-outlet>
