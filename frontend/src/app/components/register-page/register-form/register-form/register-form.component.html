@@ -1,0 +1,47 @@
+<div>
+    <header>Register!</header>
+    <form>
+        <input 
+        type="text"
+        placeholder="First name"
+        [formControl]="registeringAccountFirstName"
+        >
+        <input 
+        type="text"
+        placeholder="Last name"
+        [formControl]="registeringAccountLastName"
+        >
+        <input 
+        type="text"
+        placeholder="Email"
+        [formControl]="registeringAccountEmail"
+        title="Your e-mail eg. xyz@gmail.com"
+        >
+        <input 
+        type="password"
+        placeholder="Password"
+        [formControl]="registeringAccountPassword"
+        >
+        <input 
+        type="password"
+        placeholder="Repeat password"
+        [formControl]="repeatedPassword"
+        >
+        <input 
+        type="text"
+        placeholder="City"
+        [formControl]="registeringAccountCity"
+        >
+        <div>
+            <p>{{ registerInfo }}</p>
+            <button *ngIf="registerInfo === 'You\'re email exists in DB!'"
+            (click)="redirect('/login')">
+            Login</button>
+        </div>
+        <button type="button"
+        (click)="registerUser()"
+        >
+            Register
+        </button>
+    </form>
+</div>

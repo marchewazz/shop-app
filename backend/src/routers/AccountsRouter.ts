@@ -4,6 +4,6 @@ import AccountsController from '../controllers/accountsController';
 const accountsRouter = Router();
 const todosController = new AccountsController();
 
-accountsRouter.get('/register', todosController.registerAccounts);
+accountsRouter.post('/register', todosController.registerAccounts);
 
 export default accountsRouter;
