@@ -36,13 +36,13 @@ export class RegisterFormComponent implements OnInit {
       this.registerInfo = "Missing values!";
     } else {
       if(!testEmailRegExp(userData.accountEmail)){
-        this.registerInfo = "Not valid email";
+        this.registerInfo = "Not valid email eg. xyz@gmail.com";
         return
       } else if(!testPasswordRegExp(userData.accountPassword)){ 
         this.registerInfo = "Password doesn't match requirments";
         return
       } else if(!arePasswordsSame(userData.accountPassword, this.repeatedPassword.value)){ 
-        this.registerInfo = "Passwords don't match";
+        this.registerInfo = "Passwords aren't the same";
         return
       } else {
         console.log(this.registeringAccountFirstName.value);
