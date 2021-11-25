@@ -2,8 +2,8 @@ import express, { Router } from 'express';
 import AccountsController from '../controllers/accountsController';
 
 const accountsRouter = Router();
-const todosController = new AccountsController();
+const accountsController = new AccountsController();
 
-accountsRouter.post('/register', todosController.registerAccounts);
+accountsRouter.post('/register', accountsController.registerAccounts);
 
 export default accountsRouter;

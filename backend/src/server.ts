@@ -1,7 +1,7 @@
 import express, {Application} from 'express';
 import cors from 'cors';
 import accountsRouter from './routers/AccountsRouter';
-
+import prodcutsRouter from './routers/ProductsRouter';
 class Server {
     private app: Application;
     private options: cors.CorsOptions = {
@@ -18,6 +18,7 @@ class Server {
 
     private routerConfig() {
         this.app.use('/accounts', accountsRouter)
+        this.app.use('/products', prodcutsRouter)
     }
     public start() {
         this.app.listen(this.PORT, (): void => {

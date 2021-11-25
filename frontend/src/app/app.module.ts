@@ -7,9 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { LoginPageComponent } from './components/login-page/login-page/login-page.component';
-import { ProductsPageComponent } from './components/products-page/products-page/products-page.component';
+import { ProductsPageComponent } from './components/products-page/products-page.component';
 import { MainPageComponent } from './components/main-page/main-page/main-page.component';
 import { RegisterFormComponent } from './components/register-page/register-form/register-form/register-form.component';
+import { ProductPreviewComponent } from './components/products-page/product-preview/product-preview.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { RegisterFormComponent } from './components/register-page/register-form/
     ProductsPageComponent,
     MainPageComponent,
     RegisterFormComponent,
+    ProductPreviewComponent,
   ],
   imports: [
     BrowserModule,

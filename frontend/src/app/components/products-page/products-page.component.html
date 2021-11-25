@@ -1,0 +1,14 @@
+<ng-container *ngIf="!isLoaded">
+    Loading...
+</ng-container>
+<ng-container *ngIf="isLoaded">
+    <ng-container *ngIf="products; else noProducts">
+        <app-product-preview 
+        *ngFor="let product of products"
+        [productData]=product>
+    </app-product-preview>
+    </ng-container> 
+    <ng-template #noProducts>
+        <p>No products</p>
+    </ng-template>
+</ng-container>
