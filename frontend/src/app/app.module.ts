@@ -11,6 +11,8 @@ import { ProductsPageComponent } from './components/products-page/products-page.
 import { MainPageComponent } from './components/main-page/main-page/main-page.component';
 import { RegisterFormComponent } from './components/register-page/register-form/register-form/register-form.component';
 import { ProductPreviewComponent } from './components/products-page/product-preview/product-preview.component';
+import { SingleProductPageComponent } from './components/single-product-page/single-product-page.component';
+import { SuppliersProductsPageComponent } from './components/suppliers-products-page/suppliers-products-page.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { ProductPreviewComponent } from './components/products-page/product-prev
     MainPageComponent,
     RegisterFormComponent,
     ProductPreviewComponent,
+    SingleProductPageComponent,
+    SuppliersProductsPageComponent,
   ],
   imports: [
     BrowserModule,
