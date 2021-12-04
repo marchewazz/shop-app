@@ -19,3 +19,5 @@ export function testPasswordRegExp(password: string) : boolean{
 export function arePasswordsSame(password: string, repeatedPassword: string) : boolean{
     return true ? password === repeatedPassword : false;
 }
+//backend url
+export var backendUrl = "http://localhost:5000"
