@@ -10,7 +10,12 @@ import { backendUrl } from '../../utilities';
 export class AccountsService {
 
   constructor(private http: HttpClient) { }
+  
   registerUser(userData: any): Observable<Object>{
-    return this.http.post(`${backendUrl}/accounts/register`, userData);
+    return this.http.post(`${backendUrl}/accounts/register`, {params: userData});
+  }
+
+  loginUser(userData: any): Observable<Object>{
+    return this.http.get(`${backendUrl}/accounts/login`, {params: userData});
   }
 }

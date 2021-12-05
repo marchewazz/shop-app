@@ -16,8 +16,7 @@ export class ProductsService {
   }
 
   getSpecificProducts(id: any) : Observable<Object>{
-    console.log(id);
-    return this.http.get(`${backendUrl}/getproduct`, {params: id})
+    return this.http.get(`${backendUrl}/products/getproduct`, {params: id});
   }
 
 }

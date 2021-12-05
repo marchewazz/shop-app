@@ -51,6 +51,7 @@ export class RegisterFormComponent implements OnInit {
 
         this.as.registerUser(userData).subscribe((res: any) => {
           this.registerInfo = res.message;
+          console.log(res, this.registerInfo);
         })
       }
     }

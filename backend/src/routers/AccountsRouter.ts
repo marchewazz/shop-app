@@ -5,5 +5,5 @@ const accountsRouter = Router();
 const accountsController = new AccountsController();
 
 accountsRouter.post('/register', accountsController.registerAccounts);
-
+accountsRouter.get('/login', accountsController.loginUser)
 export default accountsRouter;

@@ -15,7 +15,7 @@ export class SingleProductPageComponent implements OnInit {
 
   ngOnInit(): void{
     const productData = {
-      productID: Number(this.route.snapshot.paramMap.get('id')),
+      productID: Number(this.route.snapshot.paramMap.get('id'))
     }
     this.ps.getSpecificProducts(productData).subscribe(res => {
       //SAME SITUATION AS PRODUCTS PAGE

@@ -1,4 +1,3 @@
-import { query } from 'express';
 import pool from '../util/postgresConfig';
 
 export default class ProductsController{
@@ -10,11 +9,9 @@ export default class ProductsController{
             const query = `SELECT * FROM products`;
 
             var { rows } = await client.query(query);
-
+            res.send({"products": rows})
         } catch(e){
             res.send({"message":"Server error!"});
-        } finally {
-            res.send({"products": rows})
         }
     }
 
@@ -30,10 +27,9 @@ export default class ProductsController{
             const query = `SELECT * FROM products WHERE "productID" = $1`;
 
             var { rows } = await client.query(query, [productID]);
+            res.send({"product": rows})
         } catch(e){
             res.send({"message":"Server error!"});
-        } finally {
-            res.send({"product": rows})
         }
     }
 }

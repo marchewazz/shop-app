@@ -1,0 +1,23 @@
+<div>
+    <header>Login!</header>
+    <form>
+        <input 
+        type="text"
+        placeholder="Email"
+        [formControl]="loginAccountEmail"
+        >
+        <input 
+        type="password"
+        placeholder="Password"
+        [formControl]="loginAccountPassword"
+        >
+        <div>
+            <p>{{ loginInfo }}</p>
+        </div>
+        <button type="button"
+        (click)="loginUser()"
+        >
+            Login
+        </button>
+    </form>
+</div>
