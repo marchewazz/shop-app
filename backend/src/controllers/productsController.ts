@@ -1,4 +1,5 @@
 import pool from '../util/postgresConfig';
+import { returnServerError } from '../util/utilities';
 
 export default class ProductsController{
 
@@ -11,7 +12,7 @@ export default class ProductsController{
             var { rows } = await client.query(query);
             res.send({"products": rows})
         } catch(e){
-            res.send({"message":"Server error!"});
+            return returnServerError(res);
         }
     }
 
@@ -29,7 +30,7 @@ export default class ProductsController{
             var { rows } = await client.query(query, [productID]);
             res.send({"product": rows})
         } catch(e){
-            res.send({"message":"Server error!"});
+            return returnServerError(res);
         }
     }
 }

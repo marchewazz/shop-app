@@ -14,6 +14,7 @@ export class ProductsPageComponent implements OnInit {
   constructor(private ps: ProductsService) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem("x"));
     this.ps.getAllProducts().subscribe(res => {
       this.products = res
       //IT'S WEIRD BUT SERVER RETURNS OBJECT PRODUCTS WITH PARAMETER PRODUCTS

@@ -13,19 +13,29 @@
         Products
         </a>
     </span>
-    <span>
-        <a 
-        [routerLink]="['/login']" 
-        routerLinkActive="router-link-active" >
-        Login
-        </a>
-    </span>
-    <span>
-        <a 
-        [routerLink]="['/register']" 
-        routerLinkActive="router-link-active" >
-        Register
-        </a>
-    </span>
+    <ng-container *ngIf="!isUserLogged">
+        <span>
+            <a 
+            [routerLink]="['/login']" 
+            routerLinkActive="router-link-active" >
+            Login
+            </a>
+        </span>
+        <span>
+            <a 
+            [routerLink]="['/register']" 
+            routerLinkActive="router-link-active" >
+            Register
+            </a>
+        </span>
+    </ng-container>
+    <ng-container *ngIf="isUserLogged">
+        <span>
+            Welcome, {{firstName}}!
+        </span>
+        <button (click)="logout()">
+            Logout
+        </button>
+    </ng-container>
 </div>
 <router-outlet></router-outlet>

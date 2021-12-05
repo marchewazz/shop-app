@@ -13,6 +13,11 @@
         >
         <div>
             <p>{{ loginInfo }}</p>
+            <button *ngIf="loginInfo === 'Your email doesn\'t exist in DB!'"
+            (click)="redirect('/register')"
+            >
+                Register
+            </button>
         </div>
         <button type="button"
         (click)="loginUser()"

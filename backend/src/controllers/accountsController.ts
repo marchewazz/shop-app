@@ -1,6 +1,7 @@
 import pool from '../util/postgresConfig';
 import crypto from 'crypto';
-import { nextTick } from 'process';
+
+import { returnServerError } from '../util/utilities';
 
 class AccountsController {
 
@@ -8,7 +9,6 @@ class AccountsController {
         const userData = req.body.params;
         
         try {
-            console.log(`1`);
             const client = await pool.connect();
             var query = `SELECT * FROM users WHERE "userEmail" = $1`;
 
@@ -36,12 +36,39 @@ class AccountsController {
             }
         } catch(e){
             console.log(e);
-            return res.status(200).json({"message":"Server error!"});
+            return returnServerError(res);
         }
     }
 
     public async loginUser(req: any, res: any){
-        res.status(200).json({"message":"FSAD"})
+
+        try{
+            const userData = req.query;
+            console.log(userData);
+
+            const client = await pool.connect();
+            var query = `SELECT * FROM users WHERE "userEmail" = $1`;
+
+            var { rows } = await client.query(query, [userData.accountEmail]);
+            console.log(rows);
+            const result = rows[0]
+
+            if (!result){
+                return res.status(200).json({"message":"Your email doesn't exist in DB!"});
+            } else {
+                console.log(result);
+                console.log(crypto.createHash('sha256').update(userData.accountPassword).digest('base64'));
+                
+                if (result.userPass !== crypto.createHash('sha256').update(userData.accountPassword).digest('base64')){
+                    return res.status(200).json({"message":"Wrong password"})
+                } else {
+                    return res.status(200).json({"message":"Logged!", "userData": result, "token": "sometoken"})
+                }
+            }
+        } catch(e){
+            console.log(e);
+            return returnServerError(res);
+        }
     }
 }
 
