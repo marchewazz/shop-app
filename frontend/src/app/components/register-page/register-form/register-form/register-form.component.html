@@ -33,7 +33,7 @@
         >
         <div>
             <p>{{ registerInfo }}</p>
-            <button *ngIf="registerInfo === 'You\'re email exists in DB!'"
+            <button *ngIf="registerInfo === 'You\'re email exists in DB!' || registerInfo === 'You\'ve been registered!'"
             (click)="redirect('/login')">
             Login</button>
         </div>
