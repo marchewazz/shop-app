@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ProductsService } from 'src/app/services/productsService/products.service';
 
 @Component({
@@ -14,7 +15,6 @@ export class ProductsPageComponent implements OnInit {
   constructor(private ps: ProductsService) { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem("x"));
     this.ps.getAllProducts().subscribe(res => {
       this.products = res
       //IT'S WEIRD BUT SERVER RETURNS OBJECT PRODUCTS WITH PARAMETER PRODUCTS

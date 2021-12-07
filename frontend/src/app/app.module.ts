@@ -14,6 +14,7 @@ import { ProductPreviewComponent } from './components/products-page/product-prev
 import { SingleProductPageComponent } from './components/single-product-page/single-product-page.component';
 import { SuppliersProductsPageComponent } from './components/suppliers-products-page/suppliers-products-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
+import { CartComponent } from './components/cart-component/cart.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { LoginFormComponent } from './components/login-page/login-form/login-for
     SingleProductPageComponent,
     SuppliersProductsPageComponent,
     LoginFormComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

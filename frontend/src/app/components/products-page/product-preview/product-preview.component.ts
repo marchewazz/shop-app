@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { CartService } from 'src/app/services/cartService/cart.service';
+
 @Component({
   selector: 'app-product-preview',
   templateUrl: './product-preview.component.html',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 export class ProductPreviewComponent implements OnInit {
 
   @Input() productData : any;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private cs: CartService) { }
 
   ngOnInit(): void {
     console.log(this.productData);
@@ -21,5 +23,9 @@ export class ProductPreviewComponent implements OnInit {
 
   createPath(path: string, param: any): string{
     return path+param
+  }
+
+  addProduct(product: any){
+    this.cs.addProduct(product, 1)
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationStart, Router, Event } from '@angular/router';
 
 import { AuthService } from './services/authService/auth.service';
+import { CartService } from './services/cartService/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,17 @@ export class AppComponent {
 
   title = 'frontend';
   authS: AuthService = new AuthService();
+  cartS: CartService = new CartService()
   firstName : string | undefined;
   isUserLogged = false;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, ) { 
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart){
         this.checkIfUserLogged()
+      }
+      if (this.cartS.getProducts() == null){
+        this.authS.setDataInLocalStorage('cart', JSON.stringify([]))
       }
     })
   }
