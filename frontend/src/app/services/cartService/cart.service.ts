@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { CartComponent } from 'src/app/components/cart-component/cart.component';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,7 +33,6 @@ export class CartService {
     if (localCart !== null) {
       arrayLocalCart = JSON.parse(localCart);
       console.log(isProductInCart(productToAdd.productID, arrayLocalCart));
-      isProductInCart(2, arrayLocalCart);
     }
 
     if (isProductInCart(productToAdd.productID, arrayLocalCart)){
@@ -45,7 +46,9 @@ export class CartService {
   increaseProductQuantity(productID: number, quantity: number, cartArray: any[]){
     for(var cartProduct of cartArray){
       if (cartProduct.productID == productID){
-        cartProduct.quantity++;
+        cartProduct.quantity += quantity;
+        if (cartProduct.quantity <= 0) localStorage.setItem('cart', JSON.stringify(cartArray.filter((product: any) => product.productID != productID)));
+        else localStorage.setItem('cart', JSON.stringify(cartArray))
       }
     }
   }

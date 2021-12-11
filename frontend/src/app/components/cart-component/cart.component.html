@@ -1,5 +1,5 @@
 <div 
-(mouseenter)="showProducts=true;updateCart()"
+(mouseenter)="showProducts=true; updateCart()"
 (mouseleave)="showProducts=false"  
 >
     <svg xmlns="http://www.w3.org/2000/svg" 
@@ -23,7 +23,49 @@
             <ng-template #generateProductsPreview>
                 <ng-container *ngFor="let product of productsInCart">
                     <div>
-                        {{product.productName}} | {{product.productPrice}} | {{product.quantity}}
+                        {{product.productName}} | {{product.productPrice}} | 
+                        <button (click)="increaseProductQuantity(product.productID, -1); $event.stopPropagation()">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-6 w-6" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor">
+                                <path 
+                                    stroke-linecap="round" 
+                                    stroke-linejoin="round" 
+                                    stroke-width="2" 
+                                    d="M20 12H4" 
+                                />
+                            </svg>
+                        </button>
+                        {{product.quantity}} 
+                        <button (click)="increaseProductQuantity(product.productID, 1); $event.stopPropagation()">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-6 w-6" fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor">
+                                <path 
+                                    stroke-linecap="round" 
+                                    stroke-linejoin="round" 
+                                    stroke-width="2" 
+                                    d="M12 4v16m8-8H4" 
+                                />
+                            </svg>
+                        </button>
+                        <button (click)="deleteProduct(product.productID)">
+                            <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-6 w-6" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor">
+                                <path 
+                                    stroke-linecap="round" 
+                                    stroke-linejoin="round" 
+                                    stroke-width="2" 
+                                    d="M6 18L18 6M6 6l12 12" 
+                                />
+                            </svg>
+                        </button>
                     </div>
                 </ng-container>
                 <p>
