@@ -71,7 +71,7 @@
                 <p>
                     Price: {{ cartPrice }}
                 </p>
-                <button>
+                <button (click)="redirect('/shipping')">
                     Go to shipping
                 </button>
                 <button (click)="resetCart()">

@@ -37,7 +37,7 @@
             Logout
         </button>
     </ng-container>
-    <span>
+    <span *ngIf="router.url != '/shipping'">
         <app-cart></app-cart>
     </span>
 </div>

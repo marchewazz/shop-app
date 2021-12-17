@@ -1,0 +1,55 @@
+<div>
+    <p>
+        Your cart
+    </p>
+    <ng-container *ngFor="let product of productsInCart">
+        <div>
+            {{product.productName}}
+            {{product.productPrice}}
+            {{product.quantity}}
+        </div>
+    </ng-container>
+    <div>
+        {{cartPrice}}
+        <button (click)="payment()">
+            Go to payment
+        </button>
+    </div>
+    <p>
+        {{dataIssue}}
+    </p>
+    <div>
+        Shippment details
+        <input 
+        type="radio" 
+        name="details" 
+        value="account"
+        (change)="enableDisableForm()"
+        [formControl]="optionsControl"
+        [checked]="isUserLogged()">
+        <span>Use from account</span>
+        <input 
+        type="radio" 
+        name="details"
+        value="form"
+        (change)="enableDisableForm()"
+        [formControl]="optionsControl"
+        >
+        <span>Pass diffrent</span>
+        <div>
+            <form>
+                <input type="text" 
+                placeholder="Pass name" 
+                [formControl]="nameControl">
+
+                <input type="text" 
+                placeholder="Pass lastname" 
+                [formControl]="lastnameControl">
+                
+                <input type="text" 
+                placeholder="Pass city" 
+                [formControl]="cityControl">
+            </form>
+        </div>
+    </div>
+</div>

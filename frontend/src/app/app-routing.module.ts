@@ -7,13 +7,15 @@ import { ProductsPageComponent } from './components/products-page/products-page.
 import { MainPageComponent } from './components/main-page/main-page/main-page.component';
 import { SingleProductPageComponent } from './components/single-product-page/single-product-page.component';
 import { SuppliersProductsPageComponent } from './components/suppliers-products-page/suppliers-products-page.component';
+import { ShippingPageComponent } from './components/shipping-page/shipping-page/shipping-page.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent},
   { path: 'register', component: RegisterPageComponent},
   { path: 'login', component: LoginPageComponent},
   { path: 'products', component: ProductsPageComponent},
-  { path: 'product/:id', component: SingleProductPageComponent}
+  { path: 'product/:id', component: SingleProductPageComponent},
+  { path: 'shipping', component: ShippingPageComponent},
 ];
 
 @NgModule({

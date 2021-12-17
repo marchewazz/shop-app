@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CartService } from 'src/app/services/cartService/cart.service';
 
@@ -12,7 +13,7 @@ export class CartComponent implements OnInit {
   showProducts = false;
   productsInCart: any;
   cartPrice: number = 0;
-  constructor(private cs: CartService) { }
+  constructor(private cs: CartService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -48,5 +49,9 @@ export class CartComponent implements OnInit {
 
     if (this.productsInCart !== null) this.productsInCart = JSON.parse(this.productsInCart)
     this.updateCart()
+  }
+
+  redirect(path: string): void{
+    this.router.navigate([path]);
   }
 }

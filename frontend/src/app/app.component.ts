@@ -16,8 +16,7 @@ export class AppComponent {
   cartS: CartService = new CartService()
   firstName : string | undefined;
   isUserLogged = false;
-
-  constructor(private router: Router, ) { 
+  constructor(public router: Router) { 
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart){
         this.checkIfUserLogged()
