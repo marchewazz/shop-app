@@ -7,7 +7,9 @@ import { ProductsPageComponent } from './components/products-page/products-page.
 import { MainPageComponent } from './components/main-page/main-page/main-page.component';
 import { SingleProductPageComponent } from './components/single-product-page/single-product-page.component';
 import { SuppliersProductsPageComponent } from './components/suppliers-products-page/suppliers-products-page.component';
-import { ShippingPageComponent } from './components/shipping-page/shipping-page/shipping-page.component';
+import { ShippingPageComponent } from './components/shipping-page/shipping-page.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { ConfirmedBankAuthPageComponent } from './components/confirmed-bank-auth-page/confirmed-bank-auth-page.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent},
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'products', component: ProductsPageComponent},
   { path: 'product/:id', component: SingleProductPageComponent},
   { path: 'shipping', component: ShippingPageComponent},
+  { path: 'profile', component: ProfilePageComponent},
+  { path: 'confirmedauth', component: ConfirmedBankAuthPageComponent},
 ];
 
 @NgModule({

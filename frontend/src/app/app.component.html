@@ -30,9 +30,11 @@
         </span>
     </ng-container>
     <ng-container *ngIf="isUserLogged">
-        <span>
+        <a 
+        [routerLink]="['/profile']" 
+        routerLinkActive="router-link-active" >
             Welcome, {{firstName}}!
-        </span>
+        </a>
         <button (click)="logout()">
             Logout
         </button>

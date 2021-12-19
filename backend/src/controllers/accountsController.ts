@@ -70,6 +70,21 @@ class AccountsController {
             return returnServerError(res);
         }
     }
+
+    public async updateBankNumber(req: any, res: any){
+        try{
+            const userData = [req.body.params.userEmail, req.body.params.accountNumber];
+            
+            const client = await pool.connect();
+            var query = `UPDATE users SET "userBankAccNumber" = $2 WHERE "userEmail" = $1`;
+
+            var { rows } = await client.query(query, userData);
+            res.send({"x": "hjehe"})
+        } catch(e){
+            console.log(e);
+            return returnServerError(res);
+        }
+    }
 }
 
 export default AccountsController;

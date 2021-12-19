@@ -20,4 +20,6 @@ export function arePasswordsSame(password: string, repeatedPassword: string) : b
     return true ? password === repeatedPassword : false;
 }
 //backend url
-export var backendUrl = "http://localhost:5000"
+export var backendUrl = "http://localhost:5000";
+//bank backend url
+export var bankPageUrl = "http://localhost:3000";

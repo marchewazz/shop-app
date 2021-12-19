@@ -6,4 +6,5 @@ const accountsController = new AccountsController();
 
 accountsRouter.post('/register', accountsController.registerAccounts);
 accountsRouter.get('/login', accountsController.loginUser)
+accountsRouter.put('/updatebanknumber', accountsController.updateBankNumber)
 export default accountsRouter;

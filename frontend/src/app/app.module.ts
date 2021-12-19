@@ -15,7 +15,9 @@ import { SingleProductPageComponent } from './components/single-product-page/sin
 import { SuppliersProductsPageComponent } from './components/suppliers-products-page/suppliers-products-page.component';
 import { LoginFormComponent } from './components/login-page/login-form/login-form.component';
 import { CartComponent } from './components/cart-component/cart.component';
-import { ShippingPageComponent } from './components/shipping-page/shipping-page/shipping-page.component';
+import { ShippingPageComponent } from './components/shipping-page/shipping-page.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { ConfirmedBankAuthPageComponent } from './components/confirmed-bank-auth-page/confirmed-bank-auth-page.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { ShippingPageComponent } from './components/shipping-page/shipping-page/
     LoginFormComponent,
     CartComponent,
     ShippingPageComponent,
+    ProfilePageComponent,
+    ConfirmedBankAuthPageComponent,
   ],
   imports: [
     BrowserModule,
