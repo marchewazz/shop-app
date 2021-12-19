@@ -1,4 +1,8 @@
 <div>
+    <p>Firstname: {{ userData.userFirstName }}</p>
+    <p>Lastname: {{ userData.userLastName }}</p>
+    <p>City: {{ userData.userCity }}</p>
+    <p>Email: {{ userData.userEmail }}</p>
     <ng-container *ngIf="!userData.userBankAccNumber">
         Bank account isn't connected
         <button (click)="redirect(bankBackendUrl+'/authorization/'+userData.userEmail)">
@@ -6,6 +10,6 @@
         </button>
     </ng-container>
     <ng-container *ngIf="userData.userBankAccNumber">
-        Account connected: {{userData.userBankAccNumber}}   
+        Account connected: {{ "*".repeat(10) + userData.userBankAccNumber.substr(userData.userBankAccNumber.length - 4) }}   
     </ng-container>
 </div>
