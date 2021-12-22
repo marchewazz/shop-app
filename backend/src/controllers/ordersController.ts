@@ -27,4 +27,31 @@ export default class OrdersController{
             return returnServerError(res);
         }
     }
+
+    public async getAllOrders(req: any, res: any){
+        try {
+            const client = await pool.connect();
+
+            const userID = req.body.params.userID;
+
+            console.log(userID);
+    
+            var query = `SELECT "userOrders" FROM "users" WHERE "userID" = $1`
+
+            var { rows } = await client.query(query, [userID]);
+
+            console.log(rows[0].userOrders);
+
+            query = `SELECT * FROM "orders" WHERE "orderID" = ANY($1)`
+
+            var { rows } = await client.query(query, [rows[0].userOrders]);
+
+            console.log(rows);
+
+            return res.status(200).json({"orders": rows})
+        } catch(e){
+            console.log(e);
+            return returnServerError(res);
+        }
+    }
 }

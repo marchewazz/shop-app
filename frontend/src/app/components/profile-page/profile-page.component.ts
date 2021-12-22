@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { AuthService } from 'src/app/services/authService/auth.service';
+import { OrdersService } from 'src/app/services/orderService/orders.service';
 
 import { bankPageUrl } from 'src/app/utilities';
 
@@ -13,14 +14,18 @@ import { bankPageUrl } from 'src/app/utilities';
 export class ProfilePageComponent implements OnInit {
 
   userData : any | undefined;
-  bankBackendUrl = bankPageUrl;
-  constructor(private as: AuthService, @Inject(DOCUMENT)  private document: Document) { }
+  userOrders: any[] = [];
+  bankPageUrl = bankPageUrl;
+  constructor(private as: AuthService, private os: OrdersService, @Inject(DOCUMENT)  private document: Document) { }
 
   ngOnInit(): void {
     this.userData = JSON.parse(this.as.getUserDetails());
+    this.os.getOrders({"userID": this.userData.userID}).subscribe((res: any) => {
+        this.userOrders = res.orders;
+    })
     console.log(this.userData);
   }
-
+  
   redirect(path: string): void{
     this.document.location.href = path;
   }

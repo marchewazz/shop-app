@@ -13,4 +13,8 @@ export class OrdersService {
   addOrder(orderData: any): Observable<Object>{
     return this.http.post(`${backendUrl}/orders/add`, {params: orderData})
   }
+
+  getOrders(userData: any): Observable<Object>{
+    return this.http.post(`${backendUrl}/orders/getall`, {params: userData})
+  }
 }

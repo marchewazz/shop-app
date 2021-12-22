@@ -18,6 +18,7 @@ import { CartComponent } from './components/cart-component/cart.component';
 import { ShippingPageComponent } from './components/shipping-page/shipping-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { ConfirmedBankAuthPageComponent } from './components/confirmed-bank-auth-page/confirmed-bank-auth-page.component';
+import { OrdersPreviewComponent } from './components/profile-page/orders-preview/orders-preview.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ConfirmedBankAuthPageComponent } from './components/confirmed-bank-auth
     ShippingPageComponent,
     ProfilePageComponent,
     ConfirmedBankAuthPageComponent,
+    OrdersPreviewComponent,
   ],
   imports: [
     BrowserModule,

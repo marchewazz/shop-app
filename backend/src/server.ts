@@ -32,7 +32,7 @@ class Server {
         this.app.listen(this.PORT, (): void => {
             console.log(`server is listening ${this.PORT}`);
         })
-        setInterval(this.ps.updatePayments, 60000);
+        setInterval(this.ps.updatePayments, 600000);
     }
 }
 

@@ -1,0 +1,24 @@
+<p>ID: {{ orderData.orderID }}</p>
+<p>Orderer: {{ orderData.orderOrdererName }} {{ orderData.orderOrdererLastName }}</p>
+<div>
+    products here
+</div>
+<p>Ordered to: {{ orderData.orderAddress }}</p>
+<p>Ordered on: {{ orderDate }}</p>
+<p>Amount: {{ orderData.orderPrice }}</p>
+<div *ngIf="orderData.orderIsPaid">
+    <p>
+        Ended 
+    </p>
+</div>
+<div *ngIf="!orderData.orderIsPaid">
+    <p>
+        Not paid
+    </p>
+    <button>
+        Pay now
+    </button>
+    <button>
+        Cancel
+    </button>
+</div>
