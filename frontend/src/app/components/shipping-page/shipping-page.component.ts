@@ -31,7 +31,14 @@ export class ShippingPageComponent implements OnInit {
     this.updateCart();
     if (!this.isUserLogged()){
       this.optionsControl.disable();
+      this.optionsControl.setValue("form");
+    } else {
+      this.optionsControl.setValue("account");
+      this.nameControl.disable();
+      this.lastnameControl.disable();
+      this.cityControl.disable();
     }
+    this.paymentControl.setValue("now");
   }
 
   isUserLogged() {
@@ -78,7 +85,7 @@ export class ShippingPageComponent implements OnInit {
       var lastName = this.lastnameControl.value;
       var city = this.cityControl.value;
       if (!firstName || !lastName || !city){
-        this.infoLabel = "pass data";
+        this.infoLabel = "Pass data";
         return;
       }
     } else {
