@@ -11,14 +11,26 @@
     </ng-container>
     <div>
         {{cartPrice}}
-        <button (click)="payment()">
-            Go to payment
+        <button (click)="order()">
+            Order now
         </button>
     </div>
     <p>
-        {{dataIssue}}
+        {{infoLabel}}
     </p>
     <div>
+        Pay now
+        <input 
+        type="radio"
+        name="payment"
+        value="now"
+        [formControl]="paymentControl">
+        Pay later
+        <input 
+        type="radio"
+        name="payment"
+        value="later"
+        [formControl]="paymentControl">
         Shippment details
         <input 
         type="radio" 
@@ -26,7 +38,7 @@
         value="account"
         (change)="enableDisableForm()"
         [formControl]="optionsControl"
-        [checked]="isUserLogged()">
+        >
         <span>Use from account</span>
         <input 
         type="radio" 

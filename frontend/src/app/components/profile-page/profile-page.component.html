@@ -5,7 +5,7 @@
     <p>Email: {{ userData.userEmail }}</p>
     <ng-container *ngIf="!userData.userBankAccNumber">
         Bank account isn't connected
-        <button (click)="redirect(bankBackendUrl+'/authorization/'+userData.userEmail)">
+        <button (click)="redirect(bankBackendUrl+'/authorization')">
             Connect
         </button>
     </ng-container>

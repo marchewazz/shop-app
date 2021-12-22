@@ -9,7 +9,7 @@ export class CartService {
 
   constructor() { }
 
-  getProducts(){
+  getProducts(): any | null{
     return localStorage.getItem('cart')
   }
 

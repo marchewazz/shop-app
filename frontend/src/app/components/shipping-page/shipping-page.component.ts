@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 
 import { CartService } from 'src/app/services/cartService/cart.service';
 import { AuthService } from 'src/app/services/authService/auth.service';
+import { OrdersService } from 'src/app/services/orderService/orders.service';
+
+import { bankPageUrl, mainShopBill } from 'src/app/utilities';
 @Component({
   selector: 'app-shipping-page',
   templateUrl: './shipping-page.component.html',
@@ -13,14 +17,15 @@ export class ShippingPageComponent implements OnInit {
 
   productsInCart: any;
   cartPrice: number = 0;
-  dataIssue = "";
+  infoLabel = "";
 
+  paymentControl = new FormControl();
   optionsControl = new FormControl();
   nameControl = new FormControl();
   lastnameControl = new FormControl();
   cityControl = new FormControl();
 
-  constructor(private cs: CartService, private as: AuthService, private router: Router) { }
+  constructor(private cs: CartService, private as: AuthService, private os: OrdersService, private router: Router, @Inject(DOCUMENT)  private document: Document) { }
 
   ngOnInit(): void {
     this.updateCart();
@@ -53,7 +58,7 @@ export class ShippingPageComponent implements OnInit {
     const selectedOption = this.optionsControl.value;
     
     if (selectedOption == "account"){
-      this.dataIssue = "";
+      this.infoLabel = "";
       this.nameControl.disable();
       this.lastnameControl.disable();
       this.cityControl.disable();
@@ -65,33 +70,44 @@ export class ShippingPageComponent implements OnInit {
     }
   }
 
-  payment(){
-    console.log(this.optionsControl.value);
+  order(){
+    var userData = JSON.parse(this.as.getUserDetails());
     
     if (this.optionsControl.value == "form"){
       var firstName = this.nameControl.value;
       var lastName = this.lastnameControl.value;
       var city = this.cityControl.value;
       if (!firstName || !lastName || !city){
-        this.dataIssue = "pass data";
+        this.infoLabel = "pass data";
         return;
       }
     } else {
-      var userData = JSON.parse(this.as.getUserDetails());
-
       var firstName = userData.userFirstName;
       var lastName = userData.userLastName;
       var city = userData.userCity;
-      
     }
+
+    var accountNumber = userData.userBankAccNumber != null ? userData.userBankAccNumber : "";
+
     const orderData = {
+      userID: userData.userID,
       firstName: firstName,
       lastName: lastName,
       city: city,
-      email: userData.userEmail,
       products: this.cs.getProducts(),
       price: this.calculateCartPrice()
     }
-    console.log(orderData);
+
+    console.log(orderData, accountNumber, this.paymentControl.value);
+    this.os.addOrder(orderData).subscribe((res: any) => {
+      if (res.message == "ordered"){
+        if (this.paymentControl.value == "now"){
+          window.location.href = `${bankPageUrl}/payment?sender=${accountNumber}&receiver=${mainShopBill}&note=${res.orderID}&amount=${orderData.price}`;
+        } else {
+          this.infoLabel = "Order has been ordered, pay in the next 24 hours!"
+        }
+      }
+    });
   }
 }
+
