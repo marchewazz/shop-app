@@ -1,26 +1,26 @@
-<div>
-    <p>Firstname: {{ userData.userFirstName }}</p>
-    <p>Lastname: {{ userData.userLastName }}</p>
-    <p>City: {{ userData.userCity }}</p>
-    <p>Email: {{ userData.userEmail }}</p>
-    <ng-container *ngIf="!userData.userBankAccNumber">
-        Bank account isn't connected
-        <button (click)="redirect(bankPageUrl+'/authorization')">
-            Connect
-        </button>
-    </ng-container>
-    <ng-container *ngIf="userData.userBankAccNumber">
-        Account connected: {{ "*".repeat(10) + userData.userBankAccNumber.substr(userData.userBankAccNumber.length - 4) }}   
-    </ng-container>
-    <div>
+<div class="grid grid-cols-2 auto-rows-min">
+    <div class="grid auto-rows-min gap-y-10">
+        <p>Firstname: {{ userData.userFirstName }}</p>
+        <p>Lastname: {{ userData.userLastName }}</p>
+        <p>City: {{ userData.userCity }}</p>
+        <p>Email: {{ userData.userEmail }}</p>
+        <ng-container *ngIf="!userData.userBankAccNumber">
+            Bank account isn't connected
+            <button (click)="redirect(bankPageUrl+'/authorization')">
+                Connect
+            </button>
+        </ng-container>
+        <ng-container *ngIf="userData.userBankAccNumber">
+            Account connected: {{ "*".repeat(10) + userData.userBankAccNumber.substr(userData.userBankAccNumber.length - 4) }}   
+        </ng-container>
+    </div>
+    <div class="overflow-y-auto max-h-96 text-lg">
         <ng-container *ngFor="let order of userOrders">
-            <div>
+            <div class="border-b border-black p-10">
                 <app-orders-preview 
                 [orderData]=order
                 ></app-orders-preview>
             </div>
         </ng-container>
-    </div>
-    
-
+    </div>   
 </div>

@@ -6,19 +6,21 @@
 <p>Ordered to: {{ orderData.orderAddress }}</p>
 <p>Ordered on: {{ orderDate }}</p>
 <p>Amount: {{ orderData.orderPrice }}</p>
-<div *ngIf="orderData.orderIsPaid">
-    <p>
-        Ended 
+<div *ngIf="orderData.orderIsPaid"
+class="flex justify-center">
+    <p class="infos-colors">
+        Ended!
     </p>
 </div>
-<div *ngIf="!orderData.orderIsPaid">
-    <p>
-        Not paid
+<div *ngIf="!orderData.orderIsPaid"
+    class="flex justify-around items-center">
+    <p class="infos-colors">
+        Not paid!
     </p>
-    <button>
+    <button class="btn-colors">
         Pay now
     </button>
-    <button>
+    <button class="btn-colors">
         Cancel
     </button>
 </div>

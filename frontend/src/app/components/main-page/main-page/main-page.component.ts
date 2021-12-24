@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
+  mainTitle: string = "Herzlich willkommen in unserem Geschäft!";
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeMainTitle(hover: boolean){
+    if (hover) this.mainTitle = "Nah just kiddin', Welcome in our shop!";
+    if (!hover) this.mainTitle = "Herzlich willkommen in unserem Geschäft!";
   }
 
 }

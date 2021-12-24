@@ -12,10 +12,13 @@ import { CartService } from './services/cartService/cart.service';
 export class AppComponent {
 
   title = 'frontend';
+
   authS: AuthService = new AuthService();
   cartS: CartService = new CartService()
   firstName : string | undefined;
-  isUserLogged = false;
+  isUserLogged: boolean = false;
+  showOptions: boolean = false;
+
   constructor(public router: Router) { 
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart){
@@ -32,6 +35,7 @@ export class AppComponent {
     console.log(this.isUserLogged);
     this.firstName = this.isUserLogged ? JSON.parse(this.authS.getUserDetails()).userFirstName : undefined;
   }
+
   logout(){
     this.authS.clearStorage()
     this.router.navigate(['/'])

@@ -34,10 +34,12 @@
         <div>
             <p>{{ registerInfo }}</p>
             <button *ngIf="registerInfo === 'You\'re email exists in DB!' || registerInfo === 'You\'ve been registered!'"
+            class="btn-colors"
             (click)="redirect('/login')">
             Login</button>
         </div>
         <button type="button"
+        class="btn-colors"
         (click)="registerUser()"
         >
             Register

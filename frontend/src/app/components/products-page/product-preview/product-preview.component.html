@@ -1,16 +1,19 @@
-<button (click)="redirect(createPath('/product/', productData.productID))">
-    <div>
+<button class="border-4 border-purple-900" 
+(click)="redirect(createPath('/product/', productData.productID))">
+    <div class="grid grid-rows-2">
         <div>img here</div>
         <div>
             <p>{{ productData.productName }}</p>
             <ul>
-                <li *ngFor="let parameter of productData.productParams | keyvalue">
-                    {{parameter.key + " " + parameter.value}}
+                <li class="capitalize" 
+                *ngFor="let parameter of productData.productParams | keyvalue">
+                    {{parameter.key + ": " + parameter.value}}
                 </li>
             </ul>
             <div>
                 <span>{{ productData.productPrice }}</span>
-                <button (click)="addProduct(productData); $event.stopPropagation()">
+                <button class="btn-colors" 
+                (click)="addProduct(productData); $event.stopPropagation()">
                     <svg xmlns="http://www.w3.org/2000/svg" 
                     class="h-6 w-6" 
                     fill="none" 

@@ -32,13 +32,16 @@ export class ShippingPageComponent implements OnInit {
     if (!this.isUserLogged()){
       this.optionsControl.disable();
       this.optionsControl.setValue("form");
+      this.paymentControl.setValue("now");
+      this.paymentControl.disable();
     } else {
       this.optionsControl.setValue("account");
       this.nameControl.disable();
       this.lastnameControl.disable();
       this.cityControl.disable();
+      this.paymentControl.setValue("now");
     }
-    this.paymentControl.setValue("now");
+    
   }
 
   isUserLogged() {

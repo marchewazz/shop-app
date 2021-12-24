@@ -2,3 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "tailwindcss/screens";
+
+@layer components {
+    .btn-colors {
+        @apply bg-purple-900 hover:bg-purple-600 text-green-500 p-2 rounded-full
+    }
+}

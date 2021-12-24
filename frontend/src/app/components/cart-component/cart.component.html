@@ -14,7 +14,7 @@
         />
     </svg>
     <ng-container *ngIf="showProducts">
-        <div>
+        <div class="absolute bg-purple-600 rounded-lg">
             <ng-container *ngIf="productsInCart === null || productsInCart.length == 0; else generateProductsPreview">
                 <p>
                     Your cart is empty!

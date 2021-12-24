@@ -1,23 +1,21 @@
-<div>
-    <p>
-        Your cart
-    </p>
-    <ng-container *ngFor="let product of productsInCart">
-        <div>
-            {{product.productName}}
-            {{product.productPrice}}
-            {{product.quantity}}
-        </div>
-    </ng-container>
+<div class="grid grid-rows-2
+md:grid-cols-2">
     <div>
-        {{cartPrice}}
-        <button (click)="order()">
-            Order now
-        </button>
+        <p>
+            Your cart
+        </p>
+        <ng-container *ngFor="let product of productsInCart">
+            <div>
+                {{product.productName}}
+                Price: {{product.productPrice}}
+                Quantity: {{product.quantity}}
+                {{ product.quantity * product.productPrice }}
+            </div>
+        </ng-container>
+        <div>
+            Amount: {{cartPrice}}
+        </div>
     </div>
-    <p>
-        {{infoLabel}}
-    </p>
     <div>
         Pay now
         <input 
@@ -63,5 +61,12 @@
                 [formControl]="cityControl">
             </form>
         </div>
+        <p>
+            {{infoLabel}}
+        </p>
+        <button class="btn-colors"
+        (click)="order()">
+            Order now
+        </button>
     </div>
 </div>
