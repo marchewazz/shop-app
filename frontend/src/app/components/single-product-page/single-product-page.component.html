@@ -2,5 +2,87 @@
     Loading...
 </ng-container>
 <ng-container *ngIf="isLoaded">
-    {{productData.productDescription}}
+    <div class="grid grid-rows-3
+    md:grid-rows-2 md:grid-cols-2">
+        <div class="grid place-items-center">
+            <p class="text-2xl">
+                img here
+            </p>
+        </div>
+        <div class="grid auto-rows-auto gap-y-8">
+            <div>
+                <p *ngIf="productData.productQuantity == 0"
+                class="text-red-700">
+                    Not available!
+                </p>
+                <p *ngIf="productData.productQuantity <= 10 && productData.productQuantity != 0"
+                class="text-yellow-700">
+                    Last items!
+                </p>
+                <p *ngIf="productData.productQuantity > 10"
+                class="text-green-700">
+                    Available!
+                </p>
+            </div>
+            <p>
+                {{ productData.productName }}
+            </p>
+            <p>
+                {{ productData.productDescription }}
+            </p>
+            <ul *ngIf="productData.productParams">
+                <li class="capitalize" 
+                *ngFor="let parameter of productData.productParams | keyvalue">
+                    {{parameter.key + ": " + parameter.value}}
+                </li>
+            </ul>
+            <p>
+                {{ productData.productPrice }}
+            </p>
+            <div *ngIf="productData.productQuantity != 0"
+            class="grid grid-cols-2">
+                <div>
+                    <span>
+                        Quantity:
+                    </span>
+                    <input 
+                    type="number" 
+                    (keydown)="$event.preventDefault()"
+                    [formControl]="quantityControl"
+                    min="1"
+                    max="10">
+                </div>
+                <button class="btn-colors"
+                (click)="addProduct(productData, quantityControl.value)">Add</button>
+            </div>
+            <div *ngIf="productData.productQuantity == 0"
+            class="flex justify-center">
+                <button class="btn-colors">
+                    <!--BUTTON TO REDIRECT FOR MAIL-->
+                    Ask for availability
+                </button> 
+            </div>
+        </div>
+        <div class="justify-self-center mt-10
+        md:col-span-2">
+            <div>
+                <p *ngIf="!isUserLogged">
+                    You need to be logged to add comment!
+                </p>
+                <div *ngIf="isUserLogged">
+                    Comment form
+                </div>
+            </div>
+            <div>
+                <p *ngIf="!productData.productComments">
+                    No comments yet!
+                </p>
+                <div *ngIf="productData.productComments">
+                    <div *ngFor="let comment of productData.productComments">
+                        comment
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </ng-container>
