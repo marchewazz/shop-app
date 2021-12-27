@@ -54,4 +54,21 @@ export default class OrdersController{
             return returnServerError(res);
         }
     }
+
+    public async cancelOrder(req: any, res: any){
+        try{
+
+            const client = await pool.connect();
+
+            const orderID = req.body.params.orderID;
+
+            var query = `DELETE from "orders" WHERE "orderID" = $1`;
+
+            var { rows } = await client.query(query, [orderID]);
+
+            return res.status(200).json({"message":"Deleted!"})
+        } catch(e){
+            return returnServerError(res)
+        }
+    }
 }

@@ -17,4 +17,8 @@ export class OrdersService {
   getOrders(userData: any): Observable<Object>{
     return this.http.post(`${backendUrl}/orders/getall`, {params: userData})
   }
+
+  cancelOrder(orderData: any): Observable<Object>{
+    return this.http.post(`${backendUrl}/orders/cancel`, {params: orderData})
+  }
 }
