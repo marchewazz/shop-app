@@ -112,7 +112,7 @@ export class ShippingPageComponent implements OnInit {
     this.os.addOrder(orderData).subscribe((res: any) => {
       if (res.message == "ordered"){
         if (this.paymentControl.value == "now"){
-          window.location.href = `${bankPageUrl}/payment?sender=${accountNumber}&receiver=${mainShopBill}&note=${res.orderID}&amount=${orderData.price}`;
+          window.location.href = `${bankPageUrl}/transaction?sender=${accountNumber}&receiver=${mainShopBill}&note=${res.orderID}&amount=${orderData.price}`;
         } else {
           this.infoLabel = "Order has been ordered, pay in the next 24 hours!"
         }
