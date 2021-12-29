@@ -1,7 +1,11 @@
 <p>ID: {{ orderData.orderID }}</p>
 <p>Orderer: {{ orderData.orderOrdererName }} {{ orderData.orderOrdererLastName }}</p>
 <div>
-    products here
+    <p *ngFor="let product of orderData.orderProducts">
+        <span class="underline"
+        (click)="redirect(createPath('/product/', product.productID))">{{ product.productName }}</span>
+        <span> | {{ product.productPrice }} | {{ product.quantity }}</span>
+    </p>
 </div>
 <p>Ordered to: {{ orderData.orderAddress }}</p>
 <p>Ordered on: {{ orderDate }}</p>

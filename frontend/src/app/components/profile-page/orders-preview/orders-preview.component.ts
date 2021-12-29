@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { OrdersService } from 'src/app/services/orderService/orders.service';
 import { AuthService } from 'src/app/services/authService/auth.service';
@@ -13,7 +14,7 @@ export class OrdersPreviewComponent implements OnInit {
   
   @Input() orderData : any;
   orderDate: string = "";
-  constructor(private os: OrdersService, private as: AuthService) { }
+  constructor(private router: Router, private os: OrdersService, private as: AuthService) { }
 
   ngOnInit(): void {
     console.log(this.orderData);
@@ -25,6 +26,14 @@ export class OrdersPreviewComponent implements OnInit {
       console.log(res);
       if(res.message === "Deleted!") window.location.reload();
     })
+  }
+
+  redirect(path: string): void{
+    this.router.navigate([path]);
+  }
+
+  createPath(path: string, param: any): string{
+    return path+param
   }
 
   redirectToTransaction(orderID: number, orderPrice: number){
