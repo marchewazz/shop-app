@@ -17,7 +17,8 @@ class="flex justify-center">
     <p class="infos-colors">
         Not paid!
     </p>
-    <button class="btn-colors">
+    <button class="btn-colors"
+    (click)="redirectToTransaction(orderData.orderID, orderData.orderPrice)">
         Pay now
     </button>
     <button class="btn-colors"
