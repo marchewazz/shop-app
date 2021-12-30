@@ -15,6 +15,7 @@ export class MainPageComponent implements OnInit {
   }
 
   changeMainTitle(hover: boolean){
+    //TITLE JUST FOR FUN
     if (hover) this.mainTitle = "Nah just kiddin', Welcome in our shop!";
     if (!hover) this.mainTitle = "Herzlich willkommen in unserem Geschäft!";
   }

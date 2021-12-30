@@ -8,11 +8,13 @@ export default class OrdersController{
 
             const orderData = req.body.params;
             var values = [orderData.price, orderData.products, orderData.city, orderData.firstName, orderData.lastName]
+            //SIMPLY INSERT ORDER
             var query = `INSERT INTO orders(
                 "orderPrice", "orderDate", "orderProducts", "orderIsPaid", "orderAddress", "orderOrdererName", "orderOrdererLastName")
                 VALUES ($1, LOCALTIMESTAMP, $2, false, $3, $4, $5) RETURNING "orderID"`;
             
             const { rows } = await client.query(query, values);
+            //IF USER WAS LOGGED WE CAN INSERT ORDERID TO ITS ORDER ARRAY
             if (orderData.userID != ""){
                 query = `UPDATE users SET "userOrders" = array_append("userOrders", $1) WHERE "userID" = $2`;
                 values = [rows[0].orderID, orderData.userID];
@@ -35,14 +37,14 @@ export default class OrdersController{
             const userID = req.body.params.userID;
 
             console.log(userID);
-    
+            //WE SELECT ORDERS ARRAY FROM USER
             var query = `SELECT "userOrders" FROM "users" WHERE "userID" = $1`
 
             var { rows } = await client.query(query, [userID]);
 
             console.log(rows[0].userOrders);
-
-            query = `SELECT * FROM "orders" WHERE "orderID" = ANY($1)`
+            //LOOKING FOR ORDERS WITH ID EQUALS TO ANY ELEMENT IN ORDERS ARRAY
+            query = `SELECT * FROM "orders" WHERE "orderID" = ANY($1)`;
 
             var { rows } = await client.query(query, [rows[0].userOrders]);
 
@@ -61,7 +63,7 @@ export default class OrdersController{
             const client = await pool.connect();
 
             const orderID = req.body.params.orderID;
-
+            //JUST DELETE :D
             var query = `DELETE from "orders" WHERE "orderID" = $1`;
 
             var { rows } = await client.query(query, [orderID]);

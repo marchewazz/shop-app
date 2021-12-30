@@ -14,7 +14,8 @@ export class AppComponent {
   title = 'frontend';
 
   authS: AuthService = new AuthService();
-  cartS: CartService = new CartService()
+  cartS: CartService = new CartService();
+  
   firstName : string | undefined;
   isUserLogged: boolean = false;
   showOptions: boolean = false;
@@ -22,9 +23,10 @@ export class AppComponent {
   constructor(public router: Router) { 
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart){
-        this.checkIfUserLogged()
+        this.checkIfUserLogged();
       }
       if (this.cartS.getProducts() == null){
+        //IN CASE OF FIRST VISIT EMPTY CART SHOULD BE INITIALIZED
         this.authS.setDataInLocalStorage('cart', JSON.stringify([]))
       }
     })
@@ -37,7 +39,7 @@ export class AppComponent {
   }
 
   logout(){
-    this.authS.clearStorage()
+    this.authS.clearStorage();
     this.router.navigate(['/'])
   }
 }

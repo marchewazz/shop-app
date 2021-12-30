@@ -45,10 +45,10 @@ export class CartComponent implements OnInit {
   increaseProductQuantity(productID: number, quantity: number){
     console.log(`fdsafs`);
     this.cs.increaseProductQuantity(productID, quantity, this.productsInCart);
-    this.productsInCart = this.cs.getProducts()
+    this.productsInCart = this.cs.getProducts();
 
     if (this.productsInCart !== null) this.productsInCart = JSON.parse(this.productsInCart)
-    this.updateCart()
+    this.updateCart();
   }
 
   redirect(path: string): void{

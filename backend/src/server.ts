@@ -7,6 +7,7 @@ import ordersRouter from './routers/OrdersRouter';
 
 import PaymentsController from './controllers/paymentsController';
 
+//SERVER  CONFIG
 class Server {
     private app: Application;
     private options: cors.CorsOptions = {
@@ -32,6 +33,7 @@ class Server {
         this.app.listen(this.PORT, (): void => {
             console.log(`server is listening ${this.PORT}`);
         })
+        //INTERVAL TO CHECK IF ANY NEW ORDERS HAVE BEEN PAID
         setInterval(this.ps.updatePayments, 600000);
     }
 }

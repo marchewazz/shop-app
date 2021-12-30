@@ -29,6 +29,7 @@ export class ShippingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateCart();
+    //NON-LOGGED USER HAS TO PASS ORDER DATA IN INPUTS
     if (!this.isUserLogged()){
       this.optionsControl.disable();
       this.optionsControl.setValue("form");
@@ -66,7 +67,7 @@ export class ShippingPageComponent implements OnInit {
 
   enableDisableForm(){
     const selectedOption = this.optionsControl.value;
-    
+    //BASED ON RADIO BUTTON DIFFRENT INPUTS ARE ENABLED/DISABLED
     if (selectedOption == "account"){
       this.infoLabel = "";
       this.nameControl.disable();
@@ -82,7 +83,7 @@ export class ShippingPageComponent implements OnInit {
 
   order(){
     var userData = JSON.parse(this.as.getUserDetails());
-    
+    //BASED ON RADIO DIFFRENT VALUES ARE ORDER DATA
     if (this.optionsControl.value == "form"){
       var firstName = this.nameControl.value;
       var lastName = this.lastnameControl.value;
@@ -111,6 +112,9 @@ export class ShippingPageComponent implements OnInit {
     console.log(orderData, accountNumber, this.paymentControl.value);
     this.os.addOrder(orderData).subscribe((res: any) => {
       if (res.message == "ordered"){
+        //IF USER CHOOSED "PAY NOW" HE IS REDIRECTED TO TRANSACTION PAGE IN OUR BANK
+        //OTHERWISE HE CAN DO IT BY CLICKING BUTTON IN PROFILE PAGE
+        //OBVIOUSLY NON-LOGGED USERS HAVE TO PAY RIGHT AWAY
         if (this.paymentControl.value == "now"){
           window.location.href = `${bankPageUrl}/transaction?sender=${accountNumber}&receiver=${mainShopBill}&note=${res.orderID}&amount=${orderData.price}`;
         } else {

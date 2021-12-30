@@ -6,15 +6,18 @@ import { returnServerError } from '../util/utilities';
 class AccountsController {
 
     public async registerAccounts(req: any, res: any, next: any){
+
         const userData = req.body.params;
         
         try {
             const client = await pool.connect();
+            //CHECK FOR USER WITH PASSED EMAIL
             var query = `SELECT * FROM users WHERE "userEmail" = $1`;
 
             var { rows } = await client.query(query, [userData.accountEmail]);
 
             if (rows.length == 0) {
+                //IF THERE IS NO USER WITH THIS EMAIL WE CAN INSERT NEW
                 query = `INSERT INTO users(
                     "userFirstName", "userLastName", "userCity", "userPass", "userBankAccNumber", "userEmail", "userCreateDate")               
                     VALUES
@@ -32,6 +35,7 @@ class AccountsController {
                 const { rows } = await client.query(query,values);
                 return res.status(200).json({"message":"You've been registered!"});
             } else {
+                //OTHERWISE RETURN CORRECT MESSAGE
                 return res.status(200).json({"message":"You're email exists in DB!"});
             }
         } catch(e){
@@ -47,6 +51,7 @@ class AccountsController {
             console.log(userData);
 
             const client = await pool.connect();
+            //CHECK FOR USER WITH PASSED EMAIL
             var query = `SELECT * FROM users WHERE "userEmail" = $1`;
 
             var { rows } = await client.query(query, [userData.accountEmail]);
@@ -54,11 +59,12 @@ class AccountsController {
             const result = rows[0]
 
             if (!result){
+                //IF THERE IS NO USER WITH THIS EMAIL RETURN MESSAGE
                 return res.status(200).json({"message":"Your email doesn't exist in DB!"});
             } else {
                 console.log(result);
                 console.log(crypto.createHash('sha256').update(userData.accountPassword).digest('base64'));
-                
+                //JUST CHECK IS PASSWORDS MATCH
                 if (result.userPass !== crypto.createHash('sha256').update(userData.accountPassword).digest('base64')){
                     return res.status(200).json({"message":"Wrong password"})
                 } else {

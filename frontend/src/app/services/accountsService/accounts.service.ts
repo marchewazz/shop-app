@@ -20,7 +20,6 @@ export class AccountsService {
   }
 
   updateBankAccount(userData: any): Observable<Object>{
-    console.log(userData);
     return this.http.put(`${backendUrl}/accounts/updatebanknumber`, {params: userData});
   }
 }

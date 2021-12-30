@@ -5,7 +5,7 @@ export default class ProductsController{
 
     public async getAllProducts(req: any, res: any){
         try {
-
+            //SIMPLY GETTING PRODUCTS
             const client = await pool.connect();
             const query = `SELECT * FROM products`;
 
@@ -20,7 +20,7 @@ export default class ProductsController{
 
         console.log(req.query);
         try {
-            
+            //SIMPLY GETTING ONE PRODUCT
             const client = await pool.connect();
 
             const productID = req.query.productID
