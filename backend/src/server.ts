@@ -4,6 +4,7 @@ import cors from 'cors';
 import accountsRouter from './routers/AccountsRouter';
 import prodcutsRouter from './routers/ProductsRouter';
 import ordersRouter from './routers/OrdersRouter';
+import commentsRouter from './routers/CommentsRouter';
 
 import PaymentsController from './controllers/paymentsController';
 
@@ -28,6 +29,7 @@ class Server {
         this.app.use('/accounts', accountsRouter)
         this.app.use('/products', prodcutsRouter)
         this.app.use('/orders', ordersRouter)
+        this.app.use('/comments', commentsRouter)
     }
     public start() {
         this.app.listen(this.PORT, (): void => {

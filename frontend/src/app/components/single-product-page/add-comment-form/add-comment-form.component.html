@@ -1,0 +1,35 @@
+<div>
+    <label for="anonymous">
+        Anonymous comment
+    </label>
+    <input 
+    type="checkbox"
+    [formControl]="isAnonymous" 
+    name="anonymous" 
+    id="anonymous">
+    <textarea class="resize-none"
+    placeholder="Comment here..."
+    [formControl]="commentText"
+    name="" 
+    id="" 
+    cols="50" 
+    rows="5"></textarea>
+    <span>
+        Rating:
+    </span>
+    <select [formControl]="rating"
+    name="" 
+    id="">
+        <option *ngFor="let rating of [1,2,3,4,5]"
+        [value]="rating"
+        >{{ rating }}
+        </option>
+    </select>
+    <span>
+        {{ info }}
+    </span>
+    <button class="btn-colors"
+    (click)="addComment()">
+        Add comment
+    </button>
+</div>

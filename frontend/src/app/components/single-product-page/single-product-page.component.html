@@ -23,6 +23,12 @@
                 class="text-green-700">
                     Available!
                 </p>
+                <p *ngIf="average != 0">
+                    {{ average }}/5
+                </p>
+                <p *ngIf="average == 0">
+                    No ratings yet
+                </p>
             </div>
             <p>
                 {{ productData.productName }}
@@ -70,16 +76,23 @@
                     You need to be logged to add comment!
                 </p>
                 <div *ngIf="isUserLogged">
-                    Comment form
+                    <app-add-comment-form [productID]=productData.productID></app-add-comment-form>
                 </div>
             </div>
             <div>
-                <p *ngIf="!productData.productComments">
+                <p *ngIf="comments.length == 0">
                     No comments yet!
                 </p>
-                <div *ngIf="productData.productComments">
-                    <div *ngFor="let comment of productData.productComments">
-                        comment
+                <div *ngIf="comments.length != 0">
+                    <div *ngFor="let comment of comments">
+                        <p>
+                            {{ comment.userName }} 
+                            <span>{{ comment.rating }}</span>
+                            <span> {{ createDate(comment.commentDate) }}</span>
+                        </p>
+                        <p>
+                            {{ comment.commentText }}
+                        </p>
                     </div>
                 </div>
             </div>
