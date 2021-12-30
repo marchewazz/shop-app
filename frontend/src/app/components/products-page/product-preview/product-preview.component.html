@@ -3,6 +3,12 @@
     <div class="grid grid-rows-2">
         <div>img here</div>
         <div>
+            <p *ngIf="average != 0">
+                {{ average }}/5
+            </p>
+            <p *ngIf="average == 0">
+                No ratings yet
+            </p>
             <p>{{ productData.productName }}</p>
             <ul>
                 <li class="capitalize" 
