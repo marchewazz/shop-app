@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
   }
 
   calculateCartPrice(): number{
-    return (this.productsInCart.reduce((sum: any, cartProduct: any) => sum + (cartProduct['productPrice'] * cartProduct['quantity']), 0)).toFixed(2);
+    return this.cs.calculateCartPrice()
   }
 
   deleteProduct(id: number){

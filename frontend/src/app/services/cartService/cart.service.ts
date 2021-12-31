@@ -60,4 +60,8 @@ export class CartService {
       }
     }
   }
+
+  calculateCartPrice(): number{
+    return (JSON.parse(this.getProducts()).reduce((sum: any, cartProduct: any) => sum + (cartProduct['productPrice'] * cartProduct['quantity']), 0)).toFixed(2);
+  }
 }

@@ -58,7 +58,7 @@ export class ShippingPageComponent implements OnInit {
   }
 
   calculateCartPrice(): number{
-    return (this.productsInCart.reduce((sum: any, cartProduct: any) => sum + (cartProduct['productPrice'] * cartProduct['quantity']), 0)).toFixed(2);
+    return this.cs.calculateCartPrice()
   }
 
   redirect(path: string): void{
