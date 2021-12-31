@@ -14,6 +14,10 @@ export class CommentsService {
     return this.http.post(`${backendUrl}/comments/add`, {params: commentData})
   }
 
+  deleteComment(commentData: any){
+    return this.http.post(`${backendUrl}/comments/delete`, {params: commentData})
+  }
+
   getComments(productID: any){
     return this.http.post(`${backendUrl}/comments/get`, {params: productID})
   }

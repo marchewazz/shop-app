@@ -20,6 +20,23 @@ export default class CommentsController{
         }
     }
 
+    async deleteComment(req: any, res: any){
+        try {
+            const client = await pool.connect();
+            const commentID = req.body.params.commentID;
+            console.log(commentID);
+
+            const query = `DELETE FROM "comments" WHERE "commentID" = $1`;
+
+            await client.query(query, [commentID]);
+
+            return res.status(200).json({"message": "deleted"})
+            
+        } catch(e){
+            console.log(e);
+        }
+    }
+
     async getComments(req: any, res: any){
         try {
             const client = await pool.connect();

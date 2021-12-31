@@ -19,7 +19,7 @@ import { ShippingPageComponent } from './components/shipping-page/shipping-page.
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { ConfirmedBankAuthPageComponent } from './components/confirmed-bank-auth-page/confirmed-bank-auth-page.component';
 import { OrdersPreviewComponent } from './components/profile-page/orders-preview/orders-preview.component';
-import { AddCommentFormComponent } from './components/single-product-page/add-comment-form/add-comment-form.component';
+import { CommentsSectionComponent } from './components/single-product-page/comments-section/comments-section.component';
 
 
 @NgModule({
@@ -39,7 +39,7 @@ import { AddCommentFormComponent } from './components/single-product-page/add-co
     ProfilePageComponent,
     ConfirmedBankAuthPageComponent,
     OrdersPreviewComponent,
-    AddCommentFormComponent,
+    CommentsSectionComponent,
   ],
   imports: [
     BrowserModule,
