@@ -1,0 +1,76 @@
+<div>
+    <p *ngIf="!isUserLogged">
+        You need to be logged to add comment!
+    </p>
+    <div *ngIf="isUserLogged">
+        <div>
+            <label for="anonymous">
+                Anonymous comment
+            </label>
+            <input 
+            type="checkbox"
+            [formControl]="isAnonymous" 
+            name="anonymous" 
+            id="anonymous">
+            <textarea class="resize-none"
+            placeholder="Comment here..."
+            [formControl]="commentText"
+            name="" 
+            id="" 
+            cols="50" 
+            rows="5"></textarea>
+            <span>
+                Rating:
+            </span>
+            <select [formControl]="rating"
+            name="" 
+            id="">
+                <option *ngFor="let rating of [1,2,3,4,5]"
+                [value]="rating"
+                >{{ rating }}
+                </option>
+            </select>
+            <span>
+                {{ info }}
+            </span>
+            <button class="btn-colors"
+            (click)="addComment()">
+                Add comment
+            </button>
+        </div>
+    </div>
+</div>
+<div>
+    <p *ngIf="comments.length == 0">
+        No comments yet!
+    </p>
+    <div *ngIf="comments.length != 0">
+        <div *ngFor="let comment of comments">
+            <p>
+                {{ comment.userName }} 
+                <span>{{ comment.rating }}</span>
+                <span> {{ createDate(comment.commentDate) }}</span>
+                <span>
+                    <button *ngIf="comment.userID == userID"
+                    (click)="deleteComment(comment.commentID)">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                            class="h-6 w-6" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor">
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" 
+                            />
+                        </svg>
+                    </button>
+                </span>
+            </p>
+            <p>
+                {{ comment.commentText }}
+            </p>
+        </div>
+    </div>
+</div>

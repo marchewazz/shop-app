@@ -72,29 +72,7 @@
         <div class="justify-self-center mt-10
         md:col-span-2">
             <div>
-                <p *ngIf="!isUserLogged">
-                    You need to be logged to add comment!
-                </p>
-                <div *ngIf="isUserLogged">
-                    <app-add-comment-form [productID]=productData.productID></app-add-comment-form>
-                </div>
-            </div>
-            <div>
-                <p *ngIf="comments.length == 0">
-                    No comments yet!
-                </p>
-                <div *ngIf="comments.length != 0">
-                    <div *ngFor="let comment of comments">
-                        <p>
-                            {{ comment.userName }} 
-                            <span>{{ comment.rating }}</span>
-                            <span> {{ createDate(comment.commentDate) }}</span>
-                        </p>
-                        <p>
-                            {{ comment.commentText }}
-                        </p>
-                    </div>
-                </div>
+                <app-comments-section [productID]=productData.productID></app-comments-section>
             </div>
         </div>
     </div>

@@ -15,10 +15,8 @@ import { CommentsService } from 'src/app/services/commentsService/comments.servi
 export class SingleProductPageComponent implements OnInit {
 
   isLoaded: boolean = false;
-  isUserLogged: boolean = false;
   productData : Object | any;
   average: number | undefined;
-  comments: any = [];
 
   quantityControl = new FormControl();
 
@@ -38,15 +36,8 @@ export class SingleProductPageComponent implements OnInit {
     });
     this.quantityControl.setValue(1);
 
-    this.isUserLogged = this.as.isUserLogged();
-
-    this.comS.getComments(productData).subscribe((res: any) => {
-      this.comments = res.comments;
-      console.log(this.comments);
-    })
-
     this.comS.getAverage(productData).subscribe((res: any) => {
-      console.log(res);
+      if (res.message == "inserted") this.ngOnInit;
       //EITHER I'M STUPID OR TYPESCRIPT BUT IT'S WEIRDEST LINE IN MY LIFE
       this.average = Number(Number(res.average[0].avg).toFixed(2));
     })

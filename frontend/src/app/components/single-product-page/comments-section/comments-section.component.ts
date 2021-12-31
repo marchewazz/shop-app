@@ -5,24 +5,49 @@ import { AuthService } from 'src/app/services/authService/auth.service';
 import { CommentsService } from 'src/app/services/commentsService/comments.service';
 
 @Component({
-  selector: 'app-add-comment-form',
-  templateUrl: './add-comment-form.component.html',
-  styleUrls: ['./add-comment-form.component.scss']
+  selector: 'app-comments-section',
+  templateUrl: './comments-section.component.html',
+  styleUrls: ['./comments-section.component.scss']
 })
-export class AddCommentFormComponent implements OnInit {
+export class CommentsSectionComponent implements OnInit {
 
-  @Input() productID: number | undefined;
+  @Input() productID : any;
 
+  isUserLogged: boolean = false;
+  userID: number = 0;
+
+  average: number | undefined;
+  comments: any = [];
   info: string = "";
   
   isAnonymous = new FormControl();
   commentText = new FormControl();
   rating = new FormControl();
-  
-  constructor(private as: AuthService, private cs: CommentsService) { }
+
+  constructor(private comS: CommentsService, private as: AuthService) { }
 
   ngOnInit(): void {
     this.rating.setValue("5");
+    
+    const productID = {
+      productID: this.productID
+    }
+    this.isUserLogged = this.as.isUserLogged();
+    if (JSON.parse(this.as.getUserDetails()) != null) this.userID = JSON.parse(this.as.getUserDetails()).userID;
+    this.comS.getComments(productID).subscribe((res: any) => {
+      this.comments = res.comments;
+      console.log(this.comments);
+    })
+
+    this.comS.getAverage(productID).subscribe((res: any) => {
+      
+      //EITHER I'M STUPID OR TYPESCRIPT BUT IT'S WEIRDEST LINE IN MY LIFE
+      this.average = Number(Number(res.average[0].avg).toFixed(2));
+    })
+  }
+
+  createDate(date: any){
+    return new Date(date).toLocaleString()
   }
 
   addComment(){
@@ -48,11 +73,15 @@ export class AddCommentFormComponent implements OnInit {
         productID: this.productID
       }
       console.log(commentData);
-      this.cs.addComment(commentData).subscribe((res: any) => {
-        console.log(res);
+      this.comS.addComment(commentData).subscribe((res: any) => {
+        if (res.message == "inserted") this.ngOnInit();
       })
     }
-   
   }
 
+  deleteComment(commentID: number){
+    this.comS.deleteComment({commentID: commentID}).subscribe((res: any) => {
+      if (res.message == "deleted") this.ngOnInit();
+    })
+  }
 }
