@@ -16,9 +16,7 @@ export class ProductPreviewComponent implements OnInit {
   constructor(private router: Router, private cs: CartService, private comS: CommentsService) { }
 
   ngOnInit(): void {
-    console.log(this.productData);
     this.comS.getAverage({productID: this.productData.productID}).subscribe((res: any) =>{
-      console.log(res);
       //EITHER I'M STUPID OR TYPESCRIPT BUT IT'S WEIRDEST LINE IN MY LIFE
       this.average = Number(Number(res.average[0].avg).toFixed(2));
     })

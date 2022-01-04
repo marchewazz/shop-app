@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
   { path: 'products', component: ProductsPageComponent},
   { path: 'product/:id', component: SingleProductPageComponent},
+  { path: 'supplier/:id', component: SuppliersProductsPageComponent},
   { path: 'shipping', component: ShippingPageComponent},
   { path: 'profile', component: ProfilePageComponent},
   { path: 'confirmedauth', component: ConfirmedBankAuthPageComponent},

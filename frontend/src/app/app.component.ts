@@ -34,7 +34,6 @@ export class AppComponent {
 
   checkIfUserLogged(){
     this.isUserLogged = this.authS.isUserLogged();
-    console.log(this.isUserLogged);
     this.firstName = this.isUserLogged ? JSON.parse(this.authS.getUserDetails()).userFirstName : undefined;
   }
 

@@ -36,7 +36,6 @@ export class CommentsSectionComponent implements OnInit {
     if (JSON.parse(this.as.getUserDetails()) != null) this.userID = JSON.parse(this.as.getUserDetails()).userID;
     this.comS.getComments(productID).subscribe((res: any) => {
       this.comments = res.comments;
-      console.log(this.comments);
     })
 
     this.comS.getAverage(productID).subscribe((res: any) => {
@@ -51,7 +50,6 @@ export class CommentsSectionComponent implements OnInit {
   }
 
   addComment(){
-    console.log(this.rating.value, this.isAnonymous.value);
     
     if(this.commentText.value == null || this.commentText.value == "") this.info = "Hey! If you wanna add comment write something!";
     else {
@@ -60,9 +58,7 @@ export class CommentsSectionComponent implements OnInit {
       if (this.isAnonymous.value != null || this.isAnonymous.value == true){
         var author = "Anonymous";
       } else {
-        console.log(userData);
         var author = `${userData.userFirstName} ${userData.userLastName}`;
-        console.log(author); 
       }
       var userID = `${userData.userID}`;
       const commentData = {

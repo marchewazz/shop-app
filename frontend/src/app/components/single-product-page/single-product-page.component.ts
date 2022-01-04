@@ -20,7 +20,7 @@ export class SingleProductPageComponent implements OnInit {
 
   quantityControl = new FormControl();
 
-  constructor(private route: ActivatedRoute, private ps: ProductsService, private comS: CommentsService, private as: AuthService, private cs: CartService, private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute, private ps: ProductsService, private comS: CommentsService, private as: AuthService, private cs: CartService) { }
 
   ngOnInit(): void{
     const productData = {
@@ -31,7 +31,6 @@ export class SingleProductPageComponent implements OnInit {
       //SOME COMPLICATED OPERATIONS NECESSARY
       this.productData = res;
       this.productData = this.productData.product[0];
-      console.log(this.productData);
       this.isLoaded = true;
     });
     this.quantityControl.setValue(1);
@@ -49,6 +48,10 @@ export class SingleProductPageComponent implements OnInit {
 
   createDate(date: any){
     return new Date(date).toLocaleString()
+  }
+
+  createPath(path: string, param: any): string{
+    return path+param
   }
 
   redirect(path: string): void{

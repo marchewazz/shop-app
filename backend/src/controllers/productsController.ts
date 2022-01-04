@@ -25,11 +25,36 @@ export default class ProductsController{
 
             const productID = req.query.productID
 
-            const query = `SELECT * FROM products WHERE "productID" = $1`;
+            const query = `SELECT * FROM products 
+                        INNER JOIN "suppliers"
+                        ON "productSupplier" = "supplierID"
+                        WHERE "productID" = $1`;
 
             var { rows } = await client.query(query, [productID]);
             res.send({"product": rows})
         } catch(e){
+            return returnServerError(res);
+        }
+    }
+
+    public async getProductsFromSupplier(req: any, res: any){
+        try {
+            const client = await pool.connect();
+            
+            const productID = req.body.params.supplierID;
+            console.log(productID);
+            
+
+            const query = `SELECT * FROM products  
+                        INNER JOIN "suppliers"
+                        ON "productSupplier" = "supplierID"
+                        WHERE "productSupplier" = $1`;
+
+            var { rows } = await client.query(query, [productID]);
+
+            return res.status(200).json({"message": "got", "products": rows})
+        } catch(e){
+            console.log(e);
             return returnServerError(res);
         }
     }

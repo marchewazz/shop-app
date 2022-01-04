@@ -19,4 +19,8 @@ export class ProductsService {
     return this.http.get(`${backendUrl}/products/getproduct`, {params: id});
   }
 
+  getProductsFromSupplier(supplierData: any) : Observable<Object>{
+    return this.http.post(`${backendUrl}/products/getbysupplier`, {params: supplierData})
+  }
+
 }

@@ -22,7 +22,6 @@ export class ProductsPageComponent implements OnInit {
       //THAT'S WHY LINE UNDERNEATH MAKES SENSE
       this.products = this.products.products
       this.isLoaded = true;
-      console.log(this.products);
     });
   }
 
