@@ -23,6 +23,7 @@ export class ShippingPageComponent implements OnInit {
   optionsControl = new FormControl();
   nameControl = new FormControl();
   lastnameControl = new FormControl();
+  emailControl = new FormControl();
   cityControl = new FormControl();
 
   constructor(private cs: CartService, private as: AuthService, private os: OrdersService, private router: Router, @Inject(DOCUMENT)  private document: Document) { }
@@ -34,12 +35,12 @@ export class ShippingPageComponent implements OnInit {
       this.optionsControl.disable();
       this.optionsControl.setValue("form");
       this.paymentControl.setValue("now");
-      this.paymentControl.disable();
     } else {
       this.optionsControl.setValue("account");
       this.nameControl.disable();
       this.lastnameControl.disable();
       this.cityControl.disable();
+      this.emailControl.disable();
       this.paymentControl.setValue("now");
     }
     
@@ -88,7 +89,8 @@ export class ShippingPageComponent implements OnInit {
       var firstName = this.nameControl.value;
       var lastName = this.lastnameControl.value;
       var city = this.cityControl.value;
-      if (!firstName || !lastName || !city){
+      var email = this.emailControl.value;
+      if (!firstName || !lastName || !city || !email){
         this.infoLabel = "Pass data";
         return;
       }
@@ -96,15 +98,17 @@ export class ShippingPageComponent implements OnInit {
       var firstName = userData.userFirstName;
       var lastName = userData.userLastName;
       var city = userData.userCity;
+      var email = userData.userEmail;
     }
 
-    var accountNumber = userData.userBankAccNumber != null ? userData.userBankAccNumber : "";
+    var accountNumber = this.isUserLogged() ? userData.userBankAccNumber : "";
 
     const orderData = {
-      userID: userData.userID,
+      userID: this.isUserLogged() ? userData.userID : "",
       firstName: firstName,
       lastName: lastName,
       city: city,
+      email: email,
       products: this.cs.getProducts(),
       price: this.calculateCartPrice()
     }

@@ -1,5 +1,7 @@
 import pool from '../util/postgresConfig';
-import { returnServerError } from '../util/utilities';
+
+import { bankPage, returnServerError } from '../util/utilities';
+import MailingController from './mailingController';
 
 export default class OrdersController{
     public async addOrder(req: any, res: any){
@@ -21,7 +23,23 @@ export default class OrdersController{
                 
                 await client.query(query, values);
             }
+            new MailingController().sendMail({
+                from: "shop.app4321@gmail.com",
+                to: orderData.email,
+                subject: `Order confirmation`,
+                html: `<!DOCTYPE html>
+                <html>
+                    <h2>
+                        You order has been received! Order no. ${rows[0].orderID}
+                    </h2>
 
+                    <h4>
+                        If you haven't paid yet you should do this within the next 24 hours!
+                        You can click <a href="${bankPage}">here</a> to go straight on bank page! 
+                    </h4>
+                </html>
+                `,
+            })
             return res.status(200).json({"message": "ordered", "orderID": rows[0].orderID})
 
         }catch(e) {
