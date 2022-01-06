@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { OrdersService } from 'src/app/services/orderService/orders.service';
 
-import { bankPageUrl } from 'src/app/utilities';
+import { bankPageUrl, bankAuthPage } from 'src/app/utilities';
 
 @Component({
   selector: 'app-profile-page',
@@ -16,6 +16,7 @@ export class ProfilePageComponent implements OnInit {
   userData : any | undefined;
   userOrders: any[] = [];
   bankPageUrl = bankPageUrl;
+  bankAuthPage = bankAuthPage;
   constructor(private as: AuthService, private os: OrdersService, @Inject(DOCUMENT)  private document: Document) { }
 
   ngOnInit(): void {

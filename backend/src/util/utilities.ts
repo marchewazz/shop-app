@@ -4,6 +4,6 @@ export function returnServerError(res: any): any {
 //ACCOUNT TO TEST email: test123@test.com/Password1
 //ACCOUNT TO TEST email: email135@email.com/TomSmith1
 //SHOP BANK ACCOUNT shopapp@bank.com/SHOPAPP123/2580
-export var mainShopBill = "723048019603"
+export var mainShopBill = "809155717864";
 export var bankBackend = "http://localhost:8000";
 export var bankPage = "http://localhost:3000";

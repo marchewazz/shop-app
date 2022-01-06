@@ -23,4 +23,5 @@ export function arePasswordsSame(password: string, repeatedPassword: string) : b
 export var backendUrl = "http://localhost:5000";
 //bank backend url
 export var bankPageUrl = "http://localhost:3000";
-export var mainShopBill = "723048019603"
+export var mainShopBill = "809155717864";
+export var bankAuthPage = "http://localhost:4200/confirmedauth";
