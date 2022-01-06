@@ -77,6 +77,22 @@ class AccountsController {
         }
     }
 
+    public async refreshUserDate(req: any, res: any){
+        try{
+            console.log(req.body.params);
+
+            const client = await pool.connect();
+
+            var query = `SELECT * FROM users WHERE "userID" = $1`;
+
+            var { rows } = await client.query(query, [req.body.params.userID]);
+            const result = rows[0];
+            return res.status(200).json({"userData": result})
+        } catch(e){
+            console.log(e);
+        }
+    }
+
     public async updateBankNumber(req: any, res: any){
         try{
             const userData = [req.body.params.userEmail, req.body.params.accountNumber];
