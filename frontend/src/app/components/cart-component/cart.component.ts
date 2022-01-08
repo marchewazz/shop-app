@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
   constructor(private cs: CartService, private router: Router) { }
 
   ngOnInit(): void {
+    this.updateCart()
   }
 
   updateCart(){
