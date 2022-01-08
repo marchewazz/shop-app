@@ -7,7 +7,7 @@ class PaymentsController{
 
     public async updatePayments(): Promise<any> {
         //WE ARE LOOKING FOR TRANSACTIONS HISTORY OF SHOP BILL 
-        axios.get(`${bankBackend}/transaction/historybill`, {data: {accountNumber: mainShopBill}}).then(async (res: any) => {
+        axios.get(`${bankBackend}/transactions/historybill`, {data: {accountNumber: mainShopBill}}).then(async (res: any) => {
             var transactions = JSON.parse(res.data.transactions);
             const client = await pool.connect();
             for (var transaction of transactions){
