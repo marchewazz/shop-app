@@ -19,6 +19,11 @@ export class CartComponent implements OnInit {
     this.updateCart()
   }
 
+  changeVisibility(){
+    this.showProducts = !this.showProducts
+    this.updateCart()
+  }
+
   updateCart(){
     this.productsInCart = this.cs.getProducts()
 
