@@ -24,7 +24,7 @@
                 <ng-container *ngFor="let product of productsInCart">
                     <div>
                         {{product.productName}} | {{product.productPrice+shopCurrency}} | 
-<!--                         
+                        <!--                         
                         IT WASN'T WORKING SO IT'S COMMENTED OUT FOR NOW
                         <button (click)="increaseProductQuantity(product.productID, -1); $event.stopPropagation()">
                             <svg xmlns="http://www.w3.org/2000/svg" 
@@ -40,7 +40,9 @@
                                 />
                             </svg>
                         </button>
-                        {{product.quantity}} 
+                        --->
+                        {{product.quantity}}
+                        <!-- 
                         <button (click)="increaseProductQuantity(product.productID, 1); $event.stopPropagation()">
                             <svg xmlns="http://www.w3.org/2000/svg" 
                             class="h-6 w-6" fill="none" 
@@ -67,7 +69,7 @@
                                     d="M6 18L18 6M6 6l12 12" 
                                 />
                             </svg>
-                        </button>
+                        </button> 
                         -->
                     </div>
                 </ng-container>
