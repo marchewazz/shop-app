@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from "rxjs";
 
 import { CartService } from 'src/app/services/cartService/cart.service';
 
@@ -10,17 +11,17 @@ import { CartService } from 'src/app/services/cartService/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  showProducts = false;
+  showProducts: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   productsInCart: any;
   cartPrice: number = 0;
-  constructor(private cs: CartService, private router: Router) { }
+  constructor(private cs: CartService, private router: Router) {
+    this.showProducts.subscribe((value: any) => {
+      console.log(value);
+      if(value) this.updateCart()
+    })
+   }
 
   ngOnInit(): void {
-    this.updateCart()
-  }
-
-  changeVisibility(){
-    this.showProducts = !this.showProducts
     this.updateCart()
   }
 
@@ -34,7 +35,7 @@ export class CartComponent implements OnInit {
 
   resetCart(){
     localStorage.setItem('cart', '[]')
-    this.showProducts = false;
+    this.showProducts.next(false);
     this.updateCart()
   }
 
