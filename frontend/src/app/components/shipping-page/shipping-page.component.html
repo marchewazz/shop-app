@@ -7,13 +7,13 @@ md:grid-cols-2">
         <ng-container *ngFor="let product of productsInCart">
             <div>
                 {{product.productName}}
-                Price: {{product.productPrice}}
+                Price: {{product.productPrice+shopCurrency}}
                 Quantity: {{product.quantity}}
-                {{ product.quantity * product.productPrice }}
+                {{ product.quantity * product.productPrice+shopCurrency }}
             </div>
         </ng-container>
         <div>
-            Amount: {{cartPrice}}
+            Amount: {{cartPrice+shopCurrency}}
         </div>
     </div>
     <div>

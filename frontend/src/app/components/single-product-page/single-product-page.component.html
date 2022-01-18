@@ -46,7 +46,7 @@
                 </li>
             </ul>
             <p>
-                {{ productData.productPrice }}
+                {{ productData.productPrice+shopCurrency }}
             </p>
             <div *ngIf="productData.productQuantity != 0"
             class="grid grid-cols-2">

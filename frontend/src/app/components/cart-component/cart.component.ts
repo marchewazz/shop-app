@@ -4,6 +4,8 @@ import { BehaviorSubject } from "rxjs";
 
 import { CartService } from 'src/app/services/cartService/cart.service';
 
+import { shopCurrency } from 'src/app/utilities';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,6 +16,8 @@ export class CartComponent implements OnInit {
   showProducts: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   productsInCart: any;
   cartPrice: number = 0;
+  shopCurrency: string = shopCurrency;
+
   constructor(private cs: CartService, private router: Router) {
     this.showProducts.subscribe((value: any) => {
       console.log(value);

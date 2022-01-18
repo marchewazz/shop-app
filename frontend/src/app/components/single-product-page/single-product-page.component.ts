@@ -7,6 +7,8 @@ import { AuthService } from 'src/app/services/authService/auth.service';
 import { CartService } from 'src/app/services/cartService/cart.service';
 import { CommentsService } from 'src/app/services/commentsService/comments.service';
 
+import { shopCurrency } from '../../utilities';
+
 @Component({
   selector: 'app-single-product-page',
   templateUrl: './single-product-page.component.html',
@@ -17,7 +19,8 @@ export class SingleProductPageComponent implements OnInit {
   isLoaded: boolean = false;
   productData : Object | any;
   average: number | undefined;
-
+  shopCurrency: string = shopCurrency;
+  
   quantityControl = new FormControl();
 
   constructor(private router: Router, private route: ActivatedRoute, private ps: ProductsService, private comS: CommentsService, private as: AuthService, private cs: CartService) { }

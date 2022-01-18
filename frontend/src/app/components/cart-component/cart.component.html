@@ -23,7 +23,7 @@
             <ng-template #generateProductsPreview>
                 <ng-container *ngFor="let product of productsInCart">
                     <div>
-                        {{product.productName}} | {{product.productPrice}} | 
+                        {{product.productName}} | {{product.productPrice+shopCurrency}} | 
 <!--                         
                         IT WASN'T WORKING SO IT'S COMMENTED OUT FOR NOW
                         <button (click)="increaseProductQuantity(product.productID, -1); $event.stopPropagation()">

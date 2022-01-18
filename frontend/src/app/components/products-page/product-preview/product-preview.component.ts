@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cartService/cart.service';
 import { CommentsService } from 'src/app/services/commentsService/comments.service';
 
+import { shopCurrency } from 'src/app/utilities';
+
 @Component({
   selector: 'app-product-preview',
   templateUrl: './product-preview.component.html',
@@ -12,7 +14,9 @@ import { CommentsService } from 'src/app/services/commentsService/comments.servi
 export class ProductPreviewComponent implements OnInit {
 
   @Input() productData : any;
+  
   average: number | undefined;
+  shopCurrency: string = shopCurrency;
   constructor(private router: Router, private cs: CartService, private comS: CommentsService) { }
 
   ngOnInit(): void {

@@ -25,3 +25,5 @@ export var backendUrl = "http://localhost:5000";
 export var bankPageUrl = "http://localhost:3000";
 export var mainShopBill = "215889453176";
 export var bankAuthPage = "http://localhost:4200/confirmedauth";
+//shop currency
+export var shopCurrency = "$";

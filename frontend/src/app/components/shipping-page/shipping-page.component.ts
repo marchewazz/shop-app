@@ -7,7 +7,7 @@ import { CartService } from 'src/app/services/cartService/cart.service';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { OrdersService } from 'src/app/services/orderService/orders.service';
 
-import { bankPageUrl, mainShopBill } from 'src/app/utilities';
+import { bankPageUrl, mainShopBill, shopCurrency } from 'src/app/utilities';
 @Component({
   selector: 'app-shipping-page',
   templateUrl: './shipping-page.component.html',
@@ -17,6 +17,7 @@ export class ShippingPageComponent implements OnInit {
 
   productsInCart: any;
   cartPrice: number = 0;
+  shopCurrency: string = shopCurrency;
   infoLabel = "";
 
   paymentControl = new FormControl();

@@ -17,7 +17,7 @@
                 </li>
             </ul>
             <div>
-                <span>{{ productData.productPrice }}</span>
+                <span>{{ productData.productPrice+shopCurrency }}</span>
                 <button class="btn-colors" 
                 *ngIf="productData.productQuantity !== 0"
                 (click)="addProduct(productData); $event.stopPropagation()">
