@@ -9,20 +9,14 @@ export default class OrdersController{
             const client = await pool.connect();
 
             const orderData = req.body.params;
-            var values = [orderData.price, orderData.products, orderData.city, orderData.firstName, orderData.lastName]
+            console.log(orderData);
+            var values = [orderData.price, orderData.products, orderData.city, orderData.firstName, orderData.lastName, orderData.userID]
             //SIMPLY INSERT ORDER
             var query = `INSERT INTO orders(
-                "orderPrice", "orderDate", "orderProducts", "orderIsPaid", "orderAddress", "orderOrdererName", "orderOrdererLastName")
-                VALUES ($1, LOCALTIMESTAMP, $2, false, $3, $4, $5) RETURNING "orderID"`;
+                "orderPrice", "orderDate", "orderProducts", "orderIsPaid", "orderAddress", "orderOrdererName", "orderOrdererLastName", "orderUser")
+                VALUES ($1, LOCALTIMESTAMP, $2, false, $3, $4, $5, $6) RETURNING "orderID"`;
             
             const { rows } = await client.query(query, values);
-            //IF USER WAS LOGGED WE CAN INSERT ORDERID TO ITS ORDER ARRAY
-            if (orderData.userID != ""){
-                query = `UPDATE users SET "userOrders" = array_append("userOrders", $1) WHERE "userID" = $2`;
-                values = [rows[0].orderID, orderData.userID];
-                
-                await client.query(query, values);
-            }
             new MailingController().sendMail({
                 from: "shop.app4321@gmail.com",
                 to: orderData.email,
@@ -40,7 +34,7 @@ export default class OrdersController{
                 </html>
                 `,
             })
-            return res.status(200).json({"message": "ordered", "orderID": rows[0].orderID})
+            return res.status(200).json({"message": "ordered"})
 
         }catch(e) {
             console.log(e);
@@ -55,16 +49,10 @@ export default class OrdersController{
             const userID = req.body.params.userID;
 
             console.log(userID);
-            //WE SELECT ORDERS ARRAY FROM USER
-            var query = `SELECT "userOrders" FROM "users" WHERE "userID" = $1`
+            
+            var query = `SELECT * FROM "orders" WHERE "orderUser" = $1`;
 
             var { rows } = await client.query(query, [userID]);
-
-            console.log(rows[0].userOrders);
-            //LOOKING FOR ORDERS WITH ID EQUALS TO ANY ELEMENT IN ORDERS ARRAY
-            query = `SELECT * FROM "orders" WHERE "orderID" = ANY($1)`;
-
-            var { rows } = await client.query(query, [rows[0].userOrders]);
 
             console.log(rows);
 

@@ -105,7 +105,7 @@ export class ShippingPageComponent implements OnInit {
     var accountNumber = this.isUserLogged() ? userData.userBankAccNumber : "";
 
     const orderData = {
-      userID: this.isUserLogged() ? userData.userID : "",
+      userID: this.isUserLogged() ? userData.userID : null,
       firstName: firstName,
       lastName: lastName,
       city: city,

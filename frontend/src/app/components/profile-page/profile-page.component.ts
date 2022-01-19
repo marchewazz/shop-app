@@ -24,7 +24,7 @@ export class ProfilePageComponent implements OnInit {
     this.os.getOrders({"userID": this.userData.userID}).subscribe((res: any) => {
         this.userOrders = res.orders;
     })
-    console.log(this.userData);
+    console.log(this.userOrders);
   }
   
   redirect(path: string): void{

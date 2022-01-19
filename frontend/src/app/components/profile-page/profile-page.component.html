@@ -19,7 +19,7 @@
             </ng-container>
         </div>
     </div>
-    <div class="overflow-y-auto max-h-96 text-lg">
+    <div *ngIf="userOrders.length !== 0" class="overflow-y-auto max-h-96 text-lg">
         <ng-container *ngFor="let order of userOrders">
             <div class="border-b border-black p-10">
                 <app-orders-preview 
@@ -28,4 +28,9 @@
             </div>
         </ng-container>
     </div>   
+    <div *ngIf="userOrders.length === 0">
+        <p>
+            You don't have orders
+        </p>
+    </div>
 </div>
