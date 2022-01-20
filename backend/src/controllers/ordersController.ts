@@ -79,4 +79,19 @@ export default class OrdersController{
             return returnServerError(res)
         }
     }
+
+    public async updateOrders(){
+        try{
+
+            const client = await pool.connect();
+
+            var query = `DELETE FROM "orders" WHERE DATE_PART('day', LOCALTIMESTAMP::timestamp - "orderDate"::timestamp) > 0`;
+
+            var { rows } = await client.query(query);
+            console.log(rows);
+            
+        } catch(e){
+            console.log(e);
+        }
+    }
 }

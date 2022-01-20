@@ -7,6 +7,7 @@ import ordersRouter from './routers/OrdersRouter';
 import commentsRouter from './routers/CommentsRouter';
 
 import PaymentsController from './controllers/paymentsController';
+import OrdersController from './controllers/ordersController';
 
 //SERVER  CONFIG
 class Server {
@@ -17,6 +18,7 @@ class Server {
     private PORT : number = 5000; 
     
     private ps: PaymentsController = new PaymentsController();
+    private os: OrdersController = new OrdersController();
 
     constructor(){
         this.app = express();
@@ -36,7 +38,12 @@ class Server {
             console.log(`server is listening ${this.PORT}`);
         })
         //INTERVAL TO CHECK IF ANY NEW ORDERS HAVE BEEN PAID
-        setInterval(this.ps.updatePayments, 600000);
+        setInterval(() => {
+            this.ps.updatePayments();
+        }, 600000);
+        setInterval(() => {
+            this.os.updateOrders();
+        }, 60000)
     }
 }
 
