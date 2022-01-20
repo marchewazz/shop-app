@@ -1,10 +1,9 @@
 import pool from '../util/postgresConfig';
-import { returnServerError } from '../util/utilities';
 
 export default class CommentsController{
     async addComment(req: any, res: any){
+        const client = await pool.connect();
         try {
-            const client = await pool.connect();
             const commentData = req.body.params;
             console.log(commentData);
 
@@ -17,12 +16,14 @@ export default class CommentsController{
             return res.status(200).json({"message": "inserted"})
         } catch(e){
             console.log(e);
+        } finally {
+            client.release();
         }
     }
 
     async deleteComment(req: any, res: any){
+        const client = await pool.connect();
         try {
-            const client = await pool.connect();
             const commentID = req.body.params.commentID;
             console.log(commentID);
 
@@ -34,12 +35,14 @@ export default class CommentsController{
             
         } catch(e){
             console.log(e);
+        } finally {
+            client.release();
         }
     }
 
     async getComments(req: any, res: any){
+        const client = await pool.connect();
         try {
-            const client = await pool.connect();
             const productID = req.body.params.productID;
 
             var query = `SELECT * from "comments" WHERE "productID" = $1`;
@@ -49,12 +52,14 @@ export default class CommentsController{
             return res.status(200).json({"message": "got", "comments": rows})
         } catch(e){
             console.log(e);
+        } finally {
+            client.release();
         }
     }
 
     async averageRating(req: any, res:any){
+        const client = await pool.connect();
         try {
-            const client = await pool.connect();
             const productID = req.body.params.productID;
 
             var query = `SELECT AVG("rating") from "comments" WHERE "productID" = $1`;
@@ -64,6 +69,8 @@ export default class CommentsController{
             return res.status(200).json({"message": "got", "average": rows})
         } catch(e){
             console.log(e);
+        } finally {
+            client.release();
         }
     }
 }

@@ -5,11 +5,9 @@ import MailingController from './mailingController';
 
 export default class OrdersController{
     public async addOrder(req: any, res: any){
+        const client = await pool.connect();
         try {
-            const client = await pool.connect();
-
             const orderData = req.body.params;
-            console.log(orderData);
             var values = [orderData.price, orderData.products, orderData.city, orderData.firstName, orderData.lastName, orderData.userID]
             //SIMPLY INSERT ORDER
             var query = `INSERT INTO orders(
@@ -35,63 +33,59 @@ export default class OrdersController{
                 `,
             })
             return res.status(200).json({"message": "ordered"})
-
         }catch(e) {
             console.log(e);
             return returnServerError(res);
+        } finally {
+            client.release();
         }
     }
 
     public async getAllOrders(req: any, res: any){
+        const client = await pool.connect();
         try {
-            const client = await pool.connect();
-
             const userID = req.body.params.userID;
-
-            console.log(userID);
             
             var query = `SELECT * FROM "orders" WHERE "orderUser" = $1`;
 
             var { rows } = await client.query(query, [userID]);
 
-            console.log(rows);
-
             return res.status(200).json({"orders": rows})
         } catch(e){
             console.log(e);
             return returnServerError(res);
+        } finally {
+            client.release();
         }
     }
 
     public async cancelOrder(req: any, res: any){
+        const client = await pool.connect();
         try{
-
-            const client = await pool.connect();
-
             const orderID = req.body.params.orderID;
             //JUST DELETE :D
             var query = `DELETE from "orders" WHERE "orderID" = $1`;
 
-            var { rows } = await client.query(query, [orderID]);
+            await client.query(query, [orderID]);
 
             return res.status(200).json({"message":"Deleted!"})
         } catch(e){
             return returnServerError(res)
+        } finally {
+            client.release()
         }
     }
 
     public async updateOrders(){
+        const client = await pool.connect();
         try{
-
-            const client = await pool.connect();
-
             var query = `DELETE FROM "orders" WHERE DATE_PART('day', LOCALTIMESTAMP::timestamp - "orderDate"::timestamp) > 0`;
 
-            var { rows } = await client.query(query);
-            console.log(rows);
-            
+            await client.query(query);
         } catch(e){
             console.log(e);
+        } finally {
+            client.release();
         }
     }
 }

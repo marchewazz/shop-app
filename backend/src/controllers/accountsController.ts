@@ -8,9 +8,8 @@ class AccountsController {
     public async registerAccounts(req: any, res: any, next: any){
 
         const userData = req.body.params;
-        
+        const client = await pool.connect();
         try {
-            const client = await pool.connect();
             //CHECK FOR USER WITH PASSED EMAIL
             var query = `SELECT * FROM users WHERE "userEmail" = $1`;
 
@@ -41,16 +40,15 @@ class AccountsController {
         } catch(e){
             console.log(e);
             return returnServerError(res);
+        } finally {
+            client.release()
         }
     }
 
     public async loginUser(req: any, res: any){
-
+        const client = await pool.connect();
         try{
             const userData = req.query;
-            console.log(userData);
-
-            const client = await pool.connect();
             //CHECK FOR USER WITH PASSED EMAIL
             var query = `SELECT * FROM users WHERE "userEmail" = $1`;
 
@@ -74,15 +72,14 @@ class AccountsController {
         } catch(e){
             console.log(e);
             return returnServerError(res);
+        } finally {
+            client.release();
         }
     }
 
     public async refreshUserDate(req: any, res: any){
+        const client = await pool.connect();
         try{
-            console.log(req.body.params);
-
-            const client = await pool.connect();
-
             var query = `SELECT * FROM users WHERE "userID" = $1`;
 
             var { rows } = await client.query(query, [req.body.params.userID]);
@@ -90,22 +87,24 @@ class AccountsController {
             return res.status(200).json({"userData": result})
         } catch(e){
             console.log(e);
+        } finally {
+            client.release();
         }
     }
 
     public async updateBankNumber(req: any, res: any){
+        const client = await pool.connect();
         try{
             const userData = [req.body.params.userEmail, req.body.params.accountNumber];
-            
-            const client = await pool.connect();
             var query = `UPDATE users SET "userBankAccNumber" = $2 WHERE "userEmail" = $1`;
 
-            var { rows } = await client.query(query, userData);
-            res.send({"x": "hjehe"})
+            await client.query(query, userData);
+            // res.send({"x": "hjehe"})
         } catch(e){
             console.log(e);
             return returnServerError(res);
         }
+        client.release();
     }
 }
 

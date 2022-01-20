@@ -6,10 +6,10 @@ import { bankBackend, mainShopBill } from '../util/utilities';
 class PaymentsController{
 
     public async updatePayments(): Promise<any> {
+        const client = await pool.connect();
         //WE ARE LOOKING FOR TRANSACTIONS HISTORY OF SHOP BILL 
         axios.get(`${bankBackend}/transactions/historybill`, {data: {accountNumber: mainShopBill}}).then(async (res: any) => {
             var transactions = JSON.parse(res.data.transactions);
-            const client = await pool.connect();
             for (var transaction of transactions){
 
                 var query = `SELECT "orderPrice" FROM orders WHERE "orderID" = $1;`;
@@ -25,6 +25,7 @@ class PaymentsController{
         }).catch((e: any) => {
             console.log(e);
         })
+        client.release();
     }
 }
 
