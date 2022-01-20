@@ -63,6 +63,10 @@ export class ShippingPageComponent implements OnInit {
     return this.cs.calculateCartPrice()
   }
 
+  createPath(path: string, param: any): string{
+    return path+param
+  }
+  
   redirect(path: string): void{
     this.router.navigate([path]);
   }

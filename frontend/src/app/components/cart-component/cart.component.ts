@@ -63,6 +63,11 @@ export class CartComponent implements OnInit {
   }
 
   redirect(path: string): void{
-    this.router.navigate([path]);
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([path]));
+  }
+
+  createPath(path: string, param: any): string{
+    return path+param
   }
 }

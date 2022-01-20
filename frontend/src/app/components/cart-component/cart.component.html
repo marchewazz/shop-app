@@ -23,7 +23,8 @@
             <ng-template #generateProductsPreview>
                 <ng-container *ngFor="let product of productsInCart">
                     <div>
-                        {{product.productName}} | {{product.productPrice+shopCurrency}} | 
+                        <span class="underline" 
+                        (click)="redirect(createPath('/product/', product.productID))">{{product.productName}}</span>| {{product.productPrice+shopCurrency}} | 
                         <!--                         
                         IT WASN'T WORKING SO IT'S COMMENTED OUT FOR NOW
                         <button (click)="increaseProductQuantity(product.productID, -1); $event.stopPropagation()">
