@@ -5,6 +5,7 @@ import accountsRouter from './routers/AccountsRouter';
 import prodcutsRouter from './routers/ProductsRouter';
 import ordersRouter from './routers/OrdersRouter';
 import commentsRouter from './routers/CommentsRouter';
+import listsRouter from './routers/ListsRouter';
 
 import PaymentsController from './controllers/paymentsController';
 import OrdersController from './controllers/ordersController';
@@ -32,6 +33,7 @@ class Server {
         this.app.use('/products', prodcutsRouter)
         this.app.use('/orders', ordersRouter)
         this.app.use('/comments', commentsRouter)
+        this.app.use('/lists', listsRouter)
     }
     public start() {
         this.app.listen(this.PORT, (): void => {

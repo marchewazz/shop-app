@@ -1,0 +1,21 @@
+<div>
+    <div *ngIf="!showForm">
+        <button (click)="showForm=true">Create a list</button>
+    </div>
+    <div *ngIf="showForm">
+        <input 
+        type="text" 
+        name="listName" 
+        id="listName"
+        [formControl]="nameControl">
+        <button (click)="addList()"
+        type="button">Create a list</button>
+        <button (click)="showForm=false">Hide</button>
+        <div>
+            <p> {{ info }}</p>
+            <button *ngIf="info === 'List created'"
+            (click)="copyListLink()">Copy link</button>
+        </div> 
+        
+    </div>
+</div>

@@ -19,8 +19,9 @@ export function testPasswordRegExp(password: string) : boolean{
 export function arePasswordsSame(password: string, repeatedPassword: string) : boolean{
     return true ? password === repeatedPassword : false;
 }
+export var pageUrl = `http://localhost:4200`;
 //backend url
-export var backendUrl = "http://localhost:5000";
+export var backendUrl = `http://localhost:5000`;
 //bank backend url
 export var bankPageUrl = "http://localhost:3000";
 export var mainShopBill = "215889453176";

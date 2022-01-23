@@ -10,6 +10,7 @@ import { SuppliersProductsPageComponent } from './components/suppliers-products-
 import { ShippingPageComponent } from './components/shipping-page/shipping-page.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { ConfirmedBankAuthPageComponent } from './components/confirmed-bank-auth-page/confirmed-bank-auth-page.component';
+import { ListPageComponent } from './components/list-page/list-page.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'product/:id', component: SingleProductPageComponent},
   { path: 'supplier/:id', component: SuppliersProductsPageComponent},
   { path: 'shipping', component: ShippingPageComponent},
+  { path: 'list/:listid', component: ListPageComponent},
   { path: 'profile', component: ProfilePageComponent},
   { path: 'confirmedauth', component: ConfirmedBankAuthPageComponent},
 ];

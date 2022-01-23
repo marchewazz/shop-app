@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,8 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { ConfirmedBankAuthPageComponent } from './components/confirmed-bank-auth-page/confirmed-bank-auth-page.component';
 import { OrdersPreviewComponent } from './components/profile-page/orders-preview/orders-preview.component';
 import { CommentsSectionComponent } from './components/single-product-page/comments-section/comments-section.component';
+import { ListPageComponent } from './components/list-page/list-page.component';
+import { AddListFormComponent } from './components/add-list-form/add-list-form.component';
 
 
 @NgModule({
@@ -40,6 +43,8 @@ import { CommentsSectionComponent } from './components/single-product-page/comme
     ConfirmedBankAuthPageComponent,
     OrdersPreviewComponent,
     CommentsSectionComponent,
+    ListPageComponent,
+    AddListFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import { CommentsSectionComponent } from './components/single-product-page/comme
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ClipboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
