@@ -12,7 +12,8 @@ export class ListPageComponent implements OnInit {
 
   isLoaded: boolean = false;
   list: any;
-  userFirstName: string = '';
+  userFirstName: string = "";
+  createDate: string = "";
   constructor(private route: ActivatedRoute, private ls: ListsService) { }
 
   ngOnInit(): void {
@@ -24,8 +25,8 @@ export class ListPageComponent implements OnInit {
       console.log(res);
       this.list = res.list;
       this.userFirstName = res.userFirstName;
+      this.createDate = new Date(res.list.listCreateDate).toLocaleString();
       this.isLoaded = true;
     })
   }
-
 }

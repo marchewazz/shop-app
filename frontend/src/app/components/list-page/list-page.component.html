@@ -5,6 +5,7 @@
         <ng-container *ngIf="list">
             <div class="flex justify-evenly">
                 <p>ListID: {{ list.listID }}</p>
+                <p>Created: {{ createDate }}</p>
                 <p>List: {{ list.listName }}</p>
                 <p *ngIf="userFirstName">Created by: {{ userFirstName }}</p>
                 <p *ngIf="!userFirstName">Created by unlogged user</p>
