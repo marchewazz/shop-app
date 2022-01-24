@@ -7,7 +7,7 @@ class ListsController {
         
         const values = [listData.listName, listData.userID, listData.products]
 
-        const query = `INSERT INTO lists ("listName", "listUser", "listProducts") VALUES ($1, $2, $3) RETURNING "listID"`;
+        const query = `INSERT INTO lists ("listName", "listUser", "listProducts", "listCreateDate") VALUES ($1, $2, $3, LOCALTIMESTAMP) RETURNING "listID"`;
 
         const client = await pool.connect();
         try {
