@@ -1,1 +1,19 @@
-<p>list-page works!</p>
+<div>
+    <p *ngIf="!isLoaded">Loading...</p>
+    <ng-container *ngIf="isLoaded">
+        <p *ngIf="!list">No list with passed ID!</p>
+        <ng-container *ngIf="list">
+            <div class="flex justify-evenly">
+                <p>ListID: {{ list.listID }}</p>
+                <p>List: {{ list.listName }}</p>
+                <p *ngIf="userFirstName">Created by: {{ userFirstName }}</p>
+                <p *ngIf="!userFirstName">Created by unlogged user</p>
+            </div>
+            <div>
+                <div *ngFor="let product of list.listProducts">
+                    <p>{{ product.productName }}</p>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>
