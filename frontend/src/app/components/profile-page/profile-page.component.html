@@ -19,18 +19,31 @@
             </ng-container>
         </div>
     </div>
-    <div *ngIf="userOrders.length !== 0" class="overflow-y-auto max-h-96 text-lg">
-        <ng-container *ngFor="let order of userOrders">
-            <div class="border-b border-black p-10">
-                <app-orders-preview 
-                [orderData]=order
-                ></app-orders-preview>
-            </div>
-        </ng-container>
-    </div>   
-    <div *ngIf="userOrders.length === 0">
-        <p>
-            You don't have orders
-        </p>
+    <div>
+        <div *ngIf="userOrders.length !== 0" class="overflow-y-auto max-h-96 text-lg">
+            <ng-container *ngFor="let order of userOrders">
+                <div class="border-b border-black p-10">
+                    <app-orders-preview 
+                    [orderData]=order
+                    ></app-orders-preview>
+                </div>
+            </ng-container>
+        </div>   
+        <div *ngIf="userOrders.length === 0">
+            <p>
+                You don't have orders
+            </p>
+        </div>
+    
+        <div *ngIf="userLists.length !== 0">
+            <p>Your lists</p>
+            <ng-container *ngFor="let list of userLists">
+                <p>{{ list.listName }}</p>
+                <button (click)="redirect(createPath('/list/', list.listID))">Go to list</button>
+            </ng-container>
+        </div>
+        <div *ngIf="userLists.length === 0">
+            <p>no lists</p>
+        </div>
     </div>
 </div>

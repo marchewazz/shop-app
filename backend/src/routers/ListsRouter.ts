@@ -6,5 +6,6 @@ const listsController = new ListsController();
 
 listsRouter.post(`/add`, listsController.addList)
 listsRouter.post(`/getone`, listsController.getOneList)
+listsRouter.post(`/getuserslists`, listsController.getAllUsersLists)
 
 export default listsRouter;

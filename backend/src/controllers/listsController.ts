@@ -45,6 +45,22 @@ class ListsController {
             client.release()
         }
     }
+
+    public async getAllUsersLists(req: any, res: any){
+        const userID = req.body.params.userID;
+        const client = await pool.connect();
+
+        const query = `SELECT * FROM lists WHERE "listUser" = $1`
+        try {
+            var { rows } = await client.query(query, [userID]);
+    
+            return res.status(200).json({"lists": rows})
+        } catch(e){
+            console.log(e);
+        } finally {
+            client.release()
+        }
+    }
 }
 
 export default ListsController;

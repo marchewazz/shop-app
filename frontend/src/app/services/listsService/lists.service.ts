@@ -18,4 +18,8 @@ export class ListsService {
   getOneList(listData: any) {
     return this.http.post(`${backendUrl}/lists/getone`, {params: listData})
   }
+
+  getAllUsersLists(userData: any){
+    return this.http.post(`${backendUrl}/lists/getuserslists`, {params: userData})
+  }
 }
