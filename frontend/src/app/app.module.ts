@@ -23,6 +23,7 @@ import { OrdersPreviewComponent } from './components/profile-page/orders-preview
 import { CommentsSectionComponent } from './components/single-product-page/comments-section/comments-section.component';
 import { ListPageComponent } from './components/list-page/list-page.component';
 import { AddListFormComponent } from './components/add-list-form/add-list-form.component';
+import { CartPageComponent } from './components/cart-page/cart-page.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { AddListFormComponent } from './components/add-list-form/add-list-form.c
     CommentsSectionComponent,
     ListPageComponent,
     AddListFormComponent,
+    CartPageComponent,
   ],
   imports: [
     BrowserModule,

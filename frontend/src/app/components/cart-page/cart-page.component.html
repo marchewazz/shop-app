@@ -1,0 +1,38 @@
+<div class="">
+    <ng-container *ngIf="productsInCart === null || productsInCart.length == 0; else generateProductsPreview">
+        <p>
+            Your cart is empty!
+        </p>
+    </ng-container>
+    <ng-template #generateProductsPreview>
+        <span>Your cart</span>
+        <ng-container *ngFor="let product of productsInCart">
+            <div>
+                <span class="underline" 
+                (click)="redirect(createPath('/product/', product.productID))">{{product.productName}}</span>| {{product.productPrice+shopCurrency}} | 
+                {{product.quantity}}
+            </div>
+        </ng-container>
+        <p>
+            Price: {{ cartPrice+shopCurrency }}
+        </p>
+        <button (click)="redirect('/shipping')">
+            Go to shipping
+        </button>
+        <button (click)="resetCart()">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                class="h-6 w-6" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor">
+                <path 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    stroke-width="2" 
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" 
+                />
+            </svg>
+        </button>
+        <app-add-list-form></app-add-list-form>
+    </ng-template>
+</div>

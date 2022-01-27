@@ -11,6 +11,7 @@ import { ShippingPageComponent } from './components/shipping-page/shipping-page.
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { ConfirmedBankAuthPageComponent } from './components/confirmed-bank-auth-page/confirmed-bank-auth-page.component';
 import { ListPageComponent } from './components/list-page/list-page.component';
+import { CartPageComponent } from './components/cart-page/cart-page.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'list/:id', component: ListPageComponent},
   { path: 'profile', component: ProfilePageComponent},
   { path: 'confirmedauth', component: ConfirmedBankAuthPageComponent},
+  { path: 'cart', component: CartPageComponent},
 ];
 
 @NgModule({
