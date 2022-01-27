@@ -11,9 +11,16 @@
                 <p *ngIf="!userFirstName">Created by unlogged user</p>
             </div>
             <div>
-                <div *ngFor="let product of list.listProducts">
-                    <p>{{ product.productName }}</p>
-                </div>
+                <ng-container *ngFor="let product of productsOnList">
+                    <div>
+                        <span class="underline" 
+                        (click)="redirect(createPath('/product/', product.productID))">{{product.productName}}</span>| {{product.productPrice+shopCurrency}} | 
+                        {{product.quantity}}
+                    </div>
+                </ng-container>
+                <p>
+                    Price: {{ listPrice+shopCurrency }}
+                </p>
             </div>
         </ng-container>
     </ng-container>
