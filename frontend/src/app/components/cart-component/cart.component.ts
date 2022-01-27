@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from "rxjs";
 
 import { CartService } from 'src/app/services/cartService/cart.service';
+import { ProductsService } from 'src/app/services/productsService/products.service';
 
 import { shopCurrency } from 'src/app/utilities';
 
@@ -18,23 +19,19 @@ export class CartComponent implements OnInit {
   cartPrice: number = 0;
   shopCurrency: string = shopCurrency;
 
-  constructor(private cs: CartService, private router: Router) {
-    this.showProducts.subscribe((value: any) => {
-      console.log(value);
-      if(value) this.updateCart()
+  constructor(private cs: CartService, private ps: ProductsService, private router: Router) {
+    this.showProducts.subscribe(async (value: any) => {
+      if(value) this.updateCart();  
     })
    }
 
-  ngOnInit(): void {
-    this.updateCart()
-  }
+  ngOnInit() { }
 
   updateCart(){
-    this.productsInCart = this.cs.getProducts()
-
-    if (this.productsInCart !== null) this.productsInCart = JSON.parse(this.productsInCart)
-    this.cartPrice = this.calculateCartPrice()
-    console.log(this.productsInCart, [], this.calculateCartPrice());
+    this.ps.getProductsData(JSON.parse(this.cs.getProducts())).then((value: any) => {
+      this.productsInCart = value;
+    })
+    setTimeout(() => this.cartPrice = this.cs.calculatePrice(this.productsInCart), 100);
   }
 
   resetCart(){
@@ -43,9 +40,6 @@ export class CartComponent implements OnInit {
     this.updateCart()
   }
 
-  calculateCartPrice(): number{
-    return this.cs.calculateCartPrice()
-  }
 
   deleteProduct(id: number){
     console.log(id);

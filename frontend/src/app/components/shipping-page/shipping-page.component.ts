@@ -6,6 +6,7 @@ import { DOCUMENT } from '@angular/common';
 import { CartService } from 'src/app/services/cartService/cart.service';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { OrdersService } from 'src/app/services/orderService/orders.service';
+import { ProductsService } from 'src/app/services/productsService/products.service';
 
 import { bankPageUrl, mainShopBill, shopCurrency } from 'src/app/utilities';
 @Component({
@@ -27,7 +28,7 @@ export class ShippingPageComponent implements OnInit {
   emailControl = new FormControl();
   cityControl = new FormControl();
 
-  constructor(private cs: CartService, private as: AuthService, private os: OrdersService, private router: Router, @Inject(DOCUMENT)  private document: Document) { }
+  constructor(private cs: CartService, private as: AuthService, private os: OrdersService, private ps: ProductsService, private router: Router, @Inject(DOCUMENT)  private document: Document) { }
 
   ngOnInit(): void {
     this.updateCart();
@@ -52,15 +53,14 @@ export class ShippingPageComponent implements OnInit {
   }
 
   updateCart(){
-    this.productsInCart = this.cs.getProducts()
-
-    if (this.productsInCart !== null) this.productsInCart = JSON.parse(this.productsInCart)
-    this.cartPrice = this.calculateCartPrice()
-    console.log(this.productsInCart, [], this.calculateCartPrice());
+    this.ps.getProductsData(JSON.parse(this.cs.getProducts())).then((value: any) => {
+      this.productsInCart = value;
+    })
+    setTimeout(() => this.cartPrice = this.cs.calculatePrice(this.productsInCart), 100);
   }
 
   calculateCartPrice(): number{
-    return this.cs.calculateCartPrice()
+    return this.cs.calculatePrice(this.productsInCart)
   }
 
   createPath(path: string, param: any): string{

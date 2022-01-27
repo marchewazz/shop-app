@@ -29,7 +29,7 @@ export class SingleProductPageComponent implements OnInit {
     const productData = {
       productID: Number(this.route.snapshot.paramMap.get('id'))
     }
-    this.ps.getSpecificProducts(productData).subscribe(res => {
+    this.ps.getSpecificProduct(productData).subscribe(res => {
       //SAME SITUATION AS PRODUCTS PAGE
       //SOME COMPLICATED OPERATIONS NECESSARY
       this.productData = res;

@@ -28,8 +28,6 @@ export class CartService {
 
     const productToAdd = {
       productID: product.productID,
-      productName: product.productName,
-      productPrice: product.productPrice,
       quantity: quantity
     }
 
@@ -61,7 +59,7 @@ export class CartService {
     }
   }
 
-  calculateCartPrice(): number{
-    return (JSON.parse(this.getProducts()).reduce((sum: any, cartProduct: any) => sum + (cartProduct['productPrice'] * cartProduct['quantity']), 0)).toFixed(2);
+  calculatePrice(products: any[]): number{
+    return (products.reduce((sum: any, product: any) => sum + (product['productPrice'] * product['quantity']), 0)).toFixed(2);
   }
 }

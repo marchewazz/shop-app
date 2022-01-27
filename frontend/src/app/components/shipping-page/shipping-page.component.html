@@ -11,7 +11,7 @@ md:grid-cols-2">
                 </span>
                 Price: {{product.productPrice+shopCurrency}}
                 Quantity: {{product.quantity}}
-                {{ product.quantity * product.productPrice+shopCurrency }}
+                {{ (product.quantity * product.productPrice).toFixed(2)+shopCurrency}}
             </div>
         </ng-container>
         <div>
