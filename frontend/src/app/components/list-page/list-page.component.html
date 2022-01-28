@@ -15,7 +15,19 @@
                     <div>
                         <span class="underline" 
                         (click)="redirect(createPath('/product/', product.productID))">{{product.productName}}</span>| {{product.productPrice+shopCurrency}} | 
-                        {{product.quantity}}
+                        Quantity: {{product.quantity}} | 
+                        <span *ngIf="product.productQuantity == 0"
+                        class="text-red-700">
+                            Not available!
+                        </span>
+                        <span *ngIf="product.productQuantity <= 10 && product.productQuantity != 0"
+                        class="text-yellow-700">
+                            Last items!
+                        </span>
+                        <span *ngIf="product.productQuantity > 10"
+                        class="text-green-700">
+                            Available!
+                        </span>
                     </div>
                 </ng-container>
                 <p>

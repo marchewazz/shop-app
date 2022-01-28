@@ -18,6 +18,7 @@ export class ShippingPageComponent implements OnInit {
 
   productsInCart: any;
   cartPrice: number = 0;
+  isEverythingAvaiable: boolean = false;
   shopCurrency: string = shopCurrency;
   infoLabel = "";
 
@@ -56,7 +57,14 @@ export class ShippingPageComponent implements OnInit {
     this.ps.getProductsData(JSON.parse(this.cs.getProducts())).then((value: any) => {
       this.productsInCart = value;
     })
-    setTimeout(() => this.cartPrice = this.cs.calculatePrice(this.productsInCart), 100);
+    setTimeout(() => {
+      this.cartPrice = this.cs.calculatePrice(this.productsInCart);
+      this.isEverythingAvaiable = this.checkForAvaiability()
+    }, 200);
+  }
+
+  checkForAvaiability(): boolean{
+    return this.productsInCart((product: any) => product.productQuantity !== 0)
   }
 
   calculateCartPrice(): number{

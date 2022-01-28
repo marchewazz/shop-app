@@ -10,8 +10,11 @@ md:grid-cols-2">
                     {{ product.productName }}
                 </span>
                 Price: {{product.productPrice+shopCurrency}}
-                Quantity: {{product.quantity}}
+                Quantity: {{product.quantity}} |
                 {{ (product.quantity * product.productPrice).toFixed(2)+shopCurrency}}
+                | 
+                <span *ngIf="product.productQuantity" class="text-green-700">Available!</span>
+                <span *ngIf="!product.productQuantity" class="text-red-700">Not available!</span>
             </div>
         </ng-container>
         <div>
@@ -20,60 +23,65 @@ md:grid-cols-2">
         <app-add-list-form></app-add-list-form>
     </div>
     <div>
-        Pay now
-        <input 
-        type="radio"
-        name="payment"
-        value="now"
-        [formControl]="paymentControl">
-        Pay later
-        <input 
-        type="radio"
-        name="payment"
-        value="later"
-        [formControl]="paymentControl">
-        Shippment details
-        <input 
-        type="radio" 
-        name="details" 
-        value="account"
-        (change)="enableDisableForm()"
-        [formControl]="optionsControl"
-        >
-        <span>Use from account</span>
-        <input 
-        type="radio" 
-        name="details"
-        value="form"
-        (change)="enableDisableForm()"
-        [formControl]="optionsControl"
-        >
-        <span>Pass diffrent</span>
-        <div>
-            <form>
-                <input type="text" 
-                placeholder="Pass name" 
-                [formControl]="nameControl">
+        <ng-container *ngIf="isEverythingAvaiable">
+            Pay now
+            <input 
+            type="radio"
+            name="payment"
+            value="now"
+            [formControl]="paymentControl">
+            Pay later
+            <input 
+            type="radio"
+            name="payment"
+            value="later"
+            [formControl]="paymentControl">
+            Shippment details
+            <input 
+            type="radio" 
+            name="details" 
+            value="account"
+            (change)="enableDisableForm()"
+            [formControl]="optionsControl"
+            >
+            <span>Use from account</span>
+            <input 
+            type="radio" 
+            name="details"
+            value="form"
+            (change)="enableDisableForm()"
+            [formControl]="optionsControl"
+            >
+            <span>Pass diffrent</span>
+            <div>
+                <form>
+                    <input type="text" 
+                    placeholder="Pass name" 
+                    [formControl]="nameControl">
 
-                <input type="text" 
-                placeholder="Pass lastname" 
-                [formControl]="lastnameControl">
+                    <input type="text" 
+                    placeholder="Pass lastname" 
+                    [formControl]="lastnameControl">
 
-                <input type="text" 
-                placeholder="Pass email" 
-                [formControl]="emailControl">
-                
-                <input type="text" 
-                placeholder="Pass city" 
-                [formControl]="cityControl">
-            </form>
-        </div>
-        <p>
-            {{infoLabel}}
-        </p>
-        <button class="btn-colors"
-        (click)="order()">
-            Order now
-        </button>
+                    <input type="text" 
+                    placeholder="Pass email" 
+                    [formControl]="emailControl">
+
+                    <input type="text" 
+                    placeholder="Pass city" 
+                    [formControl]="cityControl">
+                </form>
+            </div>
+            <p>
+                {{infoLabel}}
+            </p>
+            <button class="btn-colors"
+            (click)="order()">
+                Order now
+            </button>
+        </ng-container>
+        <ng-container *ngIf="!isEverythingAvaiable">
+            <p>Some of products are unavaiable, delete them to order</p>
+        </ng-container>
     </div>
 </div>
