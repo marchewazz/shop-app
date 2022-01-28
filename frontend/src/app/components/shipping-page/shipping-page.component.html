@@ -23,7 +23,7 @@ md:grid-cols-2">
         <app-add-list-form></app-add-list-form>
     </div>
     <div>
-        <ng-container *ngIf="isEverythingAvaiable">
+        <ng-container *ngIf="!isEverythingAvailable">
             Pay now
             <input 
             type="radio"
@@ -80,7 +80,7 @@ md:grid-cols-2">
                 Order now
             </button>
         </ng-container>
-        <ng-container *ngIf="!isEverythingAvaiable">
+        <ng-container *ngIf="isEverythingAvailable">
             <p>Some of products are unavaiable, delete them to order</p>
         </ng-container>
     </div>

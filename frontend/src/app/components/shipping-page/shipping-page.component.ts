@@ -18,7 +18,7 @@ export class ShippingPageComponent implements OnInit {
 
   productsInCart: any;
   cartPrice: number = 0;
-  isEverythingAvaiable: boolean = false;
+  isEverythingAvailable: boolean = false;
   shopCurrency: string = shopCurrency;
   infoLabel = "";
 
@@ -59,12 +59,12 @@ export class ShippingPageComponent implements OnInit {
     })
     setTimeout(() => {
       this.cartPrice = this.cs.calculatePrice(this.productsInCart);
-      this.isEverythingAvaiable = this.checkForAvaiability()
+      this.isEverythingAvailable = this.checkForAvailability()
     }, 200);
   }
 
-  checkForAvaiability(): boolean{
-    return this.productsInCart((product: any) => product.productQuantity !== 0)
+  checkForAvailability(): boolean{
+    return this.productsInCart.some((product: any) => product.productQuantity === 0)
   }
 
   calculateCartPrice(): number{
