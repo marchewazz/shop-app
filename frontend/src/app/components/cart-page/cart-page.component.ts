@@ -12,7 +12,7 @@ import { shopCurrency } from 'src/app/utilities';
 })
 export class CartPageComponent implements OnInit {
 
-  productsInCart: any;
+  productsInCart: any = [];
   cartPrice: number = 0;
   shopCurrency: string = shopCurrency;
 
@@ -23,10 +23,26 @@ export class CartPageComponent implements OnInit {
   }
 
   updateCart(){
+    var tempProductsData: any[] = [];
     this.ps.getProductsData(JSON.parse(this.cs.getProducts())).then((value: any) => {
-      this.productsInCart = value;
+      tempProductsData = value;
     })
-    setTimeout(() => this.cartPrice = this.cs.calculatePrice(this.productsInCart), 100);
+    setTimeout(() => {this.productsInCart = tempProductsData, this.cartPrice = this.cs.calculatePrice(this.productsInCart)}, 100);
+  }
+
+  deleteProduct(id: number){
+    console.log(id);
+    localStorage.setItem('cart', JSON.stringify(this.productsInCart.filter((product: any) => product.productID != id)));
+    this.updateCart()
+  }
+
+  increaseProductQuantity(productID: number, quantity: number){
+    console.log(`fdsafs`);
+    this.cs.increaseProductQuantity(productID, quantity, this.productsInCart);
+    this.productsInCart = this.cs.getProducts();
+
+    if (this.productsInCart !== null) this.productsInCart = JSON.parse(this.productsInCart)
+    this.updateCart();
   }
 
   resetCart(){

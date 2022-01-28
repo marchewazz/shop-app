@@ -13,7 +13,7 @@
             Products
         </div>
     </a>
-    <div class="nav-div" *ngIf="router.url != '/shipping' && router.url != '/login' && router.url != '/register'">
+    <div class="nav-div" *ngIf="router.url != '/shipping' && router.url != '/login' && router.url != '/register' && router.url != '/cart'">
         <app-cart></app-cart>
     </div>
     <ng-container *ngIf="!isUserLogged">
