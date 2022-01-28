@@ -10,11 +10,54 @@ md:grid-cols-2">
                     {{ product.productName }}
                 </span>
                 Price: {{product.productPrice+shopCurrency}}
-                Quantity: {{product.quantity}} |
                 {{ (product.quantity * product.productPrice).toFixed(2)+shopCurrency}}
                 | 
-                <span *ngIf="product.productQuantity" class="text-green-700">Available!</span>
+                <ng-container *ngIf="product.productQuantity">
+                    <button (click)="increaseProductQuantity(product.productID, -1); $event.stopPropagation()">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                        class="h-6 w-6" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor">
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M20 12H4" 
+                            />
+                        </svg>
+                    </button>
+                    Quantity: {{product.quantity}}
+                    <button (click)="increaseProductQuantity(product.productID, 1); $event.stopPropagation()">
+                        <svg xmlns="http://www.w3.org/2000/svg" 
+                        class="h-6 w-6" fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor">
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M12 4v16m8-8H4" 
+                            />
+                        </svg>
+                    </button>
+                    <span  class="text-green-700">Available!</span>
+                </ng-container>
                 <span *ngIf="!product.productQuantity" class="text-red-700">Not available!</span>
+                <button (click)="deleteProduct(product.productID)">
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                    class="h-6 w-6" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor">
+                        <path 
+                            stroke-linecap="round" 
+                            stroke-linejoin="round" 
+                            stroke-width="2" 
+                            d="M6 18L18 6M6 6l12 12" 
+                        />
+                    </svg>
+                </button>
             </div>
         </ng-container>
         <div>

@@ -71,6 +71,20 @@ export class ShippingPageComponent implements OnInit {
     return this.cs.calculatePrice(this.productsInCart)
   }
 
+  deleteProduct(id: number){
+    console.log(id);
+    localStorage.setItem('cart', JSON.stringify(this.productsInCart.filter((product: any) => product.productID != id)));
+    this.updateCart()
+  }
+
+  increaseProductQuantity(productID: number, quantity: number){
+    this.cs.increaseProductQuantity(productID, quantity, this.productsInCart);
+    this.productsInCart = this.cs.getProducts();
+
+    if (this.productsInCart !== null) this.productsInCart = JSON.parse(this.productsInCart)
+    this.updateCart();
+  }
+
   createPath(path: string, param: any): string{
     return path+param
   }

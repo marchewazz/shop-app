@@ -27,7 +27,7 @@ export class CartPageComponent implements OnInit {
     this.ps.getProductsData(JSON.parse(this.cs.getProducts())).then((value: any) => {
       tempProductsData = value;
     })
-    setTimeout(() => {this.productsInCart = tempProductsData, this.cartPrice = this.cs.calculatePrice(this.productsInCart)}, 100);
+    setTimeout(() => {this.productsInCart = tempProductsData; this.cartPrice = this.cs.calculatePrice(this.productsInCart)}, 100);
   }
 
   deleteProduct(id: number){
@@ -37,7 +37,6 @@ export class CartPageComponent implements OnInit {
   }
 
   increaseProductQuantity(productID: number, quantity: number){
-    console.log(`fdsafs`);
     this.cs.increaseProductQuantity(productID, quantity, this.productsInCart);
     this.productsInCart = this.cs.getProducts();
 
