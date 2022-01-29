@@ -24,6 +24,7 @@ import { CommentsSectionComponent } from './components/single-product-page/comme
 import { ListPageComponent } from './components/list-page/list-page.component';
 import { AddListFormComponent } from './components/add-list-form/add-list-form.component';
 import { CartPageComponent } from './components/cart-page/cart-page.component';
+import { ProductsPropositionComponentComponent } from './components/products-proposition-component/products-proposition-component.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { CartPageComponent } from './components/cart-page/cart-page.component';
     ListPageComponent,
     AddListFormComponent,
     CartPageComponent,
+    ProductsPropositionComponentComponent,
   ],
   imports: [
     BrowserModule,

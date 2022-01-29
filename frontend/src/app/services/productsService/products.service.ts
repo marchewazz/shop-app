@@ -45,4 +45,13 @@ export class ProductsService {
     return productsData;
   }
 
+  getOnlyAvailableProducts(products: any[]): any[]{
+    return products.filter((product: any) => product.productQuantity !== 0)
+  }
+
+  sortProductsByPrice(products: any[], method: "asc" | "desc"): any{
+    console.log(products);
+    if (method == "desc") return products.sort((product1: any, product2: any) => product2.productPrice - product1.productPrice)
+    if (method == "asc") return products.sort((product1: any, product2: any) => product2.productPrice + product1.productPrice)
+  }
 }

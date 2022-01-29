@@ -1,0 +1,10 @@
+<div>
+    <ng-container *ngIf="isLoaded">
+        <p class="text-center">You may like it</p>
+        <div class="flex justify-evenly">
+            <div *ngFor="let product of productsAvaliable">
+                <app-product-preview [productData]=product></app-product-preview>
+            </div>
+        </div>
+    </ng-container>
+</div>
