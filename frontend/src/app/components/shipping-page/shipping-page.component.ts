@@ -54,13 +54,15 @@ export class ShippingPageComponent implements OnInit {
   }
 
   updateCart(){
+    var tempProductsData: any[] = [];
     this.ps.getProductsData(JSON.parse(this.cs.getProducts())).then((value: any) => {
-      this.productsInCart = value;
+      tempProductsData = value;
     })
     setTimeout(() => {
+      this.productsInCart = tempProductsData;
       this.cartPrice = this.cs.calculatePrice(this.productsInCart);
-      this.isAnythingNotavailable = this.checkForAvailability()
-    }, 200);
+      this.isAnythingNotavailable = this.checkForAvailability();
+    }, 100);
   }
 
   checkForAvailability(): boolean{
