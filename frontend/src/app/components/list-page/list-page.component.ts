@@ -41,6 +41,12 @@ export class ListPageComponent implements OnInit {
     })
   }
 
+  addListToCart(){
+    for(const product of this.list.listProducts){
+      this.cs.addProduct(product, product.quantity);
+    }
+  }
+
   createPath(path: string, param: any): string{
     return path+param
   }
