@@ -9,7 +9,11 @@
         <ng-container *ngFor="let product of productsInCart">
             <div>
                 <span class="underline" 
-                (click)="redirect(createPath('/product/', product.productID))">{{product.productName}}</span>| {{product.productPrice+shopCurrency}} | 
+                (click)="redirect(createPath('/product/', product.productID))">{{product.productName}}</span>
+                Price: {{product.productPrice+shopCurrency}} 
+                |
+                {{ (product.quantity * product.productPrice).toFixed(2)+shopCurrency}}
+                | 
                 <ng-container *ngIf="product.productQuantity">
                     <button (click)="increaseProductQuantity(product.productID, -1); $event.stopPropagation()">
                         <svg xmlns="http://www.w3.org/2000/svg" 
@@ -25,7 +29,7 @@
                             />
                         </svg>
                     </button>
-                    {{product.quantity}}
+                    Quantity: {{product.quantity}}
                     <button (click)="increaseProductQuantity(product.productID, 1); $event.stopPropagation()">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                         class="h-6 w-6" fill="none" 

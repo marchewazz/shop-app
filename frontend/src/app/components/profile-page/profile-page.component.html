@@ -38,7 +38,7 @@
         <div *ngIf="userLists.length !== 0">
             <p>Your lists</p>
             <ng-container *ngFor="let list of userLists">
-                <p>{{ list.listName }}</p>
+                <p>{{ list.listName }}, {{ createListDate(list.listCreateDate)}}</p>
                 <button (click)="redirect(createPath('/list/', list.listID))">Go to list</button>
                 <button (click)="deleteList(list.listID)">
                     <svg xmlns="http://www.w3.org/2000/svg" 

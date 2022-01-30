@@ -39,6 +39,10 @@ export class ProfilePageComponent implements OnInit {
     })
   }
 
+  createListDate(date: any){
+    return new Date(date).toLocaleString();
+  }
+
   deleteList(listID: number){
     this.ls.deleteOneList({listID: listID}).subscribe((res: any) => {
       this.updateLists()

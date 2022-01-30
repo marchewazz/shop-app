@@ -9,7 +9,8 @@ md:grid-cols-2">
                 <span class="underline" (click)="redirect(createPath('/product/', product.productID))">
                     {{ product.productName }}
                 </span>
-                Price: {{product.productPrice+shopCurrency}}
+                Price: {{product.productPrice+shopCurrency}} 
+                |
                 {{ (product.quantity * product.productPrice).toFixed(2)+shopCurrency}}
                 | 
                 <ng-container *ngIf="product.productQuantity">
