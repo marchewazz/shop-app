@@ -23,14 +23,29 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(this.as.getUserDetails());
+    this.updateOrders();
+    this.updateLists();
+  }
+  
+  updateOrders(){
     this.os.getOrders({"userID": this.userData.userID}).subscribe((res: any) => {
-        this.userOrders = res.orders;
+      this.userOrders = res.orders;
     })
+  }
+
+  updateLists(){
     this.ls.getAllUsersLists({"userID": this.userData.userID}).subscribe((res: any) => {
       this.userLists = res.lists;
     })
   }
-  
+
+  deleteList(listID: number){
+    this.ls.deleteOneList({listID: listID}).subscribe((res: any) => {
+      this.updateLists()
+    })
+    
+  }
+
   redirect(path: string): void{
     this.document.location.href = path;
   }

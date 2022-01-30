@@ -61,6 +61,22 @@ class ListsController {
             client.release()
         }
     }
+
+    public async deleteOneList(req: any, res: any){
+        const listID = req.body.params.listID;
+        const client = await pool.connect();
+        
+        const query = `DELETE FROM lists WHERE "listID" = $1`;
+        try {
+            await client.query(query, [listID]);
+    
+            return res.status(200).json({"message": "deleted"})
+        } catch(e){
+            console.log(e);
+        } finally {
+            client.release()
+        }
+    }
 }
 
 export default ListsController;

@@ -19,7 +19,11 @@ export class ListsService {
     return this.http.post(`${backendUrl}/lists/getone`, {params: listData})
   }
 
-  getAllUsersLists(userData: any){
+  getAllUsersLists(userData: any) {
     return this.http.post(`${backendUrl}/lists/getuserslists`, {params: userData})
+  }
+
+  deleteOneList(listData: any) {
+    return this.http.post(`${backendUrl}/lists/deleteone`, {params: listData})
   }
 }
