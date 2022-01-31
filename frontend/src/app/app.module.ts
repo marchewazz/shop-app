@@ -26,6 +26,7 @@ import { AddListFormComponent } from './components/add-list-form/add-list-form.c
 import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { ProductsPropositionComponentComponent } from './components/products-proposition-component/products-proposition-component.component';
 import { ListsPreviewComponent } from './components/profile-page/lists-preview/lists-preview.component';
+import { MostPopularProductsComponentComponent } from './components/most-popular-products-component/most-popular-products-component.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ListsPreviewComponent } from './components/profile-page/lists-preview/l
     CartPageComponent,
     ProductsPropositionComponentComponent,
     ListsPreviewComponent,
+    MostPopularProductsComponentComponent,
   ],
   imports: [
     BrowserModule,

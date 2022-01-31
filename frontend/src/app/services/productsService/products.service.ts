@@ -54,4 +54,8 @@ export class ProductsService {
     if (method == "desc") return products.sort((product1: any, product2: any) => product2.productPrice - product1.productPrice)
     if (method == "asc") return products.sort((product1: any, product2: any) => product2.productPrice + product1.productPrice)
   }
+
+  sortByPopularity(products: any[]): any{
+    return products.sort((product1: any, product2: any) => product2.productSold - product1.productSold)
+  }
 }
