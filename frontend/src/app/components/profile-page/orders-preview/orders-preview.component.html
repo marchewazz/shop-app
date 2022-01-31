@@ -13,12 +13,12 @@
                     <p *ngFor="let product of orderData.orderProducts">
                         <span class="underline"
                         (click)="redirect(createPath('/product/', product.productID))">{{ product.productName }}</span>
-                        <span> | {{ product.productPrice }} | {{ product.quantity }}</span>
+                        <span> | {{ product.productPrice+shopCurrency }} | Quantity: {{ product.quantity }}</span>
                     </p>
                 </div>
                 <p>Ordered to: {{ orderData.orderAddress }}</p>
                 <p>Ordered on: {{ createOrderDate(orderData.orderDate) }}</p>
-                <p>Amount: {{ orderData.orderPrice }}</p>
+                <p>Amount: {{ orderData.orderPrice+shopCurrency }}</p>
                 <div *ngIf="orderData.orderIsPaid"
                 class="flex justify-center">
                     <p class="infos-colors">

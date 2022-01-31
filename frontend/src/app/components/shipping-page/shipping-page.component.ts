@@ -140,7 +140,7 @@ export class ShippingPageComponent implements OnInit {
       lastName: lastName,
       city: city,
       email: email,
-      products: this.cs.getProducts(),
+      products: JSON.stringify(this.productsInCart),
       price: this.calculateCartPrice()
     }
 

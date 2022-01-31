@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 import { OrdersService } from 'src/app/services/orderService/orders.service';
 import { AuthService } from 'src/app/services/authService/auth.service';
-import { bankPageUrl, mainShopBill } from 'src/app/utilities';
+
+import { bankPageUrl, mainShopBill, shopCurrency } from 'src/app/utilities';
 
 @Component({
   selector: 'app-orders-preview',
@@ -14,7 +15,8 @@ export class OrdersPreviewComponent implements OnInit {
   
   @Input() userID : any;
   userOrders: any[] = [];
-
+  shopCurrency: string = shopCurrency;
+  
   constructor(private router: Router, private os: OrdersService, private as: AuthService) { }
 
   ngOnInit(): void {
