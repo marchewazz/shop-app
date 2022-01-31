@@ -60,4 +60,17 @@ export default class ProductsController{
             client.release();
         }
     }
+
+    public async setProductsSoldQuantity(productID: any, quantity: any){
+        const client = await pool.connect();
+        try {            
+            const query = `UPDATE products SET "productSold" = "productSold" + $1 WHERE "productID" = $2`;
+
+            await client.query(query, [quantity, productID]);
+        } catch(e){
+            console.log(e);
+        } finally {
+            client.release();
+        }
+    }
 }

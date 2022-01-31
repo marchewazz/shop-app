@@ -1,7 +1,9 @@
 import pool from '../util/postgresConfig';
 
-import { bankPage, returnServerError } from '../util/utilities';
 import MailingController from './mailingController';
+import ProductsController from './productsController';
+
+import { bankPage, returnServerError } from '../util/utilities';
 
 export default class OrdersController{
     public async addOrder(req: any, res: any){
@@ -15,6 +17,13 @@ export default class OrdersController{
                 VALUES ($1, LOCALTIMESTAMP, $2, false, $3, $4, $5, $6) RETURNING "orderID"`;
             
             const { rows } = await client.query(query, values);
+
+            const ps = new ProductsController();
+            
+            for (const product of JSON.parse(orderData.products)){
+                ps.setProductsSoldQuantity(product.productID, product.quantity);
+            }
+
             new MailingController().sendMail({
                 from: "shop.app4321@gmail.com",
                 to: orderData.email,
