@@ -12,20 +12,30 @@ import { bankPageUrl, mainShopBill } from 'src/app/utilities';
 })
 export class OrdersPreviewComponent implements OnInit {
   
-  @Input() orderData : any;
-  orderDate: string = "";
+  @Input() userID : any;
+  userOrders: any[] = [];
+
   constructor(private router: Router, private os: OrdersService, private as: AuthService) { }
 
   ngOnInit(): void {
-    console.log(this.orderData);
-    this.orderDate = new Date(this.orderData.orderDate).toLocaleString();
+    this.updateOrders()
+  }
+
+  updateOrders(){
+    this.os.getOrders({"userID": this.userID}).subscribe((res: any) => {
+      this.userOrders = res.orders;
+    })
   }
 
   cancelOrder(orderID: number){
     this.os.cancelOrder({orderID: orderID}).subscribe((res: any) => {
       console.log(res);
-      if(res.message === "Deleted!") window.location.reload();
+      if(res.message === "Deleted!") this.updateOrders()
     })
+  }
+
+  createOrderDate(date: any){
+    return new Date(date).toLocaleString();
   }
 
   redirect(path: string): void{

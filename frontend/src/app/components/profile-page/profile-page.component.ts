@@ -15,30 +15,14 @@ import { bankPageUrl, bankAuthPage } from 'src/app/utilities';
 export class ProfilePageComponent implements OnInit {
 
   userData : any | undefined;
-  userOrders: any[] = [];
-  userLists: any[] = [];
   bankPageUrl = bankPageUrl;
   bankAuthPage = bankAuthPage;
   constructor(private as: AuthService, private os: OrdersService, private ls: ListsService, @Inject(DOCUMENT)  private document: Document) { }
 
   ngOnInit(): void {
     this.userData = JSON.parse(this.as.getUserDetails());
-    this.updateOrders();
-    this.updateLists();
   }
   
-  updateOrders(){
-    this.os.getOrders({"userID": this.userData.userID}).subscribe((res: any) => {
-      this.userOrders = res.orders;
-    })
-  }
-
-  updateLists(){
-    this.ls.getAllUsersLists({"userID": this.userData.userID}).subscribe((res: any) => {
-      this.userLists = res.lists;
-    })
-  }
-
   redirect(path: string): void{
     this.document.location.href = path;
   }

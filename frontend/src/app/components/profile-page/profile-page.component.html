@@ -20,31 +20,11 @@
         </div>
     </div>
     <div>
-        <div *ngIf="userOrders.length !== 0" class="overflow-y-auto max-h-96 text-lg">
-            <ng-container *ngFor="let order of userOrders">
-                <div class="border-b border-black p-10">
-                    <app-orders-preview 
-                    [orderData]=order
-                    ></app-orders-preview>
-                </div>
-            </ng-container>
-        </div>   
-        <div *ngIf="userOrders.length === 0">
-            <p>
-                You don't have orders
-            </p>
-        </div>
-    
-        <div *ngIf="userLists.length !== 0">
-            <p>Your lists</p>
-            <ng-container *ngFor="let list of userLists">
-                <app-lists-preview 
-                [listData]=list
-                ></app-lists-preview>
-            </ng-container>
-        </div>
-        <div *ngIf="userLists.length === 0">
-            <p>You don't have any lists</p>
-        </div>
+        <app-orders-preview 
+        [userID]=userData.userID
+        ></app-orders-preview>
+        <app-lists-preview 
+        [userID]=userData.userID
+        ></app-lists-preview>
     </div>
 </div>

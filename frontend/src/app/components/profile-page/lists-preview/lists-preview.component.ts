@@ -11,12 +11,19 @@ import { ListsService } from 'src/app/services/listsService/lists.service';
 })
 export class ListsPreviewComponent implements OnInit {
 
-  @Input() listData: any;
+  @Input() userID: any;
+  userLists: any[] = [];
 
   constructor(@Inject(DOCUMENT) private document: Document, private ls: ListsService) { }
 
-  ngOnInit(): void {
-    console.log(this.listData.listID);
+  ngOnInit(): void { 
+    this.updateLists()
+  }
+  
+  updateLists(){
+    this.ls.getAllUsersLists({userID: this.userID}).subscribe((res: any) => {
+      this.userLists = res.lists;
+    })
   }
 
   createListDate(date: any){
@@ -25,7 +32,7 @@ export class ListsPreviewComponent implements OnInit {
 
   deleteList(listID: number){
     this.ls.deleteOneList({listID: listID}).subscribe((res: any) => {
-      if(res.message === "deleted") window.location.reload();
+      if(res.message === "deleted") this.updateLists()
     })
   }
 
