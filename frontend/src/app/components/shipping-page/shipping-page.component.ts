@@ -20,6 +20,7 @@ export class ShippingPageComponent implements OnInit {
   cartPrice: number = 0;
   isAnythingNotavailable: boolean = false;
   shopCurrency: string = shopCurrency;
+  isLoaded: boolean = false;
   infoLabel = "";
 
   paymentControl = new FormControl();
@@ -62,6 +63,7 @@ export class ShippingPageComponent implements OnInit {
       this.productsInCart = tempProductsData;
       this.cartPrice = this.cs.calculatePrice(this.productsInCart);
       this.isAnythingNotavailable = this.checkForAvailability();
+      this.isLoaded = true;
     }, 100);
   }
 
