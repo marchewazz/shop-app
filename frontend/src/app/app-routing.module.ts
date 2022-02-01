@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent},
   { path: 'login', component: LoginPageComponent},
   { path: 'products', component: ProductsPageComponent},
+  { path: 'products/:searchphrase', component: ProductsPageComponent},
   { path: 'product/:id', component: SingleProductPageComponent},
   { path: 'supplier/:id', component: SuppliersProductsPageComponent},
   { path: 'shipping', component: ShippingPageComponent},

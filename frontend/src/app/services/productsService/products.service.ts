@@ -45,6 +45,22 @@ export class ProductsService {
     return productsData;
   }
 
+  getProductsWithSearchedPhrase(products: any[], phrase: string): any[]{
+    var matchedProducts: any[] = []; 
+    phrase = phrase.toLowerCase();
+    for (const product of products){
+      console.log(product);
+      if(product.productName.toLowerCase().includes(phrase)) { matchedProducts.push(product); continue }
+      if(product.productDescription.toLowerCase().includes(phrase)) { matchedProducts.push(product); continue }
+      if(product.productParams){
+        for(const key in product.productParams){
+          if (product.productParams[key].toLowerCase().includes(phrase)) { matchedProducts.push(product); continue }
+        }
+      }
+    }
+    return matchedProducts
+  }
+
   getOnlyAvailableProducts(products: any[]): any[]{
     return products.filter((product: any) => product.productQuantity !== 0)
   }

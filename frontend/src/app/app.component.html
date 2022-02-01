@@ -8,8 +8,10 @@
         <div class="flex justify-around col-span-3">
             <input type="text" 
             class="input-style"
-            placeholder="Search for products...">
-            <button class="btn-colors bg-blue-600 hover:bg-blue-500">Search</button>
+            placeholder="Search for products..."
+            [formControl]="searchPharseControl">
+            <button class="btn-colors bg-blue-600 hover:bg-blue-500"
+            (click)="searchProducts()">Search</button>
         </div>
     </div>
     <div class="grid grid-rows-1 auto-cols-auto grid-flow-col place-content-stretch">

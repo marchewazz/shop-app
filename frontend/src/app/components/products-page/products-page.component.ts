@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ProductsService } from 'src/app/services/productsService/products.service';
 
@@ -9,20 +10,22 @@ import { ProductsService } from 'src/app/services/productsService/products.servi
 })
 export class ProductsPageComponent implements OnInit {
 
-  products : Object | any;
+  products : any[] = [];
   isLoaded : boolean = false;
+  searchPhrase: string = "";
 
-  constructor(private ps: ProductsService) { }
+  constructor(private route: ActivatedRoute, private ps: ProductsService) { }
 
   ngOnInit(): void {
-    this.ps.getAllProducts().subscribe(res => {
-      this.products = res
-      //IT'S WEIRD BUT SERVER RETURNS OBJECT PRODUCTS WITH PARAMETER PRODUCTS
-      //THIS IS ARRAY OF PRODUCTS
-      //THAT'S WHY LINE UNDERNEATH MAKES SENSE
-      this.products = this.products.products
+    this.ps.getAllProducts().subscribe((res: any) => {
+      const searchPhrase = this.route.snapshot.paramMap.get('searchphrase')
+      if(searchPhrase) {
+        this.searchPhrase = searchPhrase;
+        this.products = this.ps.getProductsWithSearchedPhrase(res.products, searchPhrase);
+      } else {
+        this.products = res.products;
+      }
       this.isLoaded = true;
     });
   }
-
 }

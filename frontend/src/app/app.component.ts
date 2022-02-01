@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router, Event } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 import { AuthService } from './services/authService/auth.service';
 import { CartService } from './services/cartService/cart.service';
@@ -11,13 +12,14 @@ import { CartService } from './services/cartService/cart.service';
 })
 export class AppComponent {
 
-  title = 'frontend';
-  
   firstName : string | undefined;
   isUserLogged: boolean = false;
   showOptions: boolean = false;
 
+  searchPharseControl: FormControl = new FormControl();
+
   constructor(public router: Router, private authS: AuthService, private cartS: CartService) { 
+    this.searchPharseControl.setValue("");
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart){
         this.checkIfUserLogged();
@@ -43,5 +45,18 @@ export class AppComponent {
   logout(){
     this.authS.clearStorage();
     this.router.navigate(['/'])
+  }
+
+  searchProducts(){
+    this.redirect(this.createPath('/products/', this.searchPharseControl.value))
+  }
+
+  redirect(path: string): void{
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([path]));
+  }
+  
+  createPath(path: string, param: any): string{
+    return path+param
   }
 }

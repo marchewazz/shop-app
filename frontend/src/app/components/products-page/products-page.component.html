@@ -8,19 +8,37 @@
     sm:grid-cols-1
     md:grid-cols-2
     lg:grid-cols-3">
-        <ng-container *ngIf="products; else noProducts">
+        <ng-container *ngIf="products.length !== 0; else noProducts">
             <p class="flex col-span-full justify-self-center text-2xl">
-                Our products!
+                <ng-container *ngIf="searchPhrase">
+                    Search results for: {{ searchPhrase }}
+                </ng-container>
+                <ng-container *ngIf="!searchPhrase">
+                    Our products!
+                </ng-container>
             </p>
             <div class="flex justify-center" *ngFor="let product of products">
                 <div>
                     <app-product-preview 
-                    [productData]=product> </app-product-preview>
+                    [productData]=product></app-product-preview>
                 </div>
             </div>
         </ng-container> 
         <ng-template #noProducts>
-            <p>No products</p>
+            <ng-container *ngIf="searchPhrase">
+                <p class="flex col-span-full justify-self-center text-2xl">
+                    No results for: {{ searchPhrase }}
+                </p>
+                <div class="col-span-3">
+                    <app-products-proposition-component></app-products-proposition-component>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!searchPhrase">
+                <p class="flex col-span-full justify-self-center text-2xl">
+                    No products!
+                </p>
+            </ng-container>
         </ng-template>
     </div>
 </ng-container>
