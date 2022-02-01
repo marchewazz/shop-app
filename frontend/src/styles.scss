@@ -5,12 +5,15 @@
 
 @layer components{
     .nav-div {
-        @apply hover:bg-purple-600 grid justify-center place-items-center
+        @apply hover:bg-blue-600 grid justify-center place-items-center
     }
     .btn-colors {
-        @apply bg-purple-900 hover:bg-purple-600 text-green-500 p-2 rounded-full
+        @apply bg-blue-900 hover:bg-blue-600 text-white p-2 rounded-full border-2 border-black
     }
     .infos-colors {
-        @apply bg-purple-900 text-green-500 py-8 px-20 rounded-lg
+        @apply bg-blue-900 text-white rounded-lg p-2
+    }
+    .input-style {
+        @apply bg-blue-600 rounded-lg border-2 border-black transform transition-all focus:bg-blue-500 focus:scale-x-110
     }
 }

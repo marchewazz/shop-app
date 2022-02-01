@@ -1,51 +1,56 @@
-<div class="grid grid-rows-1 auto-cols-auto grid-flow-col text-2xl bg-purple-900 text-green-500 m-0 rounded-l-full rounded-r-full">
-    <a 
+<div class="grid grid-rows-2 auto-cols-auto grid-flow-col text-2xl bg-blue-900 text-white m-0">
+    <div class="grid grid-cols-4 my-2">
+        <a class="text-center self-center" 
         [routerLink]="['/']" 
         routerLinkActive="router-link-active" >
-        <div class="nav-div rounded-l-full">
-            Main Page
+            <span>Great shop!</span>
+        </a>
+        <div class="flex justify-around col-span-3">
+            <input type="text" 
+            class="input-style"
+            placeholder="Search for products...">
+            <button class="btn-colors bg-blue-600 hover:bg-blue-500">Search</button>
         </div>
-    </a>
-    <a 
-        [routerLink]="['/products']" 
-        routerLinkActive="router-link-active" >
-        <div class="nav-div">
-            Products
-        </div>
-    </a>
-    <div class="nav-div" *ngIf="router.url != '/shipping' && router.url != '/login' && router.url != '/register' && router.url != '/cart'">
-        <app-cart></app-cart>
     </div>
-    <ng-container *ngIf="!isUserLogged">
-        <a 
+    <div class="grid grid-rows-1 auto-cols-auto grid-flow-col place-content-stretch">
+        <a class="nav-div"
+            [routerLink]="['/products']" 
+            routerLinkActive="router-link-active" >
+                Products
+        </a>
+        <div class="nav-div" *ngIf="router.url != '/shipping' && router.url != '/login' && router.url != '/register' && router.url != '/cart'">
+            <app-cart></app-cart>
+        </div>
+        <ng-container *ngIf="!isUserLogged">
+            <a class="nav-div"
             [routerLink]="['/login']" 
-            routerLinkActive="router-link-active" >
-            <div class="nav-div">
-                Login
-            </div>
-        </a>
-        <a 
+            routerLinkActive="router-link-active">
+                <span>
+                    Login
+                </span>
+            </a>
+            <a class="nav-div"
             [routerLink]="['/register']" 
-            routerLinkActive="router-link-active" >
-            <div class="nav-div rounded-r-full">
-                Register
-            </div>
-        </a>
-    </ng-container>
-    <ng-container *ngIf="isUserLogged">
-        <a 
-        [routerLink]="['/profile']" 
-        routerLinkActive="router-link-active">
-            <div class="nav-div underline">
-                Welcome, {{firstName}}!
-            </div>
-        </a>
-        <button>
-            <div class="nav-div rounded-r-full"
-            (click)="logout()">
-                Logout
-            </div>
-        </button>
-    </ng-container>
+            routerLinkActive="router-link-active">
+                <span>
+                    Register
+                </span>
+            </a>
+        </ng-container>
+        <ng-container *ngIf="isUserLogged">
+            <a class="nav-div"
+            [routerLink]="['/profile']" 
+            routerLinkActive="router-link-active">
+                <span class="underline">
+                    Welcome, {{firstName}}!
+                </span>
+            </a>
+            <button class="nav-div">
+                <span class="underline">
+                    Logout
+                </span>
+            </button>
+        </ng-container>
+    </div> 
 </div>
 <router-outlet></router-outlet>
