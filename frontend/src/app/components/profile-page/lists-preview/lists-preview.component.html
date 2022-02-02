@@ -2,8 +2,11 @@
     <div *ngIf="userLists.length == 0">
         <p>You don't have any lists</p>
     </div>
-    <div *ngIf="userLists.length != 0">
-        <div *ngFor="let listData of userLists">
+    <div *ngIf="userLists.length != 0"
+    class="overflow-y-auto max-h-32 text-md">
+        <p class="text-center">Your lists</p>
+        <div *ngFor="let listData of userLists"
+        class="border-b border-black p-5">
             <p>{{ listData.listName }}, {{ createListDate(listData.listCreateDate)}}</p>
             <button (click)="redirect(createPath('/list/', listData.listID))">Go to list</button>
             <button (click)="deleteList(listData.listID)">

@@ -4,42 +4,46 @@
             You don't have orders
         </p>
     </div>
-    <div *ngIf="userOrders.length !== 0" class="overflow-y-auto max-h-96 text-lg">
-        <ng-container *ngFor="let orderData of userOrders">
-            <div class="border-b border-black p-10">
-                <p>ID: {{ orderData.orderID }}</p>
-                <p>Orderer: {{ orderData.orderOrdererName }} {{ orderData.orderOrdererLastName }}</p>
-                <div>
-                    <p *ngFor="let product of orderData.orderProducts">
-                        <span class="underline"
-                        (click)="redirect(createPath('/product/', product.productID))">{{ product.productName }}</span>
-                        <span> | {{ product.productPrice+shopCurrency }} | Quantity: {{ product.quantity }}</span>
-                    </p>
+    <div *ngIf="userOrders.length !== 0" 
+    class=" text-md">
+        <p class="text-center">Your orders</p>
+        <div class="overflow-y-auto max-h-64">
+            <ng-container *ngFor="let orderData of userOrders">
+                <div class="border-b border-black p-5">
+                    <p>ID: {{ orderData.orderID }}</p>
+                    <p>Orderer: {{ orderData.orderOrdererName }} {{ orderData.orderOrdererLastName }}</p>
+                    <div>
+                        <p *ngFor="let product of orderData.orderProducts">
+                            <span class="underline"
+                            (click)="redirect(createPath('/product/', product.productID))">{{ product.productName }}</span>
+                            <span> | {{ product.productPrice+shopCurrency }} | Quantity: {{ product.quantity }}</span>
+                        </p>
+                    </div>
+                    <p>Ordered to: {{ orderData.orderAddress }}</p>
+                    <p>Ordered on: {{ createOrderDate(orderData.orderDate) }}</p>
+                    <p>Amount: {{ orderData.orderPrice+shopCurrency }}</p>
+                    <div *ngIf="orderData.orderIsPaid"
+                    class="flex justify-center">
+                        <p class="infos-colors">
+                            Ended!
+                        </p>
+                    </div>
+                    <div *ngIf="!orderData.orderIsPaid"
+                        class="flex justify-around items-center">
+                        <p class="infos-colors">
+                            Not paid!
+                        </p>
+                        <button class="btn-colors"
+                        (click)="redirectToTransaction(orderData.orderID, orderData.orderPrice)">
+                            Pay now
+                        </button>
+                        <button class="btn-colors"
+                        (click)=cancelOrder(orderData.orderID)>
+                            Cancel
+                        </button>
+                    </div>
                 </div>
-                <p>Ordered to: {{ orderData.orderAddress }}</p>
-                <p>Ordered on: {{ createOrderDate(orderData.orderDate) }}</p>
-                <p>Amount: {{ orderData.orderPrice+shopCurrency }}</p>
-                <div *ngIf="orderData.orderIsPaid"
-                class="flex justify-center">
-                    <p class="infos-colors">
-                        Ended!
-                    </p>
-                </div>
-                <div *ngIf="!orderData.orderIsPaid"
-                    class="flex justify-around items-center">
-                    <p class="infos-colors">
-                        Not paid!
-                    </p>
-                    <button class="btn-colors"
-                    (click)="redirectToTransaction(orderData.orderID, orderData.orderPrice)">
-                        Pay now
-                    </button>
-                    <button class="btn-colors"
-                    (click)=cancelOrder(orderData.orderID)>
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        </ng-container>
+            </ng-container>
+        </div>
     </div>
 </div>

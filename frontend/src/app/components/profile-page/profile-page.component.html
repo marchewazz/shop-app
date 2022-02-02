@@ -1,10 +1,11 @@
-<div class="grid grid-cols-2 auto-rows-min">
-    <div class="grid auto-rows-min gap-y-10">
-        <p>Firstname: {{ userData.userFirstName }}</p>
-        <p>Lastname: {{ userData.userLastName }}</p>
-        <p>City: {{ userData.userCity }}</p>
-        <p>Email: {{ userData.userEmail }}</p>
-        <div>
+<div class="grid auto-rows-min mt-10 mx-5
+md:grid-cols-2">
+    <div class="grid auto-rows-min gap-y-5 divide-y divide-gray-300">
+        <p class="text-center">Firstname: {{ userData.userFirstName }}</p>
+        <p class="text-center">Lastname: {{ userData.userLastName }}</p>
+        <p class="text-center">City: {{ userData.userCity }}</p>
+        <p class="text-center">Email: {{ userData.userEmail }}</p>
+        <div class="text-center">
             <ng-container *ngIf="!userData.userBankAccNumber">
                 Bank account isn't connected
                 <!--IN THE BANK APP THERE IS PAGE TO CONNECT DIFFRENT SHOPS TO BANK ACC AND 
@@ -20,7 +21,7 @@
             </ng-container>
         </div>
     </div>
-    <div>
+    <div class="grid grid-rows-2 gap-y-5 divide-y divide-gray-300">
         <app-orders-preview 
         [userID]=userData.userID
         ></app-orders-preview>
