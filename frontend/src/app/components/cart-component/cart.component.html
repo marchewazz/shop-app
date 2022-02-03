@@ -21,7 +21,10 @@
                 </p>
             </ng-container>
             <ng-template #generateProductsPreview>
-                <span class="underline" (click)="redirect('/cart')">Edit or save a cart</span>
+                <button class="btn-colors" 
+                (click)="redirect('/cart')">
+                    Edit or save a cart
+                </button>
                 <ng-container *ngFor="let product of productsInCart">
                     <div>
                         <span class="underline" 
@@ -32,10 +35,12 @@
                 <p>
                     Price: {{ cartPrice+shopCurrency }}
                 </p>
-                <button (click)="redirect('/shipping')">
+                <button class="btn-colors"
+                (click)="redirect('/shipping')">
                     Go to shipping
                 </button>
-                <button (click)="resetCart()">
+                <button class="btn-colors"
+                (click)="resetCart()">
                     <svg xmlns="http://www.w3.org/2000/svg" 
                         class="h-6 w-6" 
                         fill="none" 

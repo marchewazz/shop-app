@@ -19,7 +19,8 @@
                     {{ (product.quantity * product.productPrice).toFixed(2)+shopCurrency}}
                     | 
                     <ng-container *ngIf="product.productQuantity">
-                        <button (click)="increaseProductQuantity(product.productID, -1); $event.stopPropagation()">
+                        <button class="btn-colors" 
+                        (click)="increaseProductQuantity(product.productID, -1); $event.stopPropagation()">
                             <svg xmlns="http://www.w3.org/2000/svg" 
                             class="h-6 w-6" 
                             fill="none" 
@@ -34,7 +35,8 @@
                             </svg>
                         </button>
                         Quantity: {{product.quantity}}
-                        <button (click)="increaseProductQuantity(product.productID, 1); $event.stopPropagation()">
+                        <button class="btn-colors" 
+                        (click)="increaseProductQuantity(product.productID, 1); $event.stopPropagation()">
                             <svg xmlns="http://www.w3.org/2000/svg" 
                             class="h-6 w-6" fill="none" 
                             viewBox="0 0 24 24" 
@@ -47,10 +49,11 @@
                                 />
                             </svg>
                         </button>
-                        <span  class="text-green-700">Available!</span>
+                        <span class="text-green-700">Available!</span>
                     </ng-container>
                     <span *ngIf="!product.productQuantity" class="text-red-700">Not available!</span>
-                    <button (click)="deleteProduct(product.productID)">
+                    <button class="btn-colors"
+                    (click)="deleteProduct(product.productID)">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                         class="h-6 w-6" 
                         fill="none" 
@@ -104,19 +107,23 @@
                 <span>Pass diffrent</span>
                 <div>
                     <form>
-                        <input type="text" 
+                        <input class="input-style" 
+                        type="text" 
                         placeholder="Pass name" 
                         [formControl]="nameControl">
 
-                        <input type="text" 
+                        <input class="input-style" 
+                        type="text" 
                         placeholder="Pass lastname" 
                         [formControl]="lastnameControl">
 
-                        <input type="text" 
+                        <input class="input-style"
+                        type="text" 
                         placeholder="Pass email" 
                         [formControl]="emailControl">
 
-                        <input type="text" 
+                        <input class="input-style"
+                        type="text" 
                         placeholder="Pass city" 
                         [formControl]="cityControl">
                     </form>

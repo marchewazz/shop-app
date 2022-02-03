@@ -14,6 +14,6 @@
         @apply bg-blue-900 text-white rounded-lg p-2
     }
     .input-style {
-        @apply bg-blue-600 rounded-lg border-2 border-black transform transition-all focus:bg-blue-500 focus:scale-x-110
+        @apply bg-blue-600 rounded-lg border-2 border-black transform transition-all focus:bg-blue-500 focus:scale-x-110 text-white
     }
 }

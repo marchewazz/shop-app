@@ -1,19 +1,24 @@
 <div>
     <div *ngIf="!showForm">
-        <button (click)="showForm=true">Create a list</button>
+        <button class="btn-colors" 
+        (click)="showForm=true">Create a list</button>
     </div>
     <div *ngIf="showForm">
         <input 
+        class="input-style"
         type="text" 
         name="listName" 
         id="listName"
         [formControl]="nameControl">
-        <button (click)="addList()"
+        <button class="btn-colors"
+        (click)="addList()"
         type="button">Create a list</button>
-        <button (click)="showForm=false">Hide</button>
+        <button class="btn-colors" 
+        (click)="showForm=false">Hide</button>
         <div>
             <p> {{ info }}</p>
             <button *ngIf="info === 'List created'"
+            class="btn-colors"
             (click)="copyListLink()">Copy link</button>
         </div> 
         
