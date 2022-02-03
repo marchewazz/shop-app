@@ -13,7 +13,7 @@ export class ProductsPageComponent implements OnInit {
   products : any[] = [];
   isLoaded : boolean = false;
   searchPhrase: string = "";
-  
+
   constructor(private route: ActivatedRoute, private ps: ProductsService) { }
 
   ngOnInit(): void {

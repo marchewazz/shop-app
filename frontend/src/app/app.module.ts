@@ -27,6 +27,7 @@ import { CartPageComponent } from './components/cart-page/cart-page.component';
 import { ProductsPropositionComponentComponent } from './components/products-proposition-component/products-proposition-component.component';
 import { ListsPreviewComponent } from './components/profile-page/lists-preview/lists-preview.component';
 import { MostPopularProductsComponentComponent } from './components/most-popular-products-component/most-popular-products-component.component';
+import { RandomizeProductsMenuComponentComponent } from './components/randomize-products-menu-component/randomize-products-menu-component.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { MostPopularProductsComponentComponent } from './components/most-popular
     ProductsPropositionComponentComponent,
     ListsPreviewComponent,
     MostPopularProductsComponentComponent,
+    RandomizeProductsMenuComponentComponent,
   ],
   imports: [
     BrowserModule,

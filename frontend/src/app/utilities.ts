@@ -19,6 +19,17 @@ export function testPasswordRegExp(password: string) : boolean{
 export function arePasswordsSame(password: string, repeatedPassword: string) : boolean{
     return true ? password === repeatedPassword : false;
 }
+
+export function returnRandomProductsMenu(): number {
+    const productsMenu = [
+        0, //MENU WITH MOST POPULAR PRODUCTS
+        1, //MENU WITH RANDOM PRODUCTS
+    ]
+    return productsMenu[Math.floor(Math.random() * productsMenu.length)];
+}
+
+
+
 export var pageUrl = `http://localhost:4200`;
 //backend url
 export var backendUrl = `http://localhost:5000`;
