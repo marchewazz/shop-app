@@ -22,10 +22,11 @@ export class ShippingPageComponent implements OnInit {
   shopCurrency: string = shopCurrency;
   isLoaded: boolean = false;
   infoLabel = "";
+  userData: any;
 
   paymentControl = new FormControl();
   optionsControl = new FormControl();
-  nameControl = new FormControl();
+  firstnameControl = new FormControl();
   lastnameControl = new FormControl();
   emailControl = new FormControl();
   cityControl = new FormControl();
@@ -36,16 +37,25 @@ export class ShippingPageComponent implements OnInit {
     this.updateCart();
     //NON-LOGGED USER HAS TO PASS ORDER DATA IN INPUTS
     if (!this.isUserLogged()){
+      
       this.optionsControl.disable();
       this.optionsControl.setValue("form");
       this.paymentControl.setValue("now");
+    
     } else {
+      this.userData = JSON.parse(this.as.getUserDetails());
+      console.log(this.userData);
       this.optionsControl.setValue("account");
-      this.nameControl.disable();
+      this.firstnameControl.disable();
       this.lastnameControl.disable();
       this.cityControl.disable();
       this.emailControl.disable();
       this.paymentControl.setValue("now");
+      //SET DEFAULT VALUES
+      this.firstnameControl.setValue(this.userData.userFirstName);
+      this.lastnameControl.setValue(this.userData.userLastName);
+      this.emailControl.setValue(this.userData.userEmail);
+      this.cityControl.setValue(this.userData.userCity)
     }
     
   }
@@ -102,22 +112,21 @@ export class ShippingPageComponent implements OnInit {
     //BASED ON RADIO BUTTON DIFFRENT INPUTS ARE ENABLED/DISABLED
     if (selectedOption == "account"){
       this.infoLabel = "";
-      this.nameControl.disable();
+      this.firstnameControl.disable();
       this.lastnameControl.disable();
       this.cityControl.disable();
     }
     if (selectedOption == "form"){
-      this.nameControl.enable();
+      this.firstnameControl.enable();
       this.lastnameControl.enable();
       this.cityControl.enable();
     }
   }
 
   order(){
-    var userData = JSON.parse(this.as.getUserDetails());
     //BASED ON RADIO DIFFRENT VALUES ARE ORDER DATA
     if (this.optionsControl.value == "form"){
-      var firstName = this.nameControl.value;
+      var firstName = this.firstnameControl.value;
       var lastName = this.lastnameControl.value;
       var city = this.cityControl.value;
       var email = this.emailControl.value;
@@ -126,16 +135,16 @@ export class ShippingPageComponent implements OnInit {
         return;
       }
     } else {
-      var firstName = userData.userFirstName;
-      var lastName = userData.userLastName;
-      var city = userData.userCity;
-      var email = userData.userEmail;
+      var firstName = this.userData.userFirstName;
+      var lastName = this.userData.userLastName;
+      var city = this.userData.userCity;
+      var email = this.userData.userEmail;
     }
 
-    var accountNumber = this.isUserLogged() ? userData.userBankAccNumber : "";
+    var accountNumber = this.isUserLogged() ? this.userData.userBankAccNumber : "";
 
     const orderData = {
-      userID: this.isUserLogged() ? userData.userID : null,
+      userID: this.isUserLogged() ? this.userData.userID : null,
       firstName: firstName,
       lastName: lastName,
       city: city,
