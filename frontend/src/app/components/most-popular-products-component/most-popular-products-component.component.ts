@@ -20,7 +20,7 @@ export class MostPopularProductsComponentComponent implements OnInit {
 
   updateProducts(){
     this.ps.getAllProducts().subscribe((res: any) => {
-      this.products = this.ps.sortByPopularity(res.products).slice(0,3)
+      this.products = this.ps.sortByPopularity(res.products).slice(0,4)
       this.isLoaded = true;
     })
   }

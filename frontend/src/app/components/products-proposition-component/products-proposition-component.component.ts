@@ -16,7 +16,7 @@ export class ProductsPropositionComponentComponent implements OnInit {
   ngOnInit(): void {
     this.ps.getAllProducts().subscribe((res: any) => {
       console.log(res);
-      this.productsAvaliable = this.ps.sortProductsByPrice(this.ps.getOnlyAvailableProducts(res.products).sort(() => Math.random() - 0.5).slice(0,3), "desc");
+      this.productsAvaliable = this.ps.sortProductsByPrice(this.ps.getOnlyAvailableProducts(res.products).sort(() => Math.random() - 0.5).slice(0,4), "desc");
       this.isLoaded = true;
     });
   }

@@ -1,6 +1,8 @@
-<button class="border-4 border-blue-900" 
+<button class="w-full h-full
+border-4 border-blue-900 rounded-lg shadow-lg shadow-gray-300
+hover:shadow-2xl hover:shadow-black" 
 (click)="redirect(createPath('/product/', productData.productID))">
-    <div class="grid grid-rows-2">
+    <div class="grid grid-rows-2 place-self-stretch m-5">
         <div>img here</div>
         <div>
             <p *ngIf="average != 0">
