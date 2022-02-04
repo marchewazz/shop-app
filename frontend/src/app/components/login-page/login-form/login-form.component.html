@@ -1,6 +1,8 @@
 <div>
-    <header>Login!</header>
-    <form>
+    <div class="grid auto-rows-auto gap-y-10 mx-40">
+        <p class="text-center text-2xl">
+            Login!
+        </p>
         <input 
         class="input-style"
         type="text"
@@ -13,8 +15,10 @@
         placeholder="Password"
         [formControl]="loginAccountPassword"
         >
-        <div>
-            <p>{{ loginInfo }}</p>
+        <div class="grid auto-cols-auto">
+            <p class="text-center text-2xl">
+                {{ loginInfo }}
+            </p>
             <button *ngIf="loginInfo === 'Your email doesn\'t exist in DB!'"
             class="btn-colors"
             (click)="redirect('/register')"
@@ -28,5 +32,5 @@
         >
             Login
         </button>
-    </form>
+    </div>
 </div>

@@ -1,6 +1,8 @@
 <div>
-    <header>Register!</header>
-    <form>
+    <div class="grid auto-rows-auto gap-y-10">
+        <p class="text-center text-2xl">
+            Register!
+        </p>
         <input 
         class="input-style"
         type="text"
@@ -37,8 +39,10 @@
         placeholder="City"
         [formControl]="registeringAccountCity"
         >
-        <div>
-            <p>{{ registerInfo }}</p>
+        <div class="grid auto-cols-auto">
+            <p class="text-center text-2xl">
+                {{ registerInfo }}
+            </p>
             <button *ngIf="registerInfo === 'You\'re email exists in DB!' || registerInfo === 'You\'ve been registered!'"
             class="btn-colors"
             (click)="redirect('/login')">
@@ -50,5 +54,5 @@
         >
             Register
         </button>
-    </form>
+    </div>
 </div>

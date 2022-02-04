@@ -28,7 +28,7 @@ export class LoginFormComponent implements OnInit {
       accountPassword: this.loginAccountPassword.value
     }
     if (!userData.accountEmail || !userData.accountPassword) {
-      this.loginInfo = "Pass all essential data";
+      this.loginInfo = "Pass all data";
     } else {
       if (!testEmailRegExp(userData.accountEmail) || !testPasswordRegExp(userData.accountPassword)){
         this.loginInfo = "Check your data";

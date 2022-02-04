@@ -14,6 +14,17 @@
         @apply bg-blue-900 text-white rounded-lg p-2
     }
     .input-style {
-        @apply bg-blue-600 rounded-lg border-2 border-black transform transition-all focus:bg-blue-500 focus:scale-x-110 text-white
+        @apply bg-blue-600 rounded-lg border-2 border-black transform transition-all focus:bg-blue-500 focus:scale-x-110 text-white text-center
+    }
+    .disabled-styles {
+        @apply disabled:border-gray-400 disabled:text-gray-400 disabled:bg-gray-200 
+        peer-disabled:border-gray-400 peer-disabled:text-gray-400 peer-disabled:bg-gray-200 
+    }
+    .shipping-page-button-style {
+        @apply disabled-styles rounded-lg border-2 border-gray-400 text-gray-400 text-center place-self-stretch
+        peer-checked:bg-blue-600 peer-checked:text-white peer-checked:border-black
+    }
+    .shipping-page-input-style {
+        @apply input-style disabled-styles text-center 
     }
 }

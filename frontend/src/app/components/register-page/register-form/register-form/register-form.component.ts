@@ -33,10 +33,10 @@ export class RegisterFormComponent implements OnInit {
       accountCity: this.registeringAccountCity.value,
     }
     if(!isDataComplete(userData)){
-      this.registerInfo = "Missing values!";
+      this.registerInfo = "Pass all data!";
     } else {
       if(!testEmailRegExp(userData.accountEmail)){
-        this.registerInfo = "Not valid email eg. xyz@gmail.com";
+        this.registerInfo = "Not valid email, eg. xyz@gmail.com";
         return
       } else if(!testPasswordRegExp(userData.accountPassword)){ 
         this.registerInfo = "Password doesn't match requirments";

@@ -76,65 +76,94 @@
         </div>
         <div>
             <ng-container *ngIf="!isAnythingNotavailable">
-                Pay now
-                <input 
-                type="radio"
-                name="payment"
-                value="now"
-                [formControl]="paymentControl">
-                Pay later
-                <input 
-                type="radio"
-                name="payment"
-                value="later"
-                [formControl]="paymentControl">
-                Shippment details
-                <input 
-                type="radio" 
-                name="details" 
-                value="account"
-                (change)="enableDisableForm()"
-                [formControl]="optionsControl"
-                >
-                <span>Use from account</span>
-                <input 
-                type="radio" 
-                name="details"
-                value="form"
-                (change)="enableDisableForm()"
-                [formControl]="optionsControl"
-                >
-                <span>Pass diffrent</span>
-                <div>
-                    <form>
-                        <input class="input-style" 
-                        type="text" 
-                        placeholder="Pass first name" 
-                        [formControl]="firstnameControl">
-
-                        <input class="input-style" 
-                        type="text" 
-                        placeholder="Pass last name" 
-                        [formControl]="lastnameControl">
-
-                        <input class="input-style"
-                        type="text" 
-                        placeholder="Pass email" 
-                        [formControl]="emailControl">
-
-                        <input class="input-style"
-                        type="text" 
-                        placeholder="Pass city" 
-                        [formControl]="cityControl">
-                    </form>
+                <div class="grid grid-cols-2 grid-rows-2 mx-5 gap-x-5">
+                    <span class="grid items-stretch">
+                        <input 
+                        class="peer hidden items-stretch"
+                        type="radio"
+                        name="payment"
+                        id="now"
+                        value="now"
+                        [formControl]="paymentControl">
+                        <label class="shipping-page-button-style"
+                        for="now">
+                            Pay now
+                        </label>
+                    </span>
+                    <span class="grid items-stretch">
+                        <input 
+                        class="peer hidden"
+                        type="radio"
+                        name="payment"
+                        id="later"
+                        value="later"
+                        [formControl]="paymentControl">
+                        <label class="shipping-page-button-style" 
+                        for="later">
+                            Pay later
+                        </label>
+                    </span>
+                    <span class="grid items-stretch">
+                        <input 
+                        class="peer hidden"
+                        type="radio" 
+                        name="details" 
+                        id="account"
+                        value="account"
+                        (change)="enableDisableForm()"
+                        [formControl]="optionsControl"
+                        >
+                        <label class="shipping-page-button-style" 
+                        for="account">
+                            Use from account
+                        </label>
+                    </span>
+                    <span class="grid items-stretch">
+                        <input 
+                        class="peer hidden"
+                        type="radio" 
+                        name="details"
+                        id="form"
+                        value="form"
+                        (change)="enableDisableForm()"
+                        [formControl]="optionsControl"
+                        >
+                        <label class="shipping-page-button-style"
+                        for="form">
+                            Pass diffrent
+                        </label>
+                    </span>
                 </div>
-                <p>
-                    {{infoLabel}}
-                </p>
-                <button class="btn-colors"
-                (click)="order()">
-                    Order now
-                </button>
+                <div class="grid auto-rows-auto gap-y-5 mx-20">
+                    <input class="shipping-page-input-style" 
+                    type="text" 
+                    placeholder="Pass first name" 
+                    [formControl]="firstnameControl">
+
+                    <input class="shipping-page-input-style" 
+                    type="text" 
+                    placeholder="Pass last name" 
+                    [formControl]="lastnameControl">
+
+                    <input class="shipping-page-input-style"
+                    type="text" 
+                    placeholder="Pass email" 
+                    [formControl]="emailControl">
+
+                    <input class="shipping-page-input-style"
+                    type="text" 
+                    placeholder="Pass city" 
+                    [formControl]="cityControl">
+                </div>
+                <div class="grid grid-rows-2">
+                    <p class="text-center">
+                        {{infoLabel}}
+                    </p>
+                    <button class="btn-colors justify-self-center"
+                    (click)="order()">
+                        Order now
+                    </button>
+                </div>
             </ng-container>
             <ng-container *ngIf="isAnythingNotavailable">
                 <p>Some of products are unavaiable, delete them to order</p>

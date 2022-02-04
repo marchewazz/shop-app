@@ -1,11 +1,11 @@
 <div>
     <div *ngIf="userOrders.length === 0">
-        <p>
+        <p class="text-center">
             You don't have orders
         </p>
     </div>
     <div *ngIf="userOrders.length !== 0" 
-    class=" text-md">
+    class="text-md">
         <p class="text-center">Your orders</p>
         <div class="overflow-y-auto max-h-64">
             <ng-container *ngFor="let orderData of userOrders">
