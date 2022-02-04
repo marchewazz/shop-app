@@ -31,13 +31,15 @@ export class ListPageComponent implements OnInit {
     this.ls.getOneList(listData).subscribe((res: any) => {
       console.log(res);
       this.list = res.list;
-      this.userFirstName = res.userFirstName;
-      this.createDate = new Date(res.list.listCreateDate).toLocaleString();
+      if(res.list) {
+        this.userFirstName = res.userFirstName;
+        this.createDate = new Date(res.list.listCreateDate).toLocaleString();
+        this.ps.getProductsData(res.list.listProducts).then((value: any) => {
+          this.productsOnList = value;
+        })
+        setTimeout(() => this.listPrice = this.cs.calculatePrice(this.productsOnList), 100);
+      }
       this.isLoaded = true;
-      this.ps.getProductsData(res.list.listProducts).then((value: any) => {
-        this.productsOnList = value;
-      })
-      setTimeout(() => this.listPrice = this.cs.calculatePrice(this.productsOnList), 100);
     })
   }
 

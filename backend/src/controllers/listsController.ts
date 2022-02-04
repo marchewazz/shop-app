@@ -25,18 +25,19 @@ class ListsController {
         const listData = req.body.params;
         var userFirstName = '';
         console.log(listData);
-        
-
         var query = `SELECT * FROM lists WHERE "listID" = $1`;
 
         const client = await pool.connect();
         try {
+            var list: any = false;
             var { rows } = await client.query(query, [listData.listID]);
-            const list = rows[0];
-            if (list.listUser){
-                query = `SELECT "userFirstName" FROM users WHERE "userID" = $1`
-                var { rows } = await client.query(query, [list.listUser]);
-                userFirstName = rows[0].userFirstName;
+            if(rows[0]){
+                list = rows[0];
+                if (list.listUser){
+                    query = `SELECT "userFirstName" FROM users WHERE "userID" = $1`
+                    var { rows } = await client.query(query, [list.listUser]);
+                    userFirstName = rows[0].userFirstName;
+                }
             }
             return res.status(200).json({"list": list, "userFirstName": userFirstName})
         } catch(e){

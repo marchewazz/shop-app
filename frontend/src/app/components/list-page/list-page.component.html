@@ -1,7 +1,13 @@
-<div class="m-20">
-    <p *ngIf="!isLoaded">Loading...</p>
+<div class="grid m-20">
+    <p *ngIf="!isLoaded"
+    class="place-self-center text-2xl">
+        Loading...
+    </p>
     <ng-container *ngIf="isLoaded">
-        <p *ngIf="!list">No list with passed ID!</p>
+        <p *ngIf="!list"
+        class="place-self-center text-2xl">
+            No list with passed ID!
+        </p>
         <ng-container *ngIf="list">
             <div class="border-2 border-gray-400 rounded-lg">
                 <div class="flex justify-evenly">
