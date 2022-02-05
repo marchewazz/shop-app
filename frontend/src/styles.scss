@@ -9,6 +9,7 @@
     }
     .btn-colors {
         @apply bg-blue-900 hover:bg-blue-600 text-white p-2 rounded-full border-2 border-black
+        disabled:disabled-styles
     }
     .infos-colors {
         @apply bg-blue-900 text-white rounded-lg p-2
@@ -19,6 +20,7 @@
     .disabled-styles {
         @apply disabled:border-gray-400 disabled:text-gray-400 disabled:bg-gray-200 
         peer-disabled:border-gray-400 peer-disabled:text-gray-400 peer-disabled:bg-gray-200 
+        transform transition-all
     }
     .shipping-page-button-style {
         @apply disabled-styles rounded-lg border-2 border-gray-400 text-gray-400 text-center place-self-stretch

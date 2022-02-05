@@ -50,29 +50,26 @@ export class CommentsSectionComponent implements OnInit {
   }
 
   addComment(){
-    
-    if(this.commentText.value == null || this.commentText.value == "") this.info = "Hey! If you wanna add comment write something!";
-    else {
-      console.log(this.commentText.value, this.isAnonymous.value);
-      const userData = JSON.parse(this.as.getUserDetails());
-      if (this.isAnonymous.value != null || this.isAnonymous.value == true){
-        var author = "Anonymous";
-      } else {
-        var author = `${userData.userFirstName} ${userData.userLastName}`;
-      }
-      var userID = `${userData.userID}`;
-      const commentData = {
-        userID: userID,
-        rating: Number(this.rating.value),
-        commentText: this.commentText.value,
-        userName: author,
-        productID: this.productID
-      }
-      console.log(commentData);
-      this.comS.addComment(commentData).subscribe((res: any) => {
-        if (res.message == "inserted") this.ngOnInit();
-      })
+    console.log(this.commentText.value, this.isAnonymous.value);
+    const userData = JSON.parse(this.as.getUserDetails());
+    if (this.isAnonymous.value != null || this.isAnonymous.value == true){
+      var author = "Anonymous";
+    } else {
+      var author = `${userData.userFirstName} ${userData.userLastName}`;
     }
+    var userID = `${userData.userID}`;
+    const commentData = {
+      userID: userID,
+      rating: Number(this.rating.value),
+      commentText: this.commentText.value,
+      userName: author,
+      productID: this.productID
+    }
+    console.log(commentData);
+    this.comS.addComment(commentData).subscribe((res: any) => {
+      if (res.message == "inserted") this.ngOnInit();
+    })
+    
   }
 
   deleteComment(commentID: number){
