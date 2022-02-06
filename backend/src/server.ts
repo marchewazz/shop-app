@@ -1,11 +1,7 @@
 import express, {Application} from 'express';
 import cors from 'cors';
 
-import accountsRouter from './routers/AccountsRouter';
-import prodcutsRouter from './routers/ProductsRouter';
-import ordersRouter from './routers/OrdersRouter';
-import commentsRouter from './routers/CommentsRouter';
-import listsRouter from './routers/ListsRouter';
+import apiRouter from './routers/ApiRouter';
 
 import PaymentsController from './controllers/paymentsController';
 import OrdersController from './controllers/ordersController';
@@ -29,11 +25,7 @@ class Server {
     }
 
     private routerConfig() {
-        this.app.use('/accounts', accountsRouter)
-        this.app.use('/products', prodcutsRouter)
-        this.app.use('/orders', ordersRouter)
-        this.app.use('/comments', commentsRouter)
-        this.app.use('/lists', listsRouter)
+        this.app.use('/api', apiRouter)
     }
     public start() {
         this.app.listen(this.PORT, (): void => {
