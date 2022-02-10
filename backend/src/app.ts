@@ -1,4 +1,5 @@
 import Server from "./server";
 
 
-const starter = new Server().start()
+const server = new Server()
+server.start()
