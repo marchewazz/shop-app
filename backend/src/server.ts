@@ -12,7 +12,8 @@ class Server {
     private options: cors.CorsOptions = {
         origin: ['http://localhost:4200']
     };
-    private PORT : number = 5000; 
+
+    private PORT : string | number = process.env.PORT || 5000; 
     
     private ps: PaymentsController = new PaymentsController();
     private os: OrdersController = new OrdersController();
