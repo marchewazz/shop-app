@@ -9,9 +9,9 @@ import OrdersController from './controllers/ordersController';
 //SERVER  CONFIG
 class Server {
     private app: Application;
-    private options: cors.CorsOptions = {
-        origin: ['http://localhost:4200']
-    };
+    // private options: cors.CorsOptions = {
+    //     origin: ['http://localhost:4200']
+    // };
 
     private PORT : string | number = process.env.PORT || 5000; 
     
@@ -20,7 +20,7 @@ class Server {
 
     constructor(){
         this.app = express();
-        this.app.use(cors(this.options));
+        // this.app.use(cors(this.options));
         this.app.use(express.json());
         this.routerConfig()
     }
