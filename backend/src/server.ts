@@ -27,6 +27,9 @@ class Server {
 
     private routerConfig() {
         this.app.use('/api', apiRouter)
+        this.app.get('/test', (req, res) => {
+            res.send(`<h1>test</h1>`)
+        })
     }
     public start() {
         this.app.listen(this.PORT, (): void => {
