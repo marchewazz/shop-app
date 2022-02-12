@@ -88,7 +88,7 @@ export default class OrdersController{
     public async updateOrders(){
         const client = await pool.connect();
         try{
-            var query = `DELETE FROM "orders" WHERE DATE_PART('day', LOCALTIMESTAMP::timestamp - "orderDate"::timestamp) > 0`;
+            var query = `DELETE FROM "orders" WHERE DATE_PART('day', LOCALTIMESTAMP::timestamp - "orderDate"::timestamp) > 0 AND "orderIsPaid" IS TRUE`;
 
             await client.query(query);
         } catch(e){
