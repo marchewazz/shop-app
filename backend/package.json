@@ -7,10 +7,6 @@
     "start": "ts-node src/app.ts",
     "dev": "nodemon -x ts-node src/app.ts"
   },
-  "engines" : { 
-    "npm" : ">=7.0.0",
-    "node" : ">=16.0.0"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
