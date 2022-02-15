@@ -30,12 +30,12 @@ export function returnRandomProductsMenu(): number {
 
 
 
-export var pageUrl = `http://localhost:4200`;
+export var pageUrl = `https://pean-shop-app.herokuapp.com`;
 //backend url
-export var backendUrl = `http://localhost:5000/api`;
+export var backendUrl = `https://pean-shop-app-backend.herokuapp.com/api`;
 //bank backend url
 export var bankPageUrl = "http://localhost:3000";
 export var mainShopBill = "215889453176";
-export var bankAuthPage = "http://localhost:4200/confirmedauth";
+export var bankAuthPage = `${pageUrl}/confirmedauth`;
 //shop currency
 export var shopCurrency = "$";
