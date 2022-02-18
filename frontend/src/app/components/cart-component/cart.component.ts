@@ -28,10 +28,11 @@ export class CartComponent implements OnInit {
   ngOnInit() { }
 
   updateCart(){
+    var tempProductsData: any[] = [];
     this.ps.getProductsData(JSON.parse(this.cs.getProducts())).then((value: any) => {
-      this.productsInCart = value;
+      tempProductsData = value;
     })
-    setTimeout(() => this.cartPrice = this.cs.calculatePrice(this.productsInCart), 100);
+    setTimeout(() => {this.productsInCart = this.ps.sortProductsByName(tempProductsData, "asc"); this.cartPrice = this.cs.calculatePrice(tempProductsData)}, 120);
   }
 
   resetCart(){

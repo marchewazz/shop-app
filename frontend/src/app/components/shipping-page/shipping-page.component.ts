@@ -70,7 +70,7 @@ export class ShippingPageComponent implements OnInit {
       tempProductsData = value;
     })
     setTimeout(() => {
-      this.productsInCart = tempProductsData;
+      this.productsInCart = this.ps.sortProductsByName(tempProductsData, "asc");
       this.cartPrice = this.cs.calculatePrice(this.productsInCart);
       this.isAnythingNotavailable = this.checkForAvailability();
       this.isLoaded = true;

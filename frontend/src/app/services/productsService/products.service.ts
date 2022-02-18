@@ -71,6 +71,14 @@ export class ProductsService {
     if (method == "asc") return products.sort((product1: any, product2: any) => product2.productPrice + product1.productPrice)
   }
 
+  sortProductsByName(products: any[], method: "asc" | "desc"): any{
+    console.log(products);
+    if (method == "desc") return products.sort((product1: any, product2: any) => product2.productName.toLowerCase().localeCompare(product1.productName.toLowerCase()))
+    if (method == "asc") return products.sort((product1: any, product2: any) => product1.productName.toLowerCase().localeCompare(product2.productName.toLowerCase()))
+    // if (method == "desc") return products.sort((product1: any, product2: any) => product2.productName.toLowerCase() - product1.productName.toLowerCase())
+    // if (method == "asc") return products.sort((product1: any, product2: any) => product2.productName.toLowerCase() + product1.productName.toLowerCase())
+  }
+
   sortByPopularity(products: any[]): any{
     return products.sort((product1: any, product2: any) => product2.productSold - product1.productSold)
   }
