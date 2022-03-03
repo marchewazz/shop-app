@@ -53,15 +53,12 @@ class AccountsController {
             var query = `SELECT * FROM users WHERE "userEmail" = $1`;
 
             var { rows } = await client.query(query, [userData.accountEmail]);
-            console.log(rows);
             const result = rows[0]
 
             if (!result){
                 //IF THERE IS NO USER WITH THIS EMAIL RETURN MESSAGE
                 return res.status(200).json({"message":"Your email doesn't exist in DB!"});
             } else {
-                console.log(result);
-                console.log(crypto.createHash('sha256').update(userData.accountPassword).digest('base64'));
                 //JUST CHECK IS PASSWORDS MATCH
                 if (result.userPass !== crypto.createHash('sha256').update(userData.accountPassword).digest('base64')){
                     return res.status(200).json({"message":"Wrong password"})
@@ -101,6 +98,23 @@ class AccountsController {
             await client.query(query, userData);
             // res.send({"x": "hjehe"})
         } catch(e){
+            console.log(e);
+            return returnServerError(res);
+        }
+        client.release();
+    }
+
+    public async updateUserData(req: any, res: any) {
+        const userData = req.body;
+        const client = await pool.connect();
+        try{
+            const values = [userData.accountCity, userData.accountEmail, userData.accountFirstName, userData.accountLastName, userData.accountID];
+            var query = `UPDATE users SET "userCity" = $1, "userEmail" = $2, "userFirstName" = $3, "userLastName" = $4 WHERE "userID" = $5`;
+
+            await client.query(query, values)
+
+            res.send({"message": "done"})
+        } catch(e){ 
             console.log(e);
             return returnServerError(res);
         }

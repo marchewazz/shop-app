@@ -4,8 +4,8 @@ const connectionString : string | undefined = process.env.DATABASE_URL || 'postg
 
 export default new Pool ({
     connectionString: connectionString,
-    ssl: {
-        rejectUnauthorized: false
-    },
+    // ssl: {
+    //     rejectUnauthorized: false
+    // },
     max: 20000
 })

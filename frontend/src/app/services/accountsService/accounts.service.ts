@@ -22,4 +22,8 @@ export class AccountsService {
   updateBankAccount(userData: any): Observable<Object>{
     return this.http.put(`${backendUrl}/accounts/updatebanknumber`, {params: userData});
   }
+
+  updateUserData(userData: any): Observable<Object>{
+    return this.http.put(`${backendUrl}/accounts/updateuserdata`, userData)
+  }
 }
