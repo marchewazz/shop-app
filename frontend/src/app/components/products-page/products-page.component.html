@@ -15,14 +15,17 @@
                 </ng-container>
             </p>
             <div>
-                <div>
-                    <div *ngIf="!showFilters">
-                        <button (click)="showFilters=true">
+                <div class="mx-20">
+                    <div *ngIf="!showFilters"
+                    class="">
+                        <button (click)="showFilters=true"
+                        class="bg-green-700 text-white p-5 border-4 border-black rounded-lg">
                             Show filters
                         </button>
                     </div>
                     <div *ngIf="showFilters">
-                        <button (click)="showFilters=false">
+                        <button (click)="showFilters=false"
+                        class="bg-red-700 text-white p-5 border-4 border-black rounded-lg">
                             Hide filters
                         </button>
                         <span>
