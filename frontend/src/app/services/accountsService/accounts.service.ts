@@ -26,4 +26,8 @@ export class AccountsService {
   updateUserData(userData: any): Observable<Object>{
     return this.http.put(`${backendUrl}/accounts/updateuserdata`, userData)
   }
+
+  updatePassword(userData: any): Observable<Object>{
+    return this.http.put(`${backendUrl}/accounts/updatepassword`, userData)
+  }
 }

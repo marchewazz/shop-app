@@ -9,4 +9,5 @@ accountsRouter.get('/login', accountsController.loginUser);
 accountsRouter.post('/refresh', accountsController.refreshUserDate);
 accountsRouter.put('/updatebanknumber', accountsController.updateBankNumber);
 accountsRouter.put('/updateuserdata', accountsController.updateUserData);
+accountsRouter.put('/updatepassword', accountsController.updatePassword);
 export default accountsRouter;

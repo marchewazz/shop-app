@@ -120,6 +120,22 @@ class AccountsController {
         }
         client.release();
     }
+    public async updatePassword(req: any, res: any) {
+        const userData = req.body;
+        const client = await pool.connect();
+        try{
+            const values = [crypto.createHash('sha256').update(userData.accountPassword).digest('base64'), userData.accountEmail];
+            var query = `UPDATE users SET "userPass" = $1 WHERE "userEmail" = $2`;
+
+            await client.query(query, values)
+
+            res.send({"message": "done"})
+        } catch(e){ 
+            console.log(e);
+            return returnServerError(res);
+        }
+        client.release();
+    }
 }
 
 export default AccountsController;

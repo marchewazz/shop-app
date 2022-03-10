@@ -29,6 +29,10 @@ export class ProfilePageComponent implements OnInit {
   accountCity = new FormControl();
   accountPassword = new FormControl();
 
+  currentAccountPassword = new FormControl();
+  newAccountPassword = new FormControl();
+  repeatedNewAccountPassword = new FormControl();
+
   updateInfo : string = "";
 
   constructor(private accS: AccountsService, private as: AuthService, private os: OrdersService, private ls: ListsService, @Inject(DOCUMENT)  private document: Document) { }
@@ -79,7 +83,7 @@ export class ProfilePageComponent implements OnInit {
     return false
   }
 
-  updateData(){
+  updateData(): void{
     if (this.accountPassword.value) {
       var userData = {
         accountEmail: this.accountEmail.value,
@@ -107,6 +111,42 @@ export class ProfilePageComponent implements OnInit {
       })
     } else {
       this.updateInfo = "Pass data"
+    }
+  }
+
+  changePassword(): void {
+    if(this.currentAccountPassword.value && this.newAccountPassword.value && this.repeatedNewAccountPassword.value) {
+      var userData = {
+        accountEmail: JSON.parse(this.as.getUserDetails()).userEmail,
+        accountPassword: this.currentAccountPassword.value
+      } 
+      if(!testPasswordRegExp(this.newAccountPassword.value)) {
+        this.updateInfo = "New password doesn't match requirements"
+        return
+      }
+      if(!arePasswordsSame(this.newAccountPassword.value, this.repeatedNewAccountPassword.value)) {
+        this.updateInfo = "Password are not the same"
+        return
+      }
+      this.accS.loginUser(userData).subscribe((res: any) => {
+        if(res.message != "Logged!") {
+          this.updateInfo = "Wrong password!"
+        } else {
+          var userData = {
+            accountEmail: JSON.parse(this.as.getUserDetails()).userEmail,
+            accountPassword: this.newAccountPassword.value
+          }
+          this.accS.updatePassword(userData).subscribe((res: any) => {
+            if(res.message === "done") {
+              this.updateInfo = "Password has been changed!"
+            } else {
+              this.updateInfo = "Server error!"
+            }
+          })
+        }
+      })
+    } else {
+      this.updateInfo = "Missing data!";
     }
   }
 

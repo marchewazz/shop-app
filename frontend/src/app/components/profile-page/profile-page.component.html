@@ -25,10 +25,38 @@ md:grid-cols-2">
                 (click)="showEditForm=true; setFormValues()">
                     Edit data
                 </button>
-                <button class="btn-colors">
+                <button class="btn-colors"
+                (click)="showChangePasswordForm=true">
                     Change password
                 </button>
             </div>
+        </div>
+        <div *ngIf="showChangePasswordForm">
+            <span>
+                Pass current password 
+                <input type="password" 
+                (input)="updateInfo = ''"
+                [formControl]="currentAccountPassword"> 
+            </span>
+            <span>
+                Pass new password 
+                <input type="password" 
+                (input)="updateInfo = ''"
+                [formControl]="newAccountPassword"> 
+            </span>
+            <span>
+                Repeat new password 
+                <input type="password" 
+                (input)="updateInfo = ''"
+                [formControl]="repeatedNewAccountPassword"> 
+            </span>
+            <span>
+                {{ updateInfo }}
+            </span>
+            <button class="btn-colors"
+            (click)="changePassword()">
+                Confirm
+            </button>
         </div>
     </div>
     <div *ngIf="showEditForm">
@@ -85,8 +113,8 @@ md:grid-cols-2">
                 </button>
             </div>
         </div>
-        
     </div>
+    
     <div class="grid grid-rows-2 gap-y-5 divide-y divide-gray-300">
         <app-orders-preview 
         [userID]=userData.userID
