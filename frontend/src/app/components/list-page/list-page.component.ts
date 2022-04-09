@@ -35,7 +35,7 @@ export class ListPageComponent implements OnInit {
         this.userFirstName = res.userFirstName;
         this.createDate = new Date(res.list.listCreateDate).toLocaleString();
         this.ps.getProductsData(res.list.listProducts).then((value: any) => {
-          this.productsOnList = value;
+          this.productsOnList = this.ps.sortProductsByName(value, "asc");
         })
         setTimeout(() => this.listPrice = this.cs.calculatePrice(this.productsOnList), 100);
       }

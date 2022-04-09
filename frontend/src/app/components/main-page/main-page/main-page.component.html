@@ -1,10 +1,15 @@
 <div class="grid w-full h-full grid-rows-2">
-    <div class="grid justify-items-center items-center">
-        <p class="text-5xl"
-    (mouseenter)="changeMainTitle(true)"
-    (mouseleave)="changeMainTitle(false)"  >
+    <div class="grid justify-items-center place-items-center">
+        <p class="w-full text-center text-lg
+        sm:text-2xl
+        lg:text-5xl"
+        (mouseenter)="changeMainTitle(true)"
+        (mouseleave)="changeMainTitle(false)">
         {{ mainTitle }}
-    </p>
+            <span class="text-xs">
+                (hover me)
+            </span>
+        </p>
     </div>
     <div>
         <app-most-popular-products-component></app-most-popular-products-component>

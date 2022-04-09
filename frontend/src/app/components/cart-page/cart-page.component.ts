@@ -27,7 +27,7 @@ export class CartPageComponent implements OnInit {
     this.ps.getProductsData(JSON.parse(this.cs.getProducts())).then((value: any) => {
       tempProductsData = value;
     })
-    setTimeout(() => {this.productsInCart = tempProductsData; this.cartPrice = this.cs.calculatePrice(this.productsInCart)}, 120);
+    setTimeout(() => {this.productsInCart = this.ps.sortProductsByName(tempProductsData, "asc"); this.cartPrice = this.cs.calculatePrice(tempProductsData)}, 120);
   }
 
   deleteProduct(id: number){

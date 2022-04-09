@@ -1,6 +1,7 @@
 <div class="grid auto-rows-min mt-10 mx-5
 md:grid-cols-2">
-    <div class="grid auto-rows-min gap-y-5 divide-y divide-gray-300">
+    <div *ngIf="!showEditForm"
+    class="grid auto-rows-min gap-y-5 divide-y divide-gray-300">
         <p class="text-center">Firstname: {{ userData.userFirstName }}</p>
         <p class="text-center">Lastname: {{ userData.userLastName }}</p>
         <p class="text-center">City: {{ userData.userCity }}</p>
@@ -19,8 +20,101 @@ md:grid-cols-2">
             <ng-container *ngIf="userData.userBankAccNumber">
                 Account connected: {{ "*".repeat(10) + userData.userBankAccNumber.substr(userData.userBankAccNumber.length - 4) }}   
             </ng-container>
+            <div class="flex justify-evenly">
+                <button class="btn-colors"
+                (click)="showEditForm=true; setFormValues()">
+                    Edit data
+                </button>
+                <button class="btn-colors"
+                (click)="showChangePasswordForm=true">
+                    Change password
+                </button>
+            </div>
+        </div>
+        <div *ngIf="showChangePasswordForm">
+            <span>
+                Pass current password 
+                <input type="password" 
+                (input)="updateInfo = ''"
+                [formControl]="currentAccountPassword"> 
+            </span>
+            <span>
+                Pass new password 
+                <input type="password" 
+                (input)="updateInfo = ''"
+                [formControl]="newAccountPassword"> 
+            </span>
+            <span>
+                Repeat new password 
+                <input type="password" 
+                (input)="updateInfo = ''"
+                [formControl]="repeatedNewAccountPassword"> 
+            </span>
+            <span>
+                {{ updateInfo }}
+            </span>
+            <button class="btn-colors"
+            (click)="changePassword()">
+                Confirm
+            </button>
         </div>
     </div>
+    <div *ngIf="showEditForm">
+        <span>
+            Edit data
+        </span>
+        <div class="grid auto-rows-min gap-y-5 divide-y divide-gray-300">
+            <span>
+                Firstname: 
+                <input type="text" 
+                (input)="updateInfo = '';showPasswordConfirmation=false" 
+                [formControl]="accountFirstName">
+            </span>
+            <span>
+                Lastname: 
+                <input type="text" 
+                (input)="updateInfo = '';showPasswordConfirmation=false" 
+                [formControl]="accountLastName">
+            </span>
+            <span>
+                City: 
+                <input type="text" 
+                (input)="updateInfo = '';showPasswordConfirmation=false" 
+                [formControl]="accountCity">
+            </span>
+            <span>
+                Email: 
+                <input type="text" 
+                (input)="updateInfo = '';showPasswordConfirmation=false" 
+                [formControl]="accountEmail">
+            </span>
+        </div>
+        <span>
+            {{ updateInfo }}
+        </span>
+        <div>
+            <div class="flex justify-evenly">
+                <button class="btn-colors"
+                (click)="showEditForm=false">
+                    Back
+                </button>
+                <button class="btn-colors"
+                (click)="validateData()">
+                    Save
+                </button>
+            </div>
+            <div *ngIf="showPasswordConfirmation">
+                <span>
+                    Pass password <input type="password" [formControl]="accountPassword"> 
+                </span>
+                <button class="btn-colors"
+                (click)="updateData()">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <div class="grid grid-rows-2 gap-y-5 divide-y divide-gray-300">
         <app-orders-preview 
         [userID]=userData.userID

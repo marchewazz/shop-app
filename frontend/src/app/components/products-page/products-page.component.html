@@ -14,15 +14,60 @@
                     Our products!
                 </ng-container>
             </p>
-            <div class="grid auto-rows-fr gap-10 mx-20 my-10 place-items-stretch
-            sm:grid-cols-1
-            md:grid-cols-2
-            lg:grid-cols-3">
-                <div class="grid place-items-stretch" *ngFor="let product of products">
-                    <app-product-preview
-                    [productData]=product></app-product-preview>
+            <div>
+                <div class="mx-20">
+                    <div *ngIf="!showFilters"
+                    class="">
+                        <button (click)="showFilters=true"
+                        class="bg-green-700 text-white p-5 border-4 border-black rounded-lg">
+                            Show filters
+                        </button>
+                    </div>
+                    <div *ngIf="showFilters">
+                        <button (click)="showFilters=false"
+                        class="bg-red-700 text-white p-5 border-4 border-black rounded-lg">
+                            Hide filters
+                        </button>
+                        <span>
+                            Sort by
+                            <select (change)="filterProducts()"
+                            [formControl]="sortControl">
+                                <option value="priceLowToHigh">
+                                    Price: low to high
+                                </option>
+                                <option value="priceHighToLow">
+                                    Price: high to low
+                                </option>
+                                <option value="nameAToZ">
+                                    Name: A to Z
+                                </option>
+                                <option value="nameZToA">
+                                    Name: Z to A
+                                </option>
+                                <option value="mostPopular">
+                                    Most popular
+                                </option>
+                            </select>
+                        </span>
+                        <span>
+                            <input type="checkbox"
+                            (change)="filterProducts()"
+                            [formControl]="availabilityControl">
+                            Only available
+                        </span>
+                    </div>
+                </div>
+                <div class="grid auto-rows-fr gap-10 mx-20 my-10 place-items-stretch
+                sm:grid-cols-1
+                md:grid-cols-2
+                lg:grid-cols-3">
+                    <div class="grid place-items-stretch" *ngFor="let product of products">
+                        <app-product-preview
+                        [productData]=product></app-product-preview>
+                    </div>
                 </div>
             </div>
+            
         </ng-container> 
         <ng-template #noProducts>
             <ng-container *ngIf="searchPhrase">
